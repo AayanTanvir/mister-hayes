@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://rsxeejsy00mg"]
+
+[ext_resource type="Script" uid="uid://djee50up2ur7x" path="res://scenes/intro/Intro.gd" id="1_2xnbr"]
+[ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="2_gral6"]
+[ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="3_37sh5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gral6"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_w1iy7"]
+sky_material = SubResource("ProceduralSkyMaterial_gral6")
+
+[sub_resource type="Environment" id="Environment_37sh5"]
+background_mode = 2
+sky = SubResource("Sky_w1iy7")
+
+[sub_resource type="Curve3D" id="Curve3D_w1iy7"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.0027923584, 0.00049972534, -0.13700461, 0, 0, 0, 0, 0, 0, 1.8323259, 0.00049972534, -12.608516, 0, 0, 0, 0, 0, 0, 19.351603, 0.00050354004, -81.637634, 0, 0, 0, 0, 0, 0, 69.200035, 0.00050354004, -113.57236, 0, 0, 0, 0, 0, 0, 103.72273, 0.00050354004, -74.00923, 0, 0, 0, 0, 0, 0, 95.32346, 0.00051116943, -13.730526, 0, 0, 0, 0, 0, 0, 14.303253, 0.00050354004, -3.3957329),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[node name="Intro" type="Node3D" unique_id=2037898939]
+script = ExtResource("1_2xnbr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=830392400]
+environment = SubResource("Environment_37sh5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1782090871]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Road" type="Path3D" parent="." unique_id=1032634714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+curve = SubResource("Curve3D_w1iy7")
+
+[node name="CarRoute" type="PathFollow3D" parent="Road" unique_id=972304914]
+transform = Transform3D(0.9894105, 0, -0.1451436, 0, 1, 0, 0.1451436, 0, 0.9894105, 0.0027923584, 0.00049972534, -0.13700461)
+
+[node name="Platform" type="CSGBox3D" parent="." unique_id=141757020]
+use_collision = true
+size = Vector3(500, 0.001, 500)
+material = ExtResource("2_gral6")
+
+[node name="Player" parent="." unique_id=1234029208 instance=ExtResource("3_37sh5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)

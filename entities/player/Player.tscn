@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b31c7c53ol1yj"]
+
+[ext_resource type="Script" uid="uid://cr5liyyuvxosx" path="res://entities/player/Player.gd" id="1_mdl7e"]
+[ext_resource type="Script" uid="uid://chdpxabovcqkx" path="res://entities/player/scripts/InteractController.gd" id="2_apuoc"]
+[ext_resource type="Script" uid="uid://bxo02545pne8d" path="res://entities/player/scripts/MovementController.gd" id="2_rguqb"]
+[ext_resource type="Script" uid="uid://dcg8we3of3odn" path="res://entities/player/scripts/CameraController.gd" id="2_v6fml"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1vivr"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1vivr"]
+height = 2.5
+
+[node name="Player" type="CharacterBody3D" unique_id=1234029208]
+script = ExtResource("1_mdl7e")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="." unique_id=61861376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+mesh = SubResource("CapsuleMesh_1vivr")
+
+[node name="PlayerCollisionShape" type="CollisionShape3D" parent="." unique_id=896291682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+shape = SubResource("CapsuleShape3D_1vivr")
+
+[node name="InteractController" type="Node3D" parent="." unique_id=864408581 node_paths=PackedStringArray("interact_ray")]
+script = ExtResource("2_apuoc")
+interact_ray = NodePath("../CameraController/InteractRay")
+
+[node name="MovementController" type="Node3D" parent="." unique_id=443047001]
+script = ExtResource("2_rguqb")
+
+[node name="CameraController" type="Node3D" parent="." unique_id=427448319 node_paths=PackedStringArray("camera_yaw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
+script = ExtResource("2_v6fml")
+camera_yaw = NodePath("..")
+
+[node name="PlayerCamera" type="Camera3D" parent="CameraController" unique_id=1144761065]
+current = true
+fov = 70.0
+
+[node name="InteractRay" type="RayCast3D" parent="CameraController" unique_id=1609748349]
+target_position = Vector3(0, 0, -2.25)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
