@@ -1,0 +1,1066 @@
+diff --git a/entities/car/Car.gd b/entities/car/Car.gd
+deleted file mode 100644
+index ac0209f..0000000
+--- a/entities/car/Car.gd
++++ /dev/null
+@@ -1,160 +0,0 @@
+-extends InteractableComponent
+-
+-@export var car_camera: Camera3D
+-@export var camera_controller: Node3D
+-@export var exit_point: Marker3D
+-@export var interact_controller: InteractController
+-@export var car: VehicleBody3D
+-
+-var root: Prototype
+-var driving := false
+-
+-const MAX_STEER := 0.7
+-const STEER_SPEED := 4.0
+-
+-const MAX_SPEED := 40.0
+-const MAX_REVERSE_SPEED := 6.0
+-
+-const INITIAL_ENGINE_FORCE := 4000.0
+-const MAX_ENGINE_FORCE := 10000.0
+-const INITIAL_ACCELERATION_SPEED := 12.0
+-
+-const MAX_BRAKE_FORCE := 18.0
+-const MIN_BRAKE_FORCE := 6.0
+-const BRAKE_APPLICATION_SPEED := 12.0
+-
+-
+-func _ready() -> void:
+-	root = get_tree().current_scene
+-	interact_controller.set_disabled(true)
+-	set_physics_process(false)
+-
+-
+-func _physics_process(delta: float) -> void:
+-	if not driving:
+-		return
+-
+-	var steer_input := Input.get_axis("right", "left")
+-
+-	car.steering = move_toward(
+-		car.steering,
+-		steer_input * MAX_STEER,
+-		STEER_SPEED * delta
+-	)
+-
+-	var move_input := Input.get_axis("backward", "forward")
+-	var speed := _get_forward_speed()
+-
+-	if move_input > 0.0:
+-		_accelerate(speed)
+-
+-	elif move_input < 0.0:
+-		_reverse_or_brake(delta, speed)
+-
+-	else:
+-		_coast()
+-
+-
+-func _accelerate(speed: float) -> void:
+-	car.brake = 0.0
+-
+-	if speed >= MAX_SPEED:
+-		car.engine_force = 0.0
+-		return
+-
+-	var acceleration_ratio := clampf(
+-		speed / INITIAL_ACCELERATION_SPEED,
+-		0.0,
+-		1.0
+-	)
+-
+-	var target_force := lerpf(
+-		INITIAL_ENGINE_FORCE,
+-		MAX_ENGINE_FORCE,
+-		acceleration_ratio
+-	)
+-
+-	if speed > INITIAL_ACCELERATION_SPEED:
+-		var top_speed_ratio := clampf(
+-			(speed - INITIAL_ACCELERATION_SPEED)
+-			/ (MAX_SPEED - INITIAL_ACCELERATION_SPEED),
+-			0.0,
+-			1.0
+-		)
+-
+-		target_force = lerpf(
+-			MAX_ENGINE_FORCE,
+-			0.0,
+-			top_speed_ratio
+-		)
+-
+-	car.engine_force = target_force
+-
+-
+-func _reverse_or_brake(delta: float, speed: float) -> void:
+-	car.engine_force = 0.0
+-
+-	if speed > 0.5:
+-		var speed_ratio := clampf(
+-			speed / MAX_SPEED,
+-			0.0,
+-			1.0
+-		)
+-
+-		var target_brake := lerpf(
+-			MAX_BRAKE_FORCE,
+-			MIN_BRAKE_FORCE,
+-			speed_ratio
+-		)
+-
+-		car.brake = move_toward(
+-			car.brake,
+-			target_brake,
+-			BRAKE_APPLICATION_SPEED * delta
+-		)
+-
+-	else:
+-		car.brake = 0.0
+-
+-		if speed > -MAX_REVERSE_SPEED:
+-			car.engine_force = -INITIAL_ENGINE_FORCE
+-		else:
+-			car.engine_force = 0.0
+-
+-
+-func _coast() -> void:
+-	car.engine_force = 0.0
+-	car.brake = 0.0
+-
+-
+-func interact() -> void:
+-	if not driving:
+-		root.set_car_interacted(true)
+-		driving = true
+-		start_driving()
+-	else:
+-		root.set_car_interacted(false)
+-		driving = false
+-		end_driving()
+-
+-
+-func start_driving() -> void:
+-	car_camera.current = true
+-	camera_controller.set_disabled(false)
+-	interact_controller.set_disabled(false)
+-	set_physics_process(true)
+-
+-
+-func end_driving() -> void:
+-	car_camera.current = false
+-	camera_controller.set_disabled(true)
+-	interact_controller.set_disabled(true)
+-	set_physics_process(false)
+-
+-	car.engine_force = 0.0
+-	car.brake = 0.0
+-
+-
+-func _get_forward_speed() -> float:
+-	var forward := -car.global_transform.basis.z
+-	return car.linear_velocity.dot(forward)
+diff --git a/entities/car/Car.gd.uid b/entities/car/Car.gd.uid
+deleted file mode 100644
+index 5c73593..0000000
+--- a/entities/car/Car.gd.uid
++++ /dev/null
+@@ -1 +0,0 @@
+-uid://bdq8630gojkbu
+diff --git a/entities/car/Car.tscn b/entities/car/Car.tscn
+index fcd4fde..7879ad8 100644
+--- a/entities/car/Car.tscn
++++ b/entities/car/Car.tscn
+@@ -1,12 +1,8 @@
+ [gd_scene format=3 uid="uid://fihslhghckv4"]
+ 
+-[ext_resource type="Script" uid="uid://bdq8630gojkbu" path="res://entities/car/Car.gd" id="1_7u4s5"]
+ [ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="1_ys5ts"]
+-[ext_resource type="Script" uid="uid://dcg8we3of3odn" path="res://entities/player/scripts/CameraController.gd" id="3_qn377"]
+-[ext_resource type="Script" uid="uid://chdpxabovcqkx" path="res://entities/player/scripts/InteractController.gd" id="4_fbyd5"]
+ 
+-[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
+-size = Vector3(4, 3.3, 6)
++[ext_resource type="Script" uid="uid://b711onmo4r2a3" path="res://entities/car/CarCabinFX.gd" id="2_fx"]
+ 
+ [sub_resource type="CylinderMesh" id="CylinderMesh_t6kce"]
+ height = 0.2
+@@ -24,195 +20,156 @@ radial_segments = 20
+ height = 0.2
+ radial_segments = 20
+ 
+-[sub_resource type="BoxShape3D" id="BoxShape3D_7u4s5"]
+-size = Vector3(0.25, 2.05, 1.4)
++[node name="Car" type="Node3D" unique_id=414290366 node_paths=PackedStringArray("sway", "seat", "steering_wheel", "wheel_fl", "wheel_fr")]
++script = ExtResource("2_fx")
++sway = NodePath("Sway")
++seat = NodePath("Sway/Seat")
++steering_wheel = NodePath("Sway/Mesh/SteeringWheel")
++wheel_fl = NodePath("Wheel_FL")
++wheel_fr = NodePath("Wheel_FR")
+ 
+-[node name="Car" type="VehicleBody3D" unique_id=414290366]
+-mass = 1200.0
++[node name="Sway" type="Node3D" parent="."]
+ 
+-[node name="Mesh" type="Node3D" parent="." unique_id=1210180576]
++[node name="Mesh" type="Node3D" parent="Sway" unique_id=1210180576]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+ 
+-[node name="CSGBox3D" type="CSGBox3D" parent="Mesh" unique_id=1263600706]
++[node name="CSGBox3D" type="CSGBox3D" parent="Sway/Mesh" unique_id=1263600706]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5750002, 0.55)
+ size = Vector3(3.5, 2.3500001, 4.5)
+ 
+-[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=706779973]
++[node name="CSGBox3D" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=706779973]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35000002, -2.4750004)
+ operation = 2
+ size = Vector3(3.1000001, 1, 0.85)
+ 
+-[node name="CSGBox3D3" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=1748937673]
++[node name="CSGBox3D3" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=1748937673]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6499997, 0.30000007, -1.4500003)
+ operation = 2
+ size = Vector3(0.3, 0.7, 1.2)
+ 
+-[node name="CSGBox3D4" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=527067242]
++[node name="CSGBox3D4" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=527067242]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7000002, 0.30000007, -1.4500003)
+ operation = 2
+ size = Vector3(0.4, 0.7, 1.2)
+ 
+-[node name="CSGBox3D5" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=602207884]
++[node name="CSGBox3D5" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=602207884]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6999997, 0.30000007, 0.84999967)
+ operation = 2
+ size = Vector3(0.4, 0.7, 1.2)
+ 
+-[node name="CSGBox3D6" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=1224809226]
++[node name="CSGBox3D6" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=1224809226]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7000002, 0.30000007, 0.84999967)
+ operation = 2
+ size = Vector3(0.4, 0.7, 1.2)
+ 
+-[node name="CSGBox3D2" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=1020268322]
++[node name="CSGBox3D2" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=1020268322]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049999952, 0.024999619)
+ operation = 2
+ size = Vector3(3.05, 2.2, 4.15)
+ 
+-[node name="CSGBox3D2" type="CSGBox3D" parent="Mesh" unique_id=1775948283]
++[node name="CSGBox3D2" type="CSGBox3D" parent="Sway/Mesh" unique_id=1775948283]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, -2.2)
+ size = Vector3(3.5, 0.95, 1)
+ 
+-[node name="CSGBox3D3" type="CSGBox3D" parent="Mesh" unique_id=2056408733]
++[node name="CSGBox3D3" type="CSGBox3D" parent="Sway/Mesh" unique_id=2056408733]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.3500001, 0.17500003)
+ size = Vector3(1, 1.8000001, 0.25)
+ material = ExtResource("1_ys5ts")
+ 
+-[node name="CSGBox3D4" type="CSGBox3D" parent="Mesh" unique_id=630930330]
++[node name="CSGBox3D4" type="CSGBox3D" parent="Sway/Mesh" unique_id=630930330]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.7250001, -0.42499995)
+ size = Vector3(1, 0.55, 0.95)
+ material = ExtResource("1_ys5ts")
+ 
+-[node name="CSGBox3D5" type="CSGBox3D" parent="Mesh" unique_id=1693940669]
++[node name="CSGBox3D5" type="CSGBox3D" parent="Sway/Mesh" unique_id=1693940669]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.3500001, 0.17500003)
+ size = Vector3(1, 1.8000001, 0.25)
+ material = ExtResource("1_ys5ts")
+ 
+-[node name="CSGBox3D6" type="CSGBox3D" parent="Mesh" unique_id=1510086390]
++[node name="CSGBox3D6" type="CSGBox3D" parent="Sway/Mesh" unique_id=1510086390]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.7250001, -0.42499995)
+ size = Vector3(1, 0.55, 0.95)
+ material = ExtResource("1_ys5ts")
+ 
+-[node name="CSGBox3D7" type="CSGBox3D" parent="Mesh" unique_id=1602347027]
++[node name="CSGBox3D7" type="CSGBox3D" parent="Sway/Mesh" unique_id=1602347027]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 1.3500001, 2.375)
+ size = Vector3(3, 1.8000001, 0.25)
+ material = ExtResource("1_ys5ts")
+ 
+-[node name="CSGBox3D8" type="CSGBox3D" parent="Mesh" unique_id=267290626]
++[node name="CSGBox3D8" type="CSGBox3D" parent="Sway/Mesh" unique_id=267290626]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.7250001, 1.7750001)
+ size = Vector3(3, 0.55, 0.95)
+ material = ExtResource("1_ys5ts")
+ 
+-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Mesh" unique_id=1424559904]
++[node name="SteeringWheel" type="CSGCylinder3D" parent="Sway/Mesh" unique_id=1424559904]
+ transform = Transform3D(1, 0, 0, 0, 0.258819, -0.9659258, 0, 0.9659258, 0.258819, -1, 1.45, -1.35)
+ radius = 0.35
+ height = 0.099999994
+ 
+-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Mesh/CSGCylinder3D" unique_id=682901402]
++[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Sway/Mesh/SteeringWheel" unique_id=682901402]
+ transform = Transform3D(1, 0, 0, 0, 1.0000012, 0, 0, 0, 1.0000012, 0, 0, 0)
+ operation = 2
+ radius = 0.3
+ height = 0.2
+ 
+-[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/CSGCylinder3D" unique_id=40828485]
++[node name="CSGBox3D" type="CSGBox3D" parent="Sway/Mesh/SteeringWheel" unique_id=40828485]
+ transform = Transform3D(1, 0, 0, 0, 1.0000012, 0, 0, 0, 1.0000012, 0, 0, 0)
+ size = Vector3(0.65000004, 0.05, 0.05)
+ 
+-[node name="CSGBox3D2" type="CSGBox3D" parent="Mesh/CSGCylinder3D" unique_id=1988492906]
++[node name="CSGBox3D2" type="CSGBox3D" parent="Sway/Mesh/SteeringWheel" unique_id=1988492906]
+ transform = Transform3D(-3.985468e-08, -0.2588193, 0.96592695, -2.9802322e-08, 0.9659272, 0.25881937, -1.0000001, -2.9802322e-08, -2.9802322e-08, 0, 0, 0)
+ size = Vector3(0.65000004, 0.05, 0.05)
+ 
+-[node name="CarCollision" type="CollisionShape3D" parent="." unique_id=638182362]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6500001, 0)
+-shape = SubResource("BoxShape3D_1vivr")
+-
+-[node name="Wheel_FR" type="VehicleWheel3D" parent="." unique_id=215270952]
++[node name="Wheel_FR" type="Node3D" parent="." unique_id=215270952]
+ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.5, 0.5, -1.6500001)
+-use_as_steering = true
+ 
+ [node name="Mesh" type="MeshInstance3D" parent="Wheel_FR" unique_id=1616436364]
+ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -5.9604645e-08, 0)
+ mesh = SubResource("CylinderMesh_t6kce")
+ surface_material_override/0 = ExtResource("1_ys5ts")
+ 
+-[node name="Wheel_FL" type="VehicleWheel3D" parent="." unique_id=118084130]
++[node name="Wheel_FL" type="Node3D" parent="." unique_id=118084130]
+ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 0.5, -1.6499999)
+-use_as_steering = true
+ 
+ [node name="Mesh" type="MeshInstance3D" parent="Wheel_FL" unique_id=669453434]
+ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+ mesh = SubResource("CylinderMesh_vaoqk")
+ surface_material_override/0 = ExtResource("1_ys5ts")
+ 
+-[node name="Wheel_BR" type="VehicleWheel3D" parent="." unique_id=1499558434]
++[node name="Wheel_BR" type="Node3D" parent="." unique_id=1499558434]
+ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.5000002, 0.5, 1.95)
+-use_as_traction = true
+ 
+ [node name="Mesh" type="MeshInstance3D" parent="Wheel_BR" unique_id=1069887545]
+ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+ mesh = SubResource("CylinderMesh_1vivr")
+ surface_material_override/0 = ExtResource("1_ys5ts")
+ 
+-[node name="Wheel_BL" type="VehicleWheel3D" parent="." unique_id=1153658338]
++[node name="Wheel_BL" type="Node3D" parent="." unique_id=1153658338]
+ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.4999998, 0.5, 1.9500003)
+-use_as_traction = true
+ 
+ [node name="Mesh" type="MeshInstance3D" parent="Wheel_BL" unique_id=83765750]
+ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+ mesh = SubResource("CylinderMesh_fbyd5")
+ surface_material_override/0 = ExtResource("1_ys5ts")
+ 
+-[node name="InteractController" type="Node3D" parent="." unique_id=1502219439 node_paths=PackedStringArray("interact_ray")]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+-script = ExtResource("4_fbyd5")
+-interact_ray = NodePath("../CameraParent/CameraController/InteractRay")
+-
+-[node name="CameraParent" type="Node3D" parent="." unique_id=1452511]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 2.15, -0.35000002)
+-
+-[node name="CameraController" type="Node3D" parent="CameraParent" unique_id=955295279 node_paths=PackedStringArray("camera_yaw")]
+-script = ExtResource("3_qn377")
+-camera_yaw = NodePath("..")
+-is_car_camera = true
+-
+-[node name="CarCamera" type="Camera3D" parent="CameraParent/CameraController" unique_id=820463611]
+-fov = 70.0
+-
+-[node name="InteractRay" type="RayCast3D" parent="CameraParent/CameraController" unique_id=141655301]
+-target_position = Vector3(0, 0, -2.25)
+-collision_mask = 2
+-collide_with_areas = true
+-collide_with_bodies = false
+-
+-[node name="CarHandler" type="Area3D" parent="." unique_id=661401931 node_paths=PackedStringArray("car_camera", "camera_controller", "exit_point", "interact_controller", "car")]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+-collision_layer = 2
+-monitoring = false
+-monitorable = false
+-script = ExtResource("1_7u4s5")
+-car_camera = NodePath("../CameraParent/CameraController/CarCamera")
+-camera_controller = NodePath("../CameraParent/CameraController")
+-exit_point = NodePath("../ExitPoint")
+-interact_controller = NodePath("../InteractController")
+-car = NodePath("..")
+-
+-[node name="EnterAreaCollision" type="CollisionShape3D" parent="CarHandler" unique_id=205470412]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8009999, 1.6249999, -0.9499999)
+-shape = SubResource("BoxShape3D_7u4s5")
+-
+ [node name="ExitPoint" type="Marker3D" parent="." unique_id=437869837]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5500002, 0, -0.9000001)
+ 
+-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1163388561]
++[node name="OmniLight3D" type="OmniLight3D" parent="Sway" unique_id=1163388561]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, -1)
+ omni_range = 7.5
+ 
+-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=705915167]
++[node name="SpotLight3D" type="SpotLight3D" parent="Sway" unique_id=705915167]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.05, -2.75)
+ spot_range = 20.0
+ spot_attenuation = -1.0
+ spot_angle = 35.0
+ 
+-[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=869705198]
++[node name="SpotLight3D2" type="SpotLight3D" parent="Sway" unique_id=869705198]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.05, -2.75)
+ spot_range = 20.0
+ spot_attenuation = -1.0
+ spot_angle = 35.0
++
++[node name="Seat" type="Marker3D" parent="Sway"]
++transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 2.15, -0.35)
+diff --git a/entities/car/CarCabinFX.gd b/entities/car/CarCabinFX.gd
+new file mode 100644
+index 0000000..387a1a3
+--- /dev/null
++++ b/entities/car/CarCabinFX.gd
+@@ -0,0 +1,65 @@
++class_name CarCabinFX
++extends Node3D
++## Visual life for the self-driving car: steering wheel, front wheels, body lean and road bumps.
++## Reads everything from the CarRoute it's parented under. No physics involved.
++
++@export var sway: Node3D			# body, cabin and seat; the part that leans and bobs
++@export var seat: Marker3D			# the player's eye position
++@export var steering_wheel: Node3D
++@export var wheel_fl: Node3D
++@export var wheel_fr: Node3D
++
++@export_group("Steering")
++@export var wheelbase := 3.6
++@export var steering_ratio := 13.0
++@export_range(0.1, 0.8) var max_road_wheel_angle := 0.6	# radians
++@export var steering_smoothing := 6.0
++
++@export_group("Body motion")
++@export var roll_amount := 0.004
++@export var pitch_amount := 0.006
++@export var bump_amount := 0.012
++@export var motion_smoothing := 4.0
++
++var _steer := 0.0
++var _accel := 0.0
++var _prev_speed := 0.0
++var _wheel_rest: Basis
++var _fl_rest: Basis
++var _fr_rest: Basis
++
++@onready var route := get_parent() as CarRoute
++
++
++func _ready() -> void:
++	# remember the authored orientations; we rotate relative to these
++	_wheel_rest = steering_wheel.basis
++	_fl_rest = wheel_fl.basis
++	_fr_rest = wheel_fr.basis
++
++
++func _process(delta: float) -> void:
++	if route == null or delta <= 0.0:
++		return
++
++	# Steering: bicycle model gives the road-wheel angle for the bend ahead
++	var target := clampf(atan(wheelbase * route.curvature), -max_road_wheel_angle, max_road_wheel_angle)
++	_steer = lerpf(_steer, target, 1.0 - exp(-steering_smoothing * delta))
++
++	# The steering wheel's spin axis is its local Y (it's tilted), so rotate in local space
++	steering_wheel.basis = _wheel_rest * Basis(Vector3.UP, _steer * steering_ratio)
++	wheel_fl.basis = _fl_rest * Basis(Vector3.UP, _steer)
++	wheel_fr.basis = _fr_rest * Basis(Vector3.UP, _steer)
++
++	# Body motion
++	var k := 1.0 - exp(-motion_smoothing * delta)
++	_accel = lerpf(_accel, (route.speed - _prev_speed) / delta, k)
++	_prev_speed = route.speed
++
++	var lateral := route.speed * route.speed * route.curvature
++	sway.rotation.z = lerpf(sway.rotation.z, clampf(-lateral * roll_amount, -0.06, 0.06), k)	# lean out of the bend
++	sway.rotation.x = lerpf(sway.rotation.x, clampf(_accel * pitch_amount, -0.04, 0.04), k)	# nose up when accelerating
++
++	var speed_ratio := clampf(route.speed / maxf(route.cruise_speed, 0.1), 0.0, 1.0)
++	var t := Time.get_ticks_msec() / 1000.0
++	sway.position.y = (sin(t * 7.3) * 0.6 + sin(t * 13.1) * 0.4) * bump_amount * speed_ratio
+diff --git a/entities/car/CarCabinFX.gd.uid b/entities/car/CarCabinFX.gd.uid
+new file mode 100644
+index 0000000..6479e31
+--- /dev/null
++++ b/entities/car/CarCabinFX.gd.uid
+@@ -0,0 +1 @@
++uid://b711onmo4r2a3
+diff --git a/entities/player/Player.gd b/entities/player/Player.gd
+index e3898da..cb1c115 100644
+--- a/entities/player/Player.gd
++++ b/entities/player/Player.gd
+@@ -1,39 +1,31 @@
+ class_name Player
+ extends CharacterBody3D
+ 
+-enum PlayerState {
+-	WALKING,
+-	DRIVING
+-}
++enum State { WALKING, SEATED }
+ 
+-var state := PlayerState.WALKING
+-@onready var camera_controller: Node3D = $CameraController
++var state := State.WALKING
++
++@onready var camera_controller: CameraController = $CameraController
++@onready var camera: Camera3D = $CameraController/PlayerCamera
+ @onready var movement_controller: Node3D = $MovementController
+ @onready var interact_controller: InteractController = $InteractController
+-@onready var player_collision_shape: CollisionShape3D = $PlayerCollisionShape
+-@onready var player_mesh: MeshInstance3D = $PlayerMesh
++@onready var collision_shape: CollisionShape3D = $PlayerCollisionShape
++@onready var mesh: MeshInstance3D = $PlayerMesh
+ 
+ 
+-func enter_driving_mode():
+-	state = PlayerState.DRIVING
+-	camera_controller.set_disabled(true)
++## Put the player in a seat. The seat marker is the eye position: the player is
++## parented to it and the head turns around it, limited to seated look angles.
++func seat_in(seat: Node3D) -> void:
++	state = State.SEATED
++	reparent(seat, false)
++	transform = Transform3D(Basis.IDENTITY, -camera_controller.position)	# eyes end up on the marker
++	camera_controller.enter_seat_mode(seat)
+ 	movement_controller.set_disabled(true)
+-	interact_controller.set_disabled(true)
+-	player_collision_shape.disabled = true
+-	player_mesh.visible = false
+-	
+-	
+-func exit_driving_mode():
+-	state = PlayerState.WALKING
+-	camera_controller.set_disabled(false)
+-	movement_controller.set_disabled(false)
+-	interact_controller.set_disabled(false)
+-	player_collision_shape.disabled = false
+-	player_mesh.visible = true
++	collision_shape.set_deferred("disabled", true)
++	mesh.visible = false
+ 
+ 
+-func _on_car_interacted(entered: bool):
+-	if entered:
+-		enter_driving_mode()
+-	else:
+-		exit_driving_mode()
++## Look and interact on/off (cutscenes turn this off).
++func set_look_enabled(enabled: bool) -> void:
++	camera_controller.set_disabled(not enabled)
++	interact_controller.set_disabled(not enabled)
+diff --git a/entities/player/scripts/CameraController.gd b/entities/player/scripts/CameraController.gd
+index 8201a06..2f9a448 100644
+--- a/entities/player/scripts/CameraController.gd
++++ b/entities/player/scripts/CameraController.gd
+@@ -1,52 +1,55 @@
++class_name CameraController
+ extends Node3D
+ 
+-@export var camera_yaw: Node3D
++const FREE_PITCH_LIMIT := 90.0
++const SEAT_PITCH_LIMIT := 75.0
++const SEAT_YAW_LIMIT := 105.0
++
++@export var camera_yaw: Node3D	# the node that turns left/right (this node only pitches)
+ @export_range(0.001, 0.01) var mouse_sensitivity := 0.002
+-@export var is_car_camera := false
+-var isMouseCaptured := false
+-const CAR_CAMERA_Y_CLAMP := 105.0
+-const CAR_CAMERA_X_CLAMP := 75.0
+-const CAMERA_X_CLAMP := 90.0
++
++var seated := false
++var _mouse_captured := false
+ 
+ 
+ func _ready() -> void:
+ 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+-	isMouseCaptured = true
+-	
+-	# disable car camera at start
+-	if is_car_camera:
+-		set_disabled(true)
++	_mouse_captured = true
+ 
+ 
+ func _process(_delta: float) -> void:
+-	if Input.is_action_just_pressed("esc") and isMouseCaptured:
++	# runs even while look is disabled, so esc / click still work during cutscenes
++	if Input.is_action_just_pressed("esc") and _mouse_captured:
+ 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+-		isMouseCaptured = false
+-	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not isMouseCaptured:
++		_mouse_captured = false
++	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not _mouse_captured:
+ 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+-		isMouseCaptured = true
++		_mouse_captured = true
+ 
+ 
+ func _input(event: InputEvent) -> void:
+-	if event is InputEventMouseMotion:
+-		var mouse_delta: Vector2 = event.screen_relative
+-		rotate_x(-mouse_delta.y * mouse_sensitivity)
+-		camera_yaw.rotate_y(-mouse_delta.x * mouse_sensitivity)
+-		
+-		rotation.x = clampf(
+-			rotation.x,
+-			deg_to_rad(-CAMERA_X_CLAMP if not is_car_camera else -CAR_CAMERA_X_CLAMP),
+-			deg_to_rad(CAMERA_X_CLAMP if not is_car_camera else CAR_CAMERA_X_CLAMP)
+-		)
+-		
+-		if is_car_camera:
+-			camera_yaw.rotation.y = clampf(
+-				camera_yaw.rotation.y,
+-				deg_to_rad(-105.0),
+-				deg_to_rad(105.0)
+-			)
+-
+-
+-func set_disabled(disable: bool):
+-	set_process_input(!disable)
+-	set_process(!disable)
++	if not event is InputEventMouseMotion:
++		return
++
++	var mouse_delta: Vector2 = event.screen_relative
++	rotate_x(-mouse_delta.y * mouse_sensitivity)
++	camera_yaw.rotate_y(-mouse_delta.x * mouse_sensitivity)
++
++	var pitch_limit := deg_to_rad(SEAT_PITCH_LIMIT if seated else FREE_PITCH_LIMIT)
++	rotation.x = clampf(rotation.x, -pitch_limit, pitch_limit)
++
++	if seated:
++		var yaw_limit := deg_to_rad(SEAT_YAW_LIMIT)
++		camera_yaw.rotation.y = clampf(camera_yaw.rotation.y, -yaw_limit, yaw_limit)
++
++
++## Limit looking to what a seated person can do. `yaw_pivot` should sit at eye
++## position so the head turns in place instead of orbiting.
++func enter_seat_mode(yaw_pivot: Node3D) -> void:
++	camera_yaw = yaw_pivot
++	seated = true
++	rotation = Vector3.ZERO
++
++
++func set_disabled(disable: bool) -> void:
++	set_process_input(not disable)
+diff --git a/entities/player/scripts/InteractController.gd b/entities/player/scripts/InteractController.gd
+index a42331d..2979c58 100644
+--- a/entities/player/scripts/InteractController.gd
++++ b/entities/player/scripts/InteractController.gd
+@@ -2,25 +2,28 @@ class_name InteractController
+ extends Node
+ 
+ signal interactable_detected(detected: bool)
+-var was_colliding := false
++
+ @export var interact_ray: RayCast3D
+ 
++var was_colliding := false
++
+ 
+ func _process(_delta: float) -> void:
+ 	var is_colliding := interact_ray.is_colliding()
+-	
+-	if (is_colliding != was_colliding):
++
++	if is_colliding != was_colliding:
+ 		was_colliding = is_colliding
+ 		interactable_detected.emit(is_colliding)
+-	
+-	if (is_colliding):
++
++	if is_colliding and Input.is_action_just_pressed("interact"):
+ 		var interactable := interact_ray.get_collider() as InteractableComponent
+-		
+-		if Input.is_action_just_pressed("interact") and interactable:
++		if interactable:
+ 			interactable.interact()
+ 
+ 
+-func set_disabled(disabled: bool):
+-	set_process(!disabled)
+-	interact_ray.enabled = !disabled
+-	interactable_detected.emit(disabled)
++func set_disabled(disabled: bool) -> void:
++	set_process(not disabled)
++	interact_ray.enabled = not disabled
++	if disabled and was_colliding:
++		was_colliding = false
++		interactable_detected.emit(false)	# hide the crosshair
+diff --git a/scenes/intro/Intro.gd b/scenes/intro/Intro.gd
+index 67e954f..538eb1e 100644
+--- a/scenes/intro/Intro.gd
++++ b/scenes/intro/Intro.gd
+@@ -1 +1,31 @@
++class_name Intro
+ extends Node3D
++
++@export var route: CarRoute
++@export var car: CarCabinFX
++@export var player: Player
++@export var ui: UI
++@export var chase_cam: Camera3D
++
++@export var chase_duration := 8.0		# seconds of exterior cutscene
++@export_range(0.0, 1.0) var handoff_ratio := 0.85	# route progress where the interior phase ends
++
++
++func _ready() -> void:
++	player.interact_controller.interactable_detected.connect(ui._on_interactable_detected)
++	player.seat_in(car.seat)
++	player.set_look_enabled(false)
++
++	# 1. exterior cutscene
++	chase_cam.make_current()
++	route.start()
++	await get_tree().create_timer(chase_duration).timeout
++
++	# 2. inside the car, player looks around and interacts with props
++	player.camera.make_current()
++	player.set_look_enabled(true)
++	await route.wait_until_ratio(handoff_ratio)
++
++	# 3. drone shot of the village, then title card
++	player.set_look_enabled(false)
++	# TODO: drone_cam.make_current(), await route.finished, show title card
+diff --git a/scenes/intro/Intro.tscn b/scenes/intro/Intro.tscn
+index 6927bcc..a2e48f0 100644
+--- a/scenes/intro/Intro.tscn
++++ b/scenes/intro/Intro.tscn
+@@ -1,6 +1,10 @@
+ [gd_scene format=3 uid="uid://rsxeejsy00mg"]
+ 
+ [ext_resource type="Script" uid="uid://djee50up2ur7x" path="res://scenes/intro/Intro.gd" id="1_2xnbr"]
++[ext_resource type="Script" uid="uid://br78gtdiqhqx4" path="res://scenes/intro/scripts/CarRoute.gd" id="3_route"]
++[ext_resource type="Script" uid="uid://cawaqspco3rof" path="res://scenes/intro/scripts/RoadPath.gd" id="4_road"]
++[ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="5_car"]
++[ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="6_ui"]
+ [ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="2_gral6"]
+ [ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="3_37sh5"]
+ 
+@@ -18,13 +22,18 @@ sky = SubResource("Sky_w1iy7")
+ [sub_resource type="Curve3D" id="Curve3D_w1iy7"]
+ closed = true
+ _data = {
+-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.0027923584, 0.00049972534, -0.13700461, 0, 0, 0, 0, 0, 0, 1.8323259, 0.00049972534, -12.608516, 0, 0, 0, 0, 0, 0, 19.351603, 0.00050354004, -81.637634, 0, 0, 0, 0, 0, 0, 69.200035, 0.00050354004, -113.57236, 0, 0, 0, 0, 0, 0, 103.72273, 0.00050354004, -74.00923, 0, 0, 0, 0, 0, 0, 95.32346, 0.00051116943, -13.730526, 0, 0, 0, 0, 0, 0, 14.303253, 0.00050354004, -3.3957329),
++"points": PackedVector3Array(3.58987, 1.1251e-06, 3.31893, -3.08517, -9.66919e-07, -2.85232, 0.00279236, 0.000499725, -0.137005, -0.822808, -1.12678e-07, 4.12031, 4.64883, 6.36626e-07, -23.2796, 1.83233, 0.000499725, -12.6085, -13.8857, -6.836e-07, 19.2545, 11.5426, 5.6825e-07, -16.0056, 19.3516, 0.00050354, -81.6376, -19.5355, -0, -2.78849, 17.3269, 0, 2.47324, 69.2, 0.00050354, -113.572, -4.99667, -1.20578e-06, -16.7742, 5.79158, 1.39761e-06, 19.4428, 103.723, 0.00050354, -74.0092, 14.4279, -4.07922e-07, -14.2618, -19.3625, 5.47439e-07, 19.1396, 95.3235, 0.000511169, -13.7305, 26.8075, 4.81775e-06, -4.75256, -4.81395, -8.65145e-07, 0.85344, 14.3033, 0.00050354, -3.39573),
+ "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+ }
+ point_count = 7
+ 
+-[node name="Intro" type="Node3D" unique_id=2037898939]
++[node name="Intro" type="Node3D" unique_id=2037898939 node_paths=PackedStringArray("route", "car", "player", "ui", "chase_cam")]
+ script = ExtResource("1_2xnbr")
++route = NodePath("Road/CarRoute")
++car = NodePath("Road/CarRoute/Car")
++player = NodePath("Player")
++ui = NodePath("UI")
++chase_cam = NodePath("Road/CarRoute/ChaseCam")
+ 
+ [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=830392400]
+ environment = SubResource("Environment_37sh5")
+@@ -35,10 +44,12 @@ shadow_enabled = true
+ 
+ [node name="Road" type="Path3D" parent="." unique_id=1032634714]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
++script = ExtResource("4_road")
+ curve = SubResource("Curve3D_w1iy7")
+ 
+ [node name="CarRoute" type="PathFollow3D" parent="Road" unique_id=972304914]
+ transform = Transform3D(0.9894105, 0, -0.1451436, 0, 1, 0, 0.1451436, 0, 0.9894105, 0.0027923584, 0.00049972534, -0.13700461)
++script = ExtResource("3_route")
+ 
+ [node name="Platform" type="CSGBox3D" parent="." unique_id=141757020]
+ use_collision = true
+@@ -47,3 +58,11 @@ material = ExtResource("2_gral6")
+ 
+ [node name="Player" parent="." unique_id=1234029208 instance=ExtResource("3_37sh5")]
+ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
++
++[node name="Car" parent="Road/CarRoute" instance=ExtResource("5_car")]
++
++[node name="ChaseCam" type="Camera3D" parent="Road/CarRoute"]
++transform = Transform3D(-0.759257, -0.0141143, 0.650638, 0, 0.999765, 0.0216879, -0.650791, 0.0164667, -0.759078, 6, 1.5, -7)
++fov = 60.0
++
++[node name="UI" parent="." instance=ExtResource("6_ui")]
+diff --git a/scenes/intro/scripts/CarRoute.gd b/scenes/intro/scripts/CarRoute.gd
+index b8f9309..541008f 100644
+--- a/scenes/intro/scripts/CarRoute.gd
++++ b/scenes/intro/scripts/CarRoute.gd
+@@ -1,18 +1,25 @@
+ class_name CarRoute
+ extends PathFollow3D
++## Drives whatever is parented under it along the parent Path3D.
++## Heading comes from the path itself, so "steering" is free.
+ 
+ signal finished
+ 
+-@export var cruise_speed := 12.0
+-@export var acceleration := 2.0
+-@export var corner_slowdown := 0.6
++const CURVATURE_SPAN := 2.0	# metres between the samples used to measure a bend
++
++@export var cruise_speed := 12.0		# m/s
++@export var acceleration := 2.0			# m/s²
++@export var corner_slowdown := 0.6		# speed multiplier in the tightest bends
++@export var look_ahead := 3.0			# metres ahead the "driver" reads the road
+ 
+ var speed := 0.0
+-var curvature := 0.0
+-var _prev_yaw := 0.0
++var curvature := 0.0	# rad/m of the road ahead, positive = left turn
++
+ var _running := false
+ var _done := false
+ 
++@onready var _curve: Curve3D = (get_parent() as Path3D).curve
++
+ 
+ func _ready() -> void:
+ 	loop = false
+@@ -20,37 +27,52 @@ func _ready() -> void:
+ 
+ 
+ func start() -> void:
+-	_prev_yaw = global_rotation.y
+ 	_running = true
+ 
+ 
+ func wait_until_ratio(ratio: float) -> void:
+ 	while progress_ratio < ratio:
+-		await get_tree().physics_frame
++		await get_tree().process_frame
+ 
+ 
+-func _physics_process(delta: float) -> void:
++# _process on purpose: this isn't physics, and moving in the physics tick
++# makes the camera judder at high frame rates.
++func _process(delta: float) -> void:
+ 	if not _running or _done:
+ 		return
+ 
+-	var path_length := (get_parent() as Path3D).curve.get_baked_length()
+-	var remaining := path_length - progress
++	var remaining := _curve.get_baked_length() - progress
++	curvature = _road_curvature(progress + look_ahead)
+ 
+ 	var bend := clampf(absf(curvature) / 0.05, 0.0, 1.0)
+ 	var target := cruise_speed * lerpf(1.0, corner_slowdown, bend)
+-	target = minf(target, maxf(remaining * 0.6, 0.8))
++	target = minf(target, maxf(remaining * 0.6, 0.8))	# ease out, keep a crawl so it finishes
+ 
+ 	speed = move_toward(speed, target, acceleration * delta)
+ 	progress += speed * delta
+ 
+-	var yaw := global_rotation.y
+-	var dyaw := wrapf(yaw - _prev_yaw, -PI, PI)
+-	_prev_yaw = yaw
+-	var dist := speed * delta
+-	if dist > 0.001:
+-		curvature = lerpf(curvature, dyaw / dist, 1.0 - exp(-6.0 * delta))
+-
+ 	if remaining < 0.1:
+ 		_done = true
+ 		speed = 0.0
+ 		finished.emit()
++
++
++func _road_curvature(offset: float) -> float:
++	var a := _point_at(offset)
++	var b := _point_at(offset + CURVATURE_SPAN)
++	var c := _point_at(offset + CURVATURE_SPAN * 2.0)
++	var d1 := b - a
++	var d2 := c - b
++	if d1.length_squared() < 0.0001 or d2.length_squared() < 0.0001:
++		return 0.0	# past the end of an open path
++
++	# yaw of a heading in Godot: forward is -Z, left turn = yaw increases
++	var yaw1 := atan2(-d1.x, -d1.z)
++	var yaw2 := atan2(-d2.x, -d2.z)
++	return wrapf(yaw2 - yaw1, -PI, PI) / CURVATURE_SPAN
++
++
++func _point_at(offset: float) -> Vector3:
++	var length := _curve.get_baked_length()
++	offset = fposmod(offset, length) if _curve.closed else clampf(offset, 0.0, length)
++	return _curve.sample_baked(offset)
+diff --git a/scenes/intro/scripts/RoadPath.gd b/scenes/intro/scripts/RoadPath.gd
+new file mode 100644
+index 0000000..151d33e
+--- /dev/null
++++ b/scenes/intro/scripts/RoadPath.gd
+@@ -0,0 +1,30 @@
++@tool
++class_name RoadPath
++extends Path3D
++## Path3D with a one-click "Smooth handles" button in the inspector.
++## Place points roughly, click the button, and the road turns into smooth curves
++## instead of sharp corners (which would make the steering wheel snap).
++## Save the scene afterwards.
++
++@export_tool_button("Smooth handles") var smooth_handles_button := smooth_handles
++
++
++func smooth_handles() -> void:
++	if curve == null or curve.point_count < 3:
++		return
++
++	var n := curve.point_count
++	for i in n:
++		var p := curve.get_point_position(i)
++		var to_prev := Vector3.ZERO
++		var to_next := Vector3.ZERO
++		if curve.closed or i > 0:
++			to_prev = curve.get_point_position(posmod(i - 1, n)) - p
++		if curve.closed or i < n - 1:
++			to_next = curve.get_point_position(posmod(i + 1, n)) - p
++
++		# direction of travel through the point; handle lengths follow the neighbouring
++		# segment lengths so short segments don't overshoot
++		var tangent := (to_next.normalized() - to_prev.normalized()).normalized()
++		curve.set_point_in(i, -tangent * to_prev.length() / 3.0)
++		curve.set_point_out(i, tangent * to_next.length() / 3.0)
+diff --git a/scenes/intro/scripts/RoadPath.gd.uid b/scenes/intro/scripts/RoadPath.gd.uid
+new file mode 100644
+index 0000000..492e96d
+--- /dev/null
++++ b/scenes/intro/scripts/RoadPath.gd.uid
+@@ -0,0 +1 @@
++uid://cawaqspco3rof
+diff --git a/scenes/prototype/Prototype.gd b/scenes/prototype/Prototype.gd
+deleted file mode 100644
+index 4db3323..0000000
+--- a/scenes/prototype/Prototype.gd
++++ /dev/null
+@@ -1,29 +0,0 @@
+-class_name Prototype
+-extends Node
+-
+-signal car_interacted(entered: bool)
+-
+-@onready var player: Player = $Player
+-@onready var car: InteractableComponent = $Car/CarHandler
+-@onready var player_interact_controller: InteractController = $Player/InteractController
+-@onready var car_interact_controller: InteractController = $Car/InteractController
+-@onready var ui: UI = $UI
+-
+-
+-func _ready() -> void:
+-	# crosshair fade
+-	player_interact_controller.interactable_detected.connect(
+-		ui._on_interactable_detected
+-	)
+-	car_interact_controller.interactable_detected.connect(
+-		ui._on_interactable_detected
+-	)
+-	
+-	car_interacted.connect(player._on_car_interacted)
+-
+-
+-func set_car_interacted(entered: bool):
+-	car_interacted.emit(entered)
+-	if not entered:
+-		player.global_position = car.exit_point.global_position
+-		player.global_rotation = car.exit_point.global_rotation
+diff --git a/scenes/prototype/Prototype.gd.uid b/scenes/prototype/Prototype.gd.uid
+deleted file mode 100644
+index 552e648..0000000
+--- a/scenes/prototype/Prototype.gd.uid
++++ /dev/null
+@@ -1 +0,0 @@
+-uid://b1pn78543g84i
+diff --git a/scenes/prototype/Prototype.tscn b/scenes/prototype/Prototype.tscn
+deleted file mode 100644
+index 373c5bb..0000000
+--- a/scenes/prototype/Prototype.tscn
++++ /dev/null
+@@ -1,70 +0,0 @@
+-[gd_scene format=3 uid="uid://ujqp685c7mwx"]
+-
+-[ext_resource type="Script" uid="uid://b1pn78543g84i" path="res://scenes/prototype/Prototype.gd" id="1_fnc1w"]
+-[ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="2_rk8ba"]
+-[ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="3_n82up"]
+-[ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="4_36k40"]
+-[ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="5_3vihi"]
+-
+-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lfwbl"]
+-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+-
+-[sub_resource type="Sky" id="Sky_8nl4b"]
+-sky_material = SubResource("ProceduralSkyMaterial_lfwbl")
+-
+-[sub_resource type="Environment" id="Environment_ldc7h"]
+-background_mode = 2
+-sky = SubResource("Sky_8nl4b")
+-fog_mode = 1
+-fog_light_color = Color(0.4699558, 0.57319576, 0.57928765, 1)
+-fog_density = 0.75
+-fog_depth_begin = 0.0
+-fog_depth_end = 40.0
+-
+-[node name="Prototype" type="Node3D" unique_id=1298835357]
+-script = ExtResource("1_fnc1w")
+-
+-[node name="UI" parent="." unique_id=1091754142 instance=ExtResource("2_rk8ba")]
+-
+-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1159545090]
+-environment = SubResource("Environment_ldc7h")
+-
+-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1527642972]
+-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+-
+-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1393830370]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -323.5)
+-use_collision = true
+-size = Vector3(49.5, 0.15, 745)
+-material = ExtResource("3_n82up")
+-
+-[node name="Player" parent="." unique_id=1234029208 instance=ExtResource("4_36k40")]
+-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+-
+-[node name="Car" parent="." unique_id=414290366 instance=ExtResource("5_3vihi")]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.07499993, 0)
+-
+-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=305830170]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 2.075, -153.75)
+-size = Vector3(5.5, 4, 260.5)
+-
+-[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=35128075]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2.0749998, -131.5)
+-size = Vector3(5.5, 4, 229)
+-
+-[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=571099879]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.575, -170)
+-size = Vector3(15.5, 5, 1)
+-
+-[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1777882602]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 2.575, -237.5)
+-size = Vector3(15.5, 5, 1)
+-
+-[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=2115567337]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.575, -52.5)
+-size = Vector3(15.5, 5, 1)
+-
+-[node name="CSGBox3D7" type="CSGBox3D" parent="." unique_id=252166847]
+-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 2.575, -120)
+-size = Vector3(15.5, 5, 1)

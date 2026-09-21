@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://fihslhghckv4"]
 
-[ext_resource type="Script" uid="uid://bdq8630gojkbu" path="res://entities/car/Car.gd" id="1_7u4s5"]
 [ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="1_ys5ts"]
-[ext_resource type="Script" uid="uid://dcg8we3of3odn" path="res://entities/player/scripts/CameraController.gd" id="3_qn377"]
-[ext_resource type="Script" uid="uid://chdpxabovcqkx" path="res://entities/player/scripts/InteractController.gd" id="4_fbyd5"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
-size = Vector3(4, 3.3, 6)
+[ext_resource type="Script" uid="uid://b711onmo4r2a3" path="res://entities/car/CarCabinFX.gd" id="2_fx"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t6kce"]
 height = 0.2
@@ -24,195 +20,156 @@ radial_segments = 20
 height = 0.2
 radial_segments = 20
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7u4s5"]
-size = Vector3(0.25, 2.05, 1.4)
+[node name="Car" type="Node3D" unique_id=414290366 node_paths=PackedStringArray("sway", "seat", "steering_wheel", "wheel_fl", "wheel_fr")]
+script = ExtResource("2_fx")
+sway = NodePath("Sway")
+seat = NodePath("Sway/Seat")
+steering_wheel = NodePath("Sway/Mesh/SteeringWheel")
+wheel_fl = NodePath("Wheel_FL")
+wheel_fr = NodePath("Wheel_FR")
 
-[node name="Car" type="VehicleBody3D" unique_id=414290366]
-mass = 1200.0
+[node name="Sway" type="Node3D" parent="."]
 
-[node name="Mesh" type="Node3D" parent="." unique_id=1210180576]
+[node name="Mesh" type="Node3D" parent="Sway" unique_id=1210180576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Mesh" unique_id=1263600706]
+[node name="CSGBox3D" type="CSGBox3D" parent="Sway/Mesh" unique_id=1263600706]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5750002, 0.55)
 size = Vector3(3.5, 2.3500001, 4.5)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=706779973]
+[node name="CSGBox3D" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=706779973]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35000002, -2.4750004)
 operation = 2
 size = Vector3(3.1000001, 1, 0.85)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=1748937673]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=1748937673]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6499997, 0.30000007, -1.4500003)
 operation = 2
 size = Vector3(0.3, 0.7, 1.2)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=527067242]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=527067242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7000002, 0.30000007, -1.4500003)
 operation = 2
 size = Vector3(0.4, 0.7, 1.2)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=602207884]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=602207884]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6999997, 0.30000007, 0.84999967)
 operation = 2
 size = Vector3(0.4, 0.7, 1.2)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=1224809226]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=1224809226]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7000002, 0.30000007, 0.84999967)
 operation = 2
 size = Vector3(0.4, 0.7, 1.2)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Mesh/CSGBox3D" unique_id=1020268322]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Sway/Mesh/CSGBox3D" unique_id=1020268322]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049999952, 0.024999619)
 operation = 2
 size = Vector3(3.05, 2.2, 4.15)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Mesh" unique_id=1775948283]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Sway/Mesh" unique_id=1775948283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, -2.2)
 size = Vector3(3.5, 0.95, 1)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Mesh" unique_id=2056408733]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Sway/Mesh" unique_id=2056408733]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.3500001, 0.17500003)
 size = Vector3(1, 1.8000001, 0.25)
 material = ExtResource("1_ys5ts")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Mesh" unique_id=630930330]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Sway/Mesh" unique_id=630930330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.7250001, -0.42499995)
 size = Vector3(1, 0.55, 0.95)
 material = ExtResource("1_ys5ts")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Mesh" unique_id=1693940669]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Sway/Mesh" unique_id=1693940669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.3500001, 0.17500003)
 size = Vector3(1, 1.8000001, 0.25)
 material = ExtResource("1_ys5ts")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Mesh" unique_id=1510086390]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Sway/Mesh" unique_id=1510086390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.7250001, -0.42499995)
 size = Vector3(1, 0.55, 0.95)
 material = ExtResource("1_ys5ts")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Mesh" unique_id=1602347027]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Sway/Mesh" unique_id=1602347027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 1.3500001, 2.375)
 size = Vector3(3, 1.8000001, 0.25)
 material = ExtResource("1_ys5ts")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Mesh" unique_id=267290626]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Sway/Mesh" unique_id=267290626]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.7250001, 1.7750001)
 size = Vector3(3, 0.55, 0.95)
 material = ExtResource("1_ys5ts")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Mesh" unique_id=1424559904]
+[node name="SteeringWheel" type="CSGCylinder3D" parent="Sway/Mesh" unique_id=1424559904]
 transform = Transform3D(1, 0, 0, 0, 0.258819, -0.9659258, 0, 0.9659258, 0.258819, -1, 1.45, -1.35)
 radius = 0.35
 height = 0.099999994
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Mesh/CSGCylinder3D" unique_id=682901402]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Sway/Mesh/SteeringWheel" unique_id=682901402]
 transform = Transform3D(1, 0, 0, 0, 1.0000012, 0, 0, 0, 1.0000012, 0, 0, 0)
 operation = 2
 radius = 0.3
 height = 0.2
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Mesh/CSGCylinder3D" unique_id=40828485]
+[node name="CSGBox3D" type="CSGBox3D" parent="Sway/Mesh/SteeringWheel" unique_id=40828485]
 transform = Transform3D(1, 0, 0, 0, 1.0000012, 0, 0, 0, 1.0000012, 0, 0, 0)
 size = Vector3(0.65000004, 0.05, 0.05)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Mesh/CSGCylinder3D" unique_id=1988492906]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Sway/Mesh/SteeringWheel" unique_id=1988492906]
 transform = Transform3D(-3.985468e-08, -0.2588193, 0.96592695, -2.9802322e-08, 0.9659272, 0.25881937, -1.0000001, -2.9802322e-08, -2.9802322e-08, 0, 0, 0)
 size = Vector3(0.65000004, 0.05, 0.05)
 
-[node name="CarCollision" type="CollisionShape3D" parent="." unique_id=638182362]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6500001, 0)
-shape = SubResource("BoxShape3D_1vivr")
-
-[node name="Wheel_FR" type="VehicleWheel3D" parent="." unique_id=215270952]
+[node name="Wheel_FR" type="Node3D" parent="." unique_id=215270952]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.5, 0.5, -1.6500001)
-use_as_steering = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Wheel_FR" unique_id=1616436364]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -5.9604645e-08, 0)
 mesh = SubResource("CylinderMesh_t6kce")
 surface_material_override/0 = ExtResource("1_ys5ts")
 
-[node name="Wheel_FL" type="VehicleWheel3D" parent="." unique_id=118084130]
+[node name="Wheel_FL" type="Node3D" parent="." unique_id=118084130]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 0.5, -1.6499999)
-use_as_steering = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Wheel_FL" unique_id=669453434]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_vaoqk")
 surface_material_override/0 = ExtResource("1_ys5ts")
 
-[node name="Wheel_BR" type="VehicleWheel3D" parent="." unique_id=1499558434]
+[node name="Wheel_BR" type="Node3D" parent="." unique_id=1499558434]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.5000002, 0.5, 1.95)
-use_as_traction = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Wheel_BR" unique_id=1069887545]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_1vivr")
 surface_material_override/0 = ExtResource("1_ys5ts")
 
-[node name="Wheel_BL" type="VehicleWheel3D" parent="." unique_id=1153658338]
+[node name="Wheel_BL" type="Node3D" parent="." unique_id=1153658338]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.4999998, 0.5, 1.9500003)
-use_as_traction = true
 
 [node name="Mesh" type="MeshInstance3D" parent="Wheel_BL" unique_id=83765750]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_fbyd5")
 surface_material_override/0 = ExtResource("1_ys5ts")
 
-[node name="InteractController" type="Node3D" parent="." unique_id=1502219439 node_paths=PackedStringArray("interact_ray")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-script = ExtResource("4_fbyd5")
-interact_ray = NodePath("../CameraParent/CameraController/InteractRay")
-
-[node name="CameraParent" type="Node3D" parent="." unique_id=1452511]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 2.15, -0.35000002)
-
-[node name="CameraController" type="Node3D" parent="CameraParent" unique_id=955295279 node_paths=PackedStringArray("camera_yaw")]
-script = ExtResource("3_qn377")
-camera_yaw = NodePath("..")
-is_car_camera = true
-
-[node name="CarCamera" type="Camera3D" parent="CameraParent/CameraController" unique_id=820463611]
-fov = 70.0
-
-[node name="InteractRay" type="RayCast3D" parent="CameraParent/CameraController" unique_id=141655301]
-target_position = Vector3(0, 0, -2.25)
-collision_mask = 2
-collide_with_areas = true
-collide_with_bodies = false
-
-[node name="CarHandler" type="Area3D" parent="." unique_id=661401931 node_paths=PackedStringArray("car_camera", "camera_controller", "exit_point", "interact_controller", "car")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-collision_layer = 2
-monitoring = false
-monitorable = false
-script = ExtResource("1_7u4s5")
-car_camera = NodePath("../CameraParent/CameraController/CarCamera")
-camera_controller = NodePath("../CameraParent/CameraController")
-exit_point = NodePath("../ExitPoint")
-interact_controller = NodePath("../InteractController")
-car = NodePath("..")
-
-[node name="EnterAreaCollision" type="CollisionShape3D" parent="CarHandler" unique_id=205470412]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8009999, 1.6249999, -0.9499999)
-shape = SubResource("BoxShape3D_7u4s5")
-
 [node name="ExitPoint" type="Marker3D" parent="." unique_id=437869837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5500002, 0, -0.9000001)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1163388561]
+[node name="OmniLight3D" type="OmniLight3D" parent="Sway" unique_id=1163388561]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, -1)
 omni_range = 7.5
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=705915167]
+[node name="SpotLight3D" type="SpotLight3D" parent="Sway" unique_id=705915167]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.05, -2.75)
 spot_range = 20.0
 spot_attenuation = -1.0
 spot_angle = 35.0
 
-[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=869705198]
+[node name="SpotLight3D2" type="SpotLight3D" parent="Sway" unique_id=869705198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.05, -2.75)
 spot_range = 20.0
 spot_attenuation = -1.0
 spot_angle = 35.0
+
+[node name="Seat" type="Marker3D" parent="Sway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 2.15, -0.35)

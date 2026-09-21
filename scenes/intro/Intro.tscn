@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://rsxeejsy00mg"]
 
 [ext_resource type="Script" uid="uid://djee50up2ur7x" path="res://scenes/intro/Intro.gd" id="1_2xnbr"]
+[ext_resource type="Script" uid="uid://br78gtdiqhqx4" path="res://scenes/intro/scripts/CarRoute.gd" id="3_route"]
+[ext_resource type="Script" uid="uid://cawaqspco3rof" path="res://scenes/intro/scripts/RoadPath.gd" id="4_road"]
+[ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="5_car"]
+[ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="6_ui"]
 [ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="2_gral6"]
 [ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="3_37sh5"]
 
@@ -18,13 +22,18 @@ sky = SubResource("Sky_w1iy7")
 [sub_resource type="Curve3D" id="Curve3D_w1iy7"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.0027923584, 0.00049972534, -0.13700461, 0, 0, 0, 0, 0, 0, 1.8323259, 0.00049972534, -12.608516, 0, 0, 0, 0, 0, 0, 19.351603, 0.00050354004, -81.637634, 0, 0, 0, 0, 0, 0, 69.200035, 0.00050354004, -113.57236, 0, 0, 0, 0, 0, 0, 103.72273, 0.00050354004, -74.00923, 0, 0, 0, 0, 0, 0, 95.32346, 0.00051116943, -13.730526, 0, 0, 0, 0, 0, 0, 14.303253, 0.00050354004, -3.3957329),
+"points": PackedVector3Array(3.58987, 1.1251e-06, 3.31893, -3.08517, -9.66919e-07, -2.85232, 0.00279236, 0.000499725, -0.137005, -0.822808, -1.12678e-07, 4.12031, 4.64883, 6.36626e-07, -23.2796, 1.83233, 0.000499725, -12.6085, -13.8857, -6.836e-07, 19.2545, 11.5426, 5.6825e-07, -16.0056, 19.3516, 0.00050354, -81.6376, -19.5355, -0, -2.78849, 17.3269, 0, 2.47324, 69.2, 0.00050354, -113.572, -4.99667, -1.20578e-06, -16.7742, 5.79158, 1.39761e-06, 19.4428, 103.723, 0.00050354, -74.0092, 14.4279, -4.07922e-07, -14.2618, -19.3625, 5.47439e-07, 19.1396, 95.3235, 0.000511169, -13.7305, 26.8075, 4.81775e-06, -4.75256, -4.81395, -8.65145e-07, 0.85344, 14.3033, 0.00050354, -3.39573),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 7
 
-[node name="Intro" type="Node3D" unique_id=2037898939]
+[node name="Intro" type="Node3D" unique_id=2037898939 node_paths=PackedStringArray("route", "car", "player", "ui", "chase_cam")]
 script = ExtResource("1_2xnbr")
+route = NodePath("Road/CarRoute")
+car = NodePath("Road/CarRoute/Car")
+player = NodePath("Player")
+ui = NodePath("UI")
+chase_cam = NodePath("Road/CarRoute/ChaseCam")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=830392400]
 environment = SubResource("Environment_37sh5")
@@ -35,10 +44,12 @@ shadow_enabled = true
 
 [node name="Road" type="Path3D" parent="." unique_id=1032634714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+script = ExtResource("4_road")
 curve = SubResource("Curve3D_w1iy7")
 
 [node name="CarRoute" type="PathFollow3D" parent="Road" unique_id=972304914]
 transform = Transform3D(0.9894105, 0, -0.1451436, 0, 1, 0, 0.1451436, 0, 0.9894105, 0.0027923584, 0.00049972534, -0.13700461)
+script = ExtResource("3_route")
 
 [node name="Platform" type="CSGBox3D" parent="." unique_id=141757020]
 use_collision = true
@@ -47,3 +58,11 @@ material = ExtResource("2_gral6")
 
 [node name="Player" parent="." unique_id=1234029208 instance=ExtResource("3_37sh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="Car" parent="Road/CarRoute" instance=ExtResource("5_car")]
+
+[node name="ChaseCam" type="Camera3D" parent="Road/CarRoute"]
+transform = Transform3D(-0.759257, -0.0141143, 0.650638, 0, 0.999765, 0.0216879, -0.650791, 0.0164667, -0.759078, 6, 1.5, -7)
+fov = 60.0
+
+[node name="UI" parent="." instance=ExtResource("6_ui")]
