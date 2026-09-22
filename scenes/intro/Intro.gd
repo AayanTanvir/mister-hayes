@@ -7,8 +7,8 @@ extends Node3D
 @export var ui: UI
 @export var chase_cam: Camera3D
 
-@export var chase_duration := 8.0		# seconds of exterior cutscene
-@export_range(0.0, 1.0) var handoff_ratio := 0.85	# route progress where the interior phase ends
+@export var chase_duration := 8.0
+@export_range(0.0, 1.0) var handoff_ratio := 0.85	## route progress where the interior phase ends
 
 
 func _ready() -> void:

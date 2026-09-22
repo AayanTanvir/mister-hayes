@@ -5,7 +5,7 @@ const FREE_PITCH_LIMIT := 90.0
 const SEAT_PITCH_LIMIT := 75.0
 const SEAT_YAW_LIMIT := 105.0
 
-@export var camera_yaw: Node3D	# the node that turns left/right (this node only pitches)
+@export var camera_yaw: Node3D	# the node that turns left/right
 @export_range(0.001, 0.01) var mouse_sensitivity := 0.002
 
 var seated := false
@@ -18,7 +18,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	# runs even while look is disabled, so esc / click still work during cutscenes
 	if Input.is_action_just_pressed("esc") and _mouse_captured:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		_mouse_captured = false

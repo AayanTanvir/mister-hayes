@@ -23,8 +23,6 @@ func smooth_handles() -> void:
 		if curve.closed or i < n - 1:
 			to_next = curve.get_point_position(posmod(i + 1, n)) - p
 
-		# direction of travel through the point; handle lengths follow the neighbouring
-		# segment lengths so short segments don't overshoot
 		var tangent := (to_next.normalized() - to_prev.normalized()).normalized()
 		curve.set_point_in(i, -tangent * to_prev.length() / 3.0)
 		curve.set_point_out(i, tangent * to_next.length() / 3.0)

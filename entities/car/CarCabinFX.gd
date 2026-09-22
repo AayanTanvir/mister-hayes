@@ -1,10 +1,8 @@
 class_name CarCabinFX
 extends Node3D
-## Visual life for the self-driving car: steering wheel, front wheels, body lean and road bumps.
-## Reads everything from the CarRoute it's parented under. No physics involved.
 
-@export var sway: Node3D			# body, cabin and seat; the part that leans and bobs
-@export var seat: Marker3D			# the player's eye position
+@export var sway: Node3D			# body, cabin and seat. the part that leans and bobs
+@export var seat: Marker3D
 @export var steering_wheel: Node3D
 @export var wheel_fl: Node3D
 @export var wheel_fr: Node3D
@@ -32,7 +30,7 @@ var _fr_rest: Basis
 
 
 func _ready() -> void:
-	# remember the authored orientations; we rotate relative to these
+	# rotate relative to these
 	_wheel_rest = steering_wheel.basis
 	_fl_rest = wheel_fl.basis
 	_fr_rest = wheel_fr.basis
@@ -42,11 +40,9 @@ func _process(delta: float) -> void:
 	if route == null or delta <= 0.0:
 		return
 
-	# Steering: bicycle model gives the road-wheel angle for the bend ahead
 	var target := clampf(atan(wheelbase * route.curvature), -max_road_wheel_angle, max_road_wheel_angle)
 	_steer = lerpf(_steer, target, 1.0 - exp(-steering_smoothing * delta))
 
-	# The steering wheel's spin axis is its local Y (it's tilted), so rotate in local space
 	steering_wheel.basis = _wheel_rest * Basis(Vector3.UP, _steer * steering_ratio)
 	wheel_fl.basis = _fl_rest * Basis(Vector3.UP, _steer)
 	wheel_fr.basis = _fr_rest * Basis(Vector3.UP, _steer)
