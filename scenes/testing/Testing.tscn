@@ -29,3 +29,4 @@ size = Vector3(500, 0.001, 500)
 material = ExtResource("1_krbb3")
 
 [node name="Player" parent="." unique_id=1234029208 instance=ExtResource("2_l7nsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 13.5)

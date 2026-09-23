@@ -8,7 +8,7 @@
 resource_name = "car_mat"
 cull_mode = 2
 albedo_texture = ExtResource("2_oefwb")
-roughness = 0.5
+roughness = 0.8
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_er8o8"]
@@ -530,6 +530,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fcu81")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
+size = Vector3(3.2, 2.8, 8.7)
+
 [node name="Car" type="Node3D" unique_id=414290366 node_paths=PackedStringArray("sway", "seat", "steering_wheel", "wheel_fl", "wheel_fr")]
 script = ExtResource("2_fx")
 sway = NodePath("Sway")
@@ -591,24 +594,22 @@ mesh = SubResource("ArrayMesh_ttmp7")
 transform = Transform3D(1.8000001, 0, 0, 0, 1.8000001, 0, 0, 0, 1.8000001, -0.016753772, 0.052783035, 0.049266726)
 mesh = SubResource("ArrayMesh_iowi1")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Sway" unique_id=1163388561]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, -0.6)
-omni_range = 7.5
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Sway" unique_id=705915167]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1.0999999, -4.35)
-spot_range = 20.0
-spot_attenuation = -1.0
-spot_angle = 35.0
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="Sway" unique_id=869705198]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.0999999, -4.35)
-spot_range = 20.0
-spot_attenuation = -1.0
-spot_angle = 35.0
-
 [node name="Seat" type="Marker3D" parent="Sway" unique_id=93007234]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7425395, 2.15, -0.36573318)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Sway" unique_id=153734495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9999999, 0.6)
+omni_range = 1.6
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Sway" unique_id=1102485354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.9)
+omni_range = 1.7
+
 [node name="ExitPoint" type="Marker3D" parent="." unique_id=437869837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5500002, 0, -0.9000001)
+
+[node name="CarCollider" type="StaticBody3D" parent="." unique_id=1903198128]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CarCollider" unique_id=1458227678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999952, 1.4, -0.1)
+shape = SubResource("BoxShape3D_1vivr")
