@@ -16,7 +16,6 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [display]
 
-window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
@@ -24,6 +23,10 @@ window/vsync/vsync_mode=0
 [editor]
 
 movie_writer/size/mode=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/road-generator/plugin.cfg")
 
 [input]
 

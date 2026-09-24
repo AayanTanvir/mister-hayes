@@ -1,24 +1,23 @@
 class_name InteractController
 extends Node
 
-signal interactable_detected(detected: bool)
+signal interactable_detected(detected: bool, prompt: String)
 
 @export var interact_ray: RayCast3D
 
 var was_colliding := false
+var current: InteractableComponent
 
 
 func _process(_delta: float) -> void:
-	var is_colliding := interact_ray.is_colliding()
+	var new_target := interact_ray.get_collider() as InteractableComponent if interact_ray.is_colliding() else null
 
-	if is_colliding != was_colliding:
-		was_colliding = is_colliding
-		interactable_detected.emit(is_colliding)
+	if new_target != current:
+		current = new_target 
+		interactable_detected.emit(current != null, current.prompt if current else "")
 
-	if is_colliding and Input.is_action_just_pressed("interact"):
-		var interactable := interact_ray.get_collider() as InteractableComponent
-		if interactable:
-			interactable.interact()
+	if current and Input.is_action_just_pressed("interact"):
+		current.interact()
 
 
 func set_disabled(disabled: bool) -> void:
@@ -26,4 +25,5 @@ func set_disabled(disabled: bool) -> void:
 	interact_ray.enabled = not disabled
 	if disabled and was_colliding:
 		was_colliding = false
-		interactable_detected.emit(false)	# hide the crosshair
+		current = null
+		interactable_detected.emit(false, "")

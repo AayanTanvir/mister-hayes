@@ -15,6 +15,7 @@ func _ready() -> void:
 	player.interact_controller.interactable_detected.connect(ui._on_interactable_detected)
 	player.seat_in(car.seat)
 	player.set_look_enabled(false)
+	ui.set_hud_visible(false)
 
 	# 1. exterior cutscene
 	chase_cam.make_current()
@@ -24,8 +25,10 @@ func _ready() -> void:
 	# 2. inside the car, player looks around and interacts with props
 	player.camera.make_current()
 	player.set_look_enabled(true)
+	ui.set_hud_visible(true)
 	await route.wait_until_ratio(handoff_ratio)
 
 	# 3. drone shot of the village, then title card
 	player.set_look_enabled(false)
+	ui.set_hud_visible(false)
 	# TODO: drone_cam.make_current(), await route.finished, show title card
