@@ -13,13 +13,15 @@ size = Vector3(0.5, 0.21, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 size = Vector3(2.6000001, 2.3, 7.2000003)
 
-[node name="Car" type="Node3D" unique_id=414290366 node_paths=PackedStringArray("sway", "seat", "steering_wheel", "wheel_fl", "wheel_fr")]
+[node name="Car" type="Node3D" unique_id=414290366 node_paths=PackedStringArray("sway", "seat", "steering_wheel", "wheel_fl", "wheel_fr", "wheel_bl", "wheel_br")]
 script = ExtResource("2_fx")
 sway = NodePath("Sway")
 seat = NodePath("Sway/Seat")
 steering_wheel = NodePath("CarMesh/SteeringWheel")
 wheel_fl = NodePath("CarMesh/L_Wheel_Front")
 wheel_fr = NodePath("CarMesh/R_Wheel_Front")
+wheel_bl = NodePath("CarMesh/L_Wheel_Back")
+wheel_br = NodePath("CarMesh/R_Wheel_Back")
 
 [node name="Props" type="Node3D" parent="." unique_id=534939680]
 
