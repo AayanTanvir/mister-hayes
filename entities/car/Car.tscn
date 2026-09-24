@@ -4,8 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://dia8smq87rm2h" path="res://assets/models/car/CarMesh.tscn" id="2_room6"]
 [ext_resource type="Script" uid="uid://cnhaf8cggigqy" path="res://entities/car/CarProps/GloveBox.gd" id="2_yl3yi"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_8vrlf"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yl3yi"]
 size = Vector3(0.5, 0.03, 0.19)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v5gy4"]
+size = Vector3(0.5, 0.21, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 size = Vector3(2.6000001, 2.3, 7.2000003)
@@ -30,14 +33,13 @@ glove_box_mesh = NodePath("../../CarMesh/GloveBox")
 closed_collision = NodePath("ClosedCollision")
 opened_collision = NodePath("OpenedCollision")
 
-[node name="ClosedCollision" type="CollisionShape3D" parent="Props/GloveBoxHandler" unique_id=1575654324]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0.11294103, 0.048296332)
-shape = SubResource("BoxShape3D_8vrlf")
+[node name="OpenedCollision" type="CollisionShape3D" parent="Props/GloveBoxHandler" unique_id=1575654324]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0.032940984, 0.098296285)
+shape = SubResource("BoxShape3D_yl3yi")
 
-[node name="OpenedCollision" type="CollisionShape3D" parent="Props/GloveBoxHandler" unique_id=1359236989]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0.03730774, 0.094444156)
-shape = SubResource("BoxShape3D_8vrlf")
-disabled = true
+[node name="ClosedCollision" type="CollisionShape3D" parent="Props/GloveBoxHandler" unique_id=961467466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08499992, -0.01000011)
+shape = SubResource("BoxShape3D_v5gy4")
 
 [node name="CarMesh" parent="." unique_id=1048909100 instance=ExtResource("2_room6")]
 

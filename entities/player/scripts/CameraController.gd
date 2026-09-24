@@ -3,7 +3,7 @@ extends Node3D
 
 const FREE_PITCH_LIMIT := 90.0
 const SEAT_PITCH_LIMIT := 75.0
-const SEAT_YAW_LIMIT := 105.0
+const SEAT_YAW_LIMIT := 130.0
 
 @export var camera_yaw: Node3D	# the node that turns left/right
 @export_range(0.001, 0.01) var mouse_sensitivity := 0.002

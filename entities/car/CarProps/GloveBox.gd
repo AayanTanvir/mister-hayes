@@ -14,15 +14,9 @@ func _ready() -> void:
 	closed_collision.disabled = false
 
 func interact() -> void:
-	if not _is_opened:
-		glove_box_mesh.rotate_object_local(Vector3.RIGHT, deg_to_rad(-rotate_angle))
-		_is_opened = true
-		prompt = _opened_prompt
-		opened_collision.disabled = false
-		closed_collision.disabled = true
-	else:
-		glove_box_mesh.rotate_object_local(Vector3.RIGHT, deg_to_rad(rotate_angle))
-		_is_opened = false
-		prompt = _closed_prompt
-		opened_collision.disabled = true
-		closed_collision.disabled = false
+	var target_angle = deg_to_rad(rotate_angle if _is_opened else -rotate_angle)
+	glove_box_mesh.rotate_object_local(Vector3.RIGHT, target_angle)
+	_is_opened = not _is_opened
+	prompt = _opened_prompt if _is_opened else _closed_prompt 
+	opened_collision.disabled = not _is_opened
+	closed_collision.disabled = _is_opened

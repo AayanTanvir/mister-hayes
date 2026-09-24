@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cph7euje06kel" path="res://addons/road-generator/nodes/road_container.gd" id="4_muql7"]
 [ext_resource type="Script" uid="uid://difs1qg4mpcpw" path="res://addons/road-generator/nodes/road_point.gd" id="5_adtqs"]
 [ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="6_muql7"]
+[ext_resource type="Script" uid="uid://erovhlbgx37n" path="res://scenes/testing/scripts/TestInteractable.gd" id="9_nbjwy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_krbb3"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -19,6 +20,8 @@ sky_material = SubResource("ProceduralSkyMaterial_krbb3")
 [sub_resource type="Environment" id="Environment_8pknm"]
 background_mode = 2
 sky = SubResource("Sky_l7nsk")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 
 [node name="Testing" type="Node3D" unique_id=777932238 node_paths=PackedStringArray("car", "player", "ui")]
 script = ExtResource("1_adtqs")
@@ -86,3 +89,19 @@ next_pt_init = NodePath("../RP_002")
 
 [node name="Car" parent="." unique_id=414290366 instance=ExtResource("6_muql7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -4)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1226412574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 1.4755007, -7.825)
+use_collision = true
+size = Vector3(2.5, 2.45, 0.35)
+
+[node name="TestInteractable" type="Area3D" parent="." unique_id=319947351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 1.4755007, -9.325)
+collision_layer = 2
+monitoring = false
+monitorable = false
+script = ExtResource("9_nbjwy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestInteractable" unique_id=392532422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("BoxShape3D_1vivr")

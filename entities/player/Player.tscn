@@ -40,6 +40,5 @@ fov = 70.0
 
 [node name="InteractRay" type="RayCast3D" parent="CameraController" unique_id=1609748349]
 target_position = Vector3(0, 0, -2.25)
-collision_mask = 2
+collision_mask = 3
 collide_with_areas = true
-collide_with_bodies = false

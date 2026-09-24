@@ -14,6 +14,7 @@ func _process(_delta: float) -> void:
 
 	if new_target != current:
 		current = new_target 
+		print(current)
 		interactable_detected.emit(current != null, current.prompt if current else "")
 
 	if current and Input.is_action_just_pressed("interact"):
