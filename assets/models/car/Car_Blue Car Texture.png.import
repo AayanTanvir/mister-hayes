@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw7wnvrrkust"
+uid="uid://dxu415mfytmry"
 path.s3tc="res://.godot/imported/Car_Blue Car Texture.png-b75ed05a2786be2407268720ac07d295.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "e42b04f2f9d6a80e529634a5ed78457f"
 }
 
 [deps]

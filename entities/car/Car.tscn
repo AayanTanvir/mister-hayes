@@ -2,13 +2,21 @@
 
 [ext_resource type="Script" uid="uid://b711onmo4r2a3" path="res://entities/car/CarCabinFX.gd" id="2_fx"]
 [ext_resource type="PackedScene" uid="uid://dia8smq87rm2h" path="res://assets/models/car/CarMesh.tscn" id="2_room6"]
-[ext_resource type="Script" uid="uid://cnhaf8cggigqy" path="res://entities/car/CarProps/GloveBox.gd" id="2_yl3yi"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yl3yi"]
-size = Vector3(0.5, 0.03, 0.19)
+[ext_resource type="Script" uid="uid://cl6ftikttg60y" path="res://entities/car/car_interactables/RadioHandler.gd" id="4_oefwb"]
+[ext_resource type="PackedScene" uid="uid://gjy71yvsgmv3" path="res://entities/props/newspaper/Newspaper.tscn" id="4_xjurd"]
+[ext_resource type="Script" uid="uid://c0sg6dkm2wdsb" path="res://scripts/component/RotateInteractable.gd" id="5_1uebn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5gy4"]
-size = Vector3(0.5, 0.21, 0.1)
+size = Vector3(0.5, 0.21, 0.07)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8vrlf"]
+size = Vector3(0.5, 0.2, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbdty"]
+size = Vector3(0.39999998, 0.03, 0.16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oefwb"]
+size = Vector3(0.41, 0.03, 0.16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 size = Vector3(2.6000001, 2.3, 7.2000003)
@@ -25,37 +33,76 @@ wheel_br = NodePath("CarMesh/R_Wheel_Back")
 
 [node name="Props" type="Node3D" parent="." unique_id=534939680]
 
-[node name="GloveBoxHandler" type="Area3D" parent="Props" unique_id=1797061507 node_paths=PackedStringArray("glove_box_mesh", "closed_collision", "opened_collision")]
+[node name="Newspaper" parent="Props" unique_id=1046253428 instance=ExtResource("4_xjurd")]
+transform = Transform3D(-0.2684299, 0.96248204, -0.039670516, 0.04261771, 0.053007238, 0.9976843, 0.962356, 0.26611775, -0.055247523, 0.52550983, 1.008904, 0.5265328)
+
+[node name="GloveBoxHandler" type="Area3D" parent="Props" unique_id=1797061507 node_paths=PackedStringArray("_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62, 1.12, -1.13)
 collision_layer = 2
 monitoring = false
 monitorable = false
-script = ExtResource("2_yl3yi")
-glove_box_mesh = NodePath("../../CarMesh/GloveBox")
-closed_collision = NodePath("ClosedCollision")
-opened_collision = NodePath("OpenedCollision")
+script = ExtResource("5_1uebn")
+_mesh = NodePath("../../CarMesh/GloveBox")
+_rotate_self = true
 
-[node name="OpenedCollision" type="CollisionShape3D" parent="Props/GloveBoxHandler" unique_id=1575654324]
-transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0.032940984, 0.098296285)
-shape = SubResource("BoxShape3D_yl3yi")
-
-[node name="ClosedCollision" type="CollisionShape3D" parent="Props/GloveBoxHandler" unique_id=961467466]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08499992, -0.01000011)
+[node name="Collision" type="CollisionShape3D" parent="Props/GloveBoxHandler" unique_id=961467466]
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0.09465918, -0.027588286)
 shape = SubResource("BoxShape3D_v5gy4")
+
+[node name="RadioHandler" type="Area3D" parent="Props" unique_id=171443161 node_paths=PackedStringArray("audio_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999997, 1.21, -1.15)
+collision_layer = 2
+monitoring = false
+monitorable = false
+script = ExtResource("4_oefwb")
+audio_player = NodePath("AudioStreamPlayer")
+interact_keys = Array[int]([0, 1])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/RadioHandler" unique_id=1992663287]
+shape = SubResource("BoxShape3D_8vrlf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Props/RadioHandler" unique_id=401371028]
+volume_db = -25.0
+pitch_scale = 0.8
+
+[node name="L_SunscreenHandler" type="Area3D" parent="Props" unique_id=834597792 node_paths=PackedStringArray("_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58000004, 2.11, -0.8)
+collision_layer = 2
+monitoring = false
+monitorable = false
+script = ExtResource("5_1uebn")
+_mesh = NodePath("../../CarMesh/L_Sunscreen")
+_rotate_angle = 80.0
+_rotate_self = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/L_SunscreenHandler" unique_id=540274427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.004999995, -0.004999876, 0.07999998)
+shape = SubResource("BoxShape3D_qbdty")
+
+[node name="R_SunscreenHandler" type="Area3D" parent="Props" unique_id=267817888 node_paths=PackedStringArray("_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69, 2.12, -0.79999995)
+collision_layer = 2
+monitoring = false
+monitorable = false
+script = ExtResource("5_1uebn")
+_mesh = NodePath("../../CarMesh/R_Sunscreen")
+_rotate_angle = 80.0
+_rotate_self = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/R_SunscreenHandler" unique_id=1559459318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01999998, -0.0149998665, 0.07999992)
+shape = SubResource("BoxShape3D_oefwb")
 
 [node name="CarMesh" parent="." unique_id=1048909100 instance=ExtResource("2_room6")]
 
 [node name="Sway" type="Node3D" parent="." unique_id=2015477202]
 
 [node name="Seat" type="Marker3D" parent="Sway" unique_id=93007234]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6425395, 1.7500001, -0.36573318)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Sway" unique_id=153734495]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9999999, 0.6)
-omni_range = 1.6
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6425395, 1.7500001, -0.46573317)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Sway" unique_id=1102485354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -0.79999995)
+visible = false
 omni_range = 1.7
 
 [node name="ExitPoint" type="Marker3D" parent="." unique_id=437869837]

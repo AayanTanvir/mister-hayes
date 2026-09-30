@@ -9,21 +9,6 @@ const SEAT_YAW_LIMIT := 130.0
 @export_range(0.001, 0.01) var mouse_sensitivity := 0.002
 
 var seated := false
-var _mouse_captured := false
-
-
-func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	_mouse_captured = true
-
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("esc") and _mouse_captured:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		_mouse_captured = false
-	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not _mouse_captured:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		_mouse_captured = true
 
 
 func _input(event: InputEvent) -> void:

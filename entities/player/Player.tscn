@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://chdpxabovcqkx" path="res://entities/player/scripts/InteractController.gd" id="2_apuoc"]
 [ext_resource type="Script" uid="uid://bxo02545pne8d" path="res://entities/player/scripts/MovementController.gd" id="2_rguqb"]
 [ext_resource type="Script" uid="uid://dcg8we3of3odn" path="res://entities/player/scripts/CameraController.gd" id="2_v6fml"]
+[ext_resource type="Texture2D" uid="uid://8we7ljct1exn" path="res://assets/textures/OpaqueBackground.png" id="5_g3lhm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1vivr"]
 height = 2.5
@@ -11,8 +12,16 @@ height = 2.5
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1vivr"]
 height = 2.5
 
-[node name="Player" type="CharacterBody3D" unique_id=1234029208]
+[node name="Player" type="CharacterBody3D" unique_id=1234029208 node_paths=PackedStringArray("camera_controller", "movement_controller", "interact_controller", "collision_shape", "mesh", "camera", "inspect_point", "inspect_background")]
 script = ExtResource("1_mdl7e")
+camera_controller = NodePath("CameraController")
+movement_controller = NodePath("MovementController")
+interact_controller = NodePath("InteractController")
+collision_shape = NodePath("PlayerCollisionShape")
+mesh = NodePath("PlayerMesh")
+camera = NodePath("CameraController/PlayerCamera")
+inspect_point = NodePath("CameraController/Inspection/InspectPoint")
+inspect_background = NodePath("CameraController/Inspection/InspectBG")
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="." unique_id=61861376]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
@@ -33,6 +42,7 @@ script = ExtResource("2_rguqb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
 script = ExtResource("2_v6fml")
 camera_yaw = NodePath("..")
+mouse_sensitivity = null
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraController" unique_id=1144761065]
 current = true
@@ -42,3 +52,18 @@ fov = 70.0
 target_position = Vector3(0, 0, -2.25)
 collision_mask = 3
 collide_with_areas = true
+
+[node name="Inspection" type="Node3D" parent="CameraController" unique_id=1503382002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
+
+[node name="InspectPoint" type="Marker3D" parent="CameraController/Inspection" unique_id=410338110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1920929e-07)
+
+[node name="InspectBG" type="TextureRect" parent="CameraController/Inspection" unique_id=1986512086]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_g3lhm")
+expand_mode = 1

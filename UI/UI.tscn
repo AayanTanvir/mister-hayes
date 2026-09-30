@@ -10,12 +10,30 @@ font_size = 10
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
-[node name="UI" type="CanvasLayer" unique_id=1489775715 node_paths=PackedStringArray("crosshair_handler", "interact_prompt")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vivr"]
+bg_color = Color(0, 0, 0, 0.6627451)
+corner_radius_top_left = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_f1fl4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vrlf"]
+bg_color = Color(0.06053035, 0.06053035, 0.060530342, 0.6627451)
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_e707p"]
+font_size = 14
+
+[node name="UI" type="CanvasLayer" unique_id=1489775715 node_paths=PackedStringArray("crosshair_handler", "interact_prompt", "speaker_label", "dialogue_label", "dialogue_container")]
 script = ExtResource("1_ro3t7")
 crosshair_handler = NodePath("CrosshairHandler")
 interact_prompt = NodePath("InteractPrompt")
+speaker_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/SpeakerContainer/SpeakerLabel")
+dialogue_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/TextContainer/DialogueLabel")
+dialogue_container = NodePath("DialogueContainer")
 
-[node name="CrosshairHandler" type="Control" parent="." unique_id=1282399062 node_paths=PackedStringArray("_crosshair", "_interact_crosshair")]
+[node name="CrosshairHandler" type="Control" parent="." unique_id=1282399062 node_paths=PackedStringArray("_interact_crosshair")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +41,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_ro3t7")
-_crosshair = NodePath("Crosshair")
 _interact_crosshair = NodePath("InteractCrosshair")
 fade_duration = 0.2
 
@@ -68,15 +85,66 @@ stretch_mode = 5
 [node name="InteractPrompt" type="Label" parent="." unique_id=1015445699]
 anchors_preset = -1
 anchor_left = 0.50200003
-anchor_top = 0.52400005
+anchor_top = 0.50600004
 anchor_right = 0.50200003
-anchor_bottom = 0.52400005
+anchor_bottom = 0.50600004
 offset_left = -204.30402
-offset_top = -11.552032
+offset_top = 4.111969
 offset_right = 203.69598
-offset_bottom = 11.447968
+offset_bottom = 93.11197
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_1vivr")
 horizontal_alignment = 1
+
+[node name="DialogueContainer" type="MarginContainer" parent="." unique_id=676723837]
+visible = false
+custom_minimum_size = Vector2(0, 64)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="DialogueContainer" unique_id=1123273933]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueContainer/CenterContainer" unique_id=1902124786]
+custom_minimum_size = Vector2(600, 50)
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="SpeakerContainer" type="PanelContainer" parent="DialogueContainer/CenterContainer/HBoxContainer" unique_id=736765704]
+custom_minimum_size = Vector2(100, 50)
+custom_maximum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1vivr")
+
+[node name="SpeakerLabel" type="Label" parent="DialogueContainer/CenterContainer/HBoxContainer/SpeakerContainer" unique_id=438859375]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_f1fl4")
+horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextContainer" type="PanelContainer" parent="DialogueContainer/CenterContainer/HBoxContainer" unique_id=1579864740]
+custom_minimum_size = Vector2(500, 50)
+custom_maximum_size = Vector2(500, 50)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8vrlf")
+
+[node name="DialogueLabel" type="Label" parent="DialogueContainer/CenterContainer/HBoxContainer/TextContainer" unique_id=586069433]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_e707p")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

@@ -2,43 +2,72 @@
 
 [ext_resource type="Script" uid="uid://djee50up2ur7x" path="res://scenes/intro/Intro.gd" id="1_2xnbr"]
 [ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="2_gral6"]
-[ext_resource type="Script" uid="uid://cawaqspco3rof" path="res://scenes/intro/scripts/RoadPath.gd" id="2_plq68"]
 [ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="3_37sh5"]
 [ext_resource type="Script" uid="uid://br78gtdiqhqx4" path="res://scenes/intro/scripts/CarRoute.gd" id="3_route"]
+[ext_resource type="Material" uid="uid://ci8pv8sga66al" path="res://assets/materials/M_Road.material" id="3_v3ouk"]
 [ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="5_car"]
 [ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="6_ui"]
+[ext_resource type="Script" uid="uid://cawaqspco3rof" path="res://scenes/intro/scripts/RoadPath.gd" id="6_v3ouk"]
 [ext_resource type="Script" uid="uid://bxp3i4cnonh8y" path="res://addons/road-generator/nodes/road_manager.gd" id="8_kuy3d"]
+[ext_resource type="Script" uid="uid://csjux7b5ygsti" path="res://scenes/intro/scripts/DroneCamRoute.gd" id="9_grl5c"]
 [ext_resource type="Script" uid="uid://cph7euje06kel" path="res://addons/road-generator/nodes/road_container.gd" id="9_v3ouk"]
 [ext_resource type="Script" uid="uid://difs1qg4mpcpw" path="res://addons/road-generator/nodes/road_point.gd" id="10_grl5c"]
 
 [sub_resource type="Curve3D" id="Curve3D_plq68"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, -5.012601, 0, 18.422058, 0.041475773, 0.00036621094, 0.6808324, 3.865898, 0, -18.696344, -3.1133573, 0, 15.05689, -18.496328, 0.00036621094, 20.947006, 6, 0, -17, -6, 0, 17, -17.530323, 0.00036621094, 64.10807, -5.5, 0, -21.5, 5.5, 0, 21.5, -15.954319, 0.00036621094, 169.60545, -2.4382722, 0, -31.065153, 1.8122916, 0, 23.089758, -1.049902, 0.00036621094, 261.2609, 4, 0, -26.5, -4, 0, 26.5, -2.9122648, 0.00036621094, 337.2239, 24.5, 0, 10, -24.5, 0, -10, -93.21664, 0.00036621094, 331.8393, 29.715364, 0, 10.27654, 0, 0, 0, -182.86273, 0.00036621094, 305.00967),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, -2.49605, 0, 9.143754, -0.12950325, 0.25048828, 8.168472, 2.316847, 0, -9.190797, -2.4187543, 0, 9.5950575, -7.617653, 0.25048828, 35.599735, 1.7522998, -1.4706427e-05, -9.738836, -2.42711, 2.0369867e-05, 13.489259, -14.309887, 0.25048828, 64.52124, 0.4317393, 1.050816e-05, -13.699073, -0.8554592, -2.0821137e-05, 27.143692, -19.585394, 0.25061035, 105.29903, -2.8514955, -2.8102304e-05, -27.00705, 2.6039836, 2.5663008e-05, 24.662819, -14.240921, 0.25024414, 186.59505, -3.687464, 2.180179e-05, -24.524237, 2.9083292, -1.7195229e-05, 19.34244, -3.5098047, 0.25073242, 260.2168, -2.1494837, 8.145772e-05, -19.4414, 2.124771, -8.052121e-05, 19.217882, 5.476284, 0.25024414, 318.20425, -0.94464487, -5.907774e-06, -19.311895, 3.25365, 2.0348207e-05, 66.51617, 9.330004, 0.25024414, 376.08105, -1.8453759, -5.6988658e-05, -66.57013, 2.0491784, 6.328246e-05, 73.922104, 15.57547, 0.2503662, 575.7705, 0.5, 0, -14.5, -0.5, 0, 14.5, 19.986752, 0.25048828, 793.07996, 6.035792, 3.7005364e-05, -15.320655, -7.697246, -4.7191716e-05, 19.537924, 12.113539, 0.25048828, 846.1634, 16.541548, 4.4332673e-06, -12.936584, -20.825735, -5.5814635e-06, 16.287102, -21.937868, 0.2503662, 899.16626, 33.5, 0, -0.5, -33.5, 0, 0.5, -97.03269, 0.25048828, 924.6926, 23, 0, 7, -23, 0, -7, -193.38474, 0.2503662, 905.3606, 12, 0, 6, -12, 0, -6, -269.4981, 0.25024414, 872.51447, 17.5, 0, 13.5, -17.5, 0, -13.5, -371.97107, 0.2503662, 804.13104, 24.5, 0, 17.5, -24.5, 0, -17.5, -442.82288, 0.25048828, 744.4683, 21.638977, -1.1622826e-05, 1.3797141, -44.617306, 2.3965047e-05, -2.844826, -503.5157, 0.25073242, 721.0648, 38.547638, 4.2316874e-06, -22.646776, -13.763482, -1.5109293e-06, 8.086061, -633.7732, 0.2503662, 753.03595, 7.4159756, -2.1086526e-05, -14.13581, -5.2667065, 1.49753105e-05, 10.039023, -666.3856, 0.25048828, 788.1043, -0.5, 0, -19, 0.5, 0, 19, -674.0113, 0.25, 830.1246, -0.42626953, 4.0690105e-05, -42.193542, 0.42626953, -4.0690105e-05, 42.193542, -672.43506, 0.2503662, 947.89606),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 8
+point_count = 22
+
+[sub_resource type="Curve3D" id="Curve3D_v3ouk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.0234375, 0.14004517, -0.06262207, 0, -53.5, -3.5, 0, 53.5, 3.5, 0.0234375, 114.305115, -54.15094),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gral6"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_w1iy7"]
+[sub_resource type="Sky" id="Sky_grl5c"]
 sky_material = SubResource("ProceduralSkyMaterial_gral6")
 
 [sub_resource type="Environment" id="Environment_37sh5"]
-background_mode = 2
-sky = SubResource("Sky_w1iy7")
+background_mode = 1
+background_color = Color(0.6509804, 0.76862746, 0.76862746, 1)
+sky = SubResource("Sky_grl5c")
+sky_custom_fov = 1.0
+ambient_light_source = 2
+ambient_light_color = Color(0.6509804, 0.76862746, 0.76862746, 1)
+ambient_light_energy = 1.5
+tonemap_mode = 2
+tonemap_exposure = 0.8
+tonemap_white = 3.0
+ssao_enabled = true
+ssao_intensity = 1.0
+fog_mode = 1
+fog_light_color = Color(0.6509804, 0.76862746, 0.76862746, 1)
+fog_light_energy = 1.2
+fog_density = 1.0
+fog_sky_affect = 0.5
+adjustment_enabled = true
+adjustment_saturation = 1.25
 
-[node name="Intro" type="Node3D" unique_id=2037898939 node_paths=PackedStringArray("route", "car", "player", "ui", "chase_cam")]
+[node name="Intro" type="Node3D" unique_id=2037898939 node_paths=PackedStringArray("car_route", "drone_route", "car", "chase_cam", "drone_cam")]
 script = ExtResource("1_2xnbr")
-route = NodePath("RoadPath/CarRoute")
+car_route = NodePath("RoadPath/CarRoute")
+drone_route = NodePath("DroneShotPath/DroneCamRoute")
 car = NodePath("RoadPath/CarRoute/Car")
-player = NodePath("Player")
-ui = NodePath("UI")
 chase_cam = NodePath("RoadPath/CarRoute/ChaseCam")
+drone_cam = NodePath("DroneShotPath/DroneCamRoute/DroneCam")
+chase_duration = 2.0
+handoff_ratio = 0.95
 
 [node name="RoadManager" type="Node3D" parent="." unique_id=1853990698]
 script = ExtResource("8_kuy3d")
+material_resource = ExtResource("3_v3ouk")
 metadata/_custom_type_script = "uid://bxp3i4cnonh8y"
 
 [node name="Road_001" type="Node3D" parent="RoadManager" unique_id=1690101157]
@@ -48,7 +77,7 @@ use_lowpoly_preview = true
 edge_containers = Array[NodePath]([NodePath(""), NodePath("")])
 edge_rp_targets = Array[NodePath]([NodePath(""), NodePath("")])
 edge_rp_target_dirs = Array[int]([-1, -1])
-edge_rp_locals = Array[NodePath]([NodePath("RP_001"), NodePath("RP_005")])
+edge_rp_locals = Array[NodePath]([NodePath("RP_001"), NodePath("RP_009")])
 edge_rp_local_dirs = Array[int]([0, 1])
 
 [node name="RP_001" type="Node3D" parent="RoadManager/Road_001" unique_id=1576407352]
@@ -70,7 +99,7 @@ prior_pt_init = NodePath("../RP_003")
 next_pt_init = NodePath("../RP_001")
 
 [node name="RP_003" type="Node3D" parent="RoadManager/Road_001" unique_id=1721278937]
-transform = Transform3D(-0.9918772, 0, 0.12719885, 0, 1, 0, -0.12719885, 0, -0.9918772, -1.0980072, 0.25, 329.47284)
+transform = Transform3D(-0.9910013, 0, -0.13385205, 0, 1, 0, 0.13385205, 0, -0.9910013, 1.9019928, 0.25, 328.47284)
 script = ExtResource("10_grl5c")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
@@ -80,189 +109,107 @@ prior_pt_init = NodePath("../RP_004")
 next_pt_init = NodePath("../RP_002")
 
 [node name="RP_004" type="Node3D" parent="RoadManager/Road_001" unique_id=2087697949]
-transform = Transform3D(0.2955692, 0, 0.9553213, 0, 1, 0, -0.9553213, 0, 0.29556924, -62.20996, 0.2501335, 342.8181)
+transform = Transform3D(-0.99926853, 0, 0.038242623, 0, 1, 0, -0.038242564, 0, -0.99926853, 16.290041, 0.2501335, 806.3181)
 script = ExtResource("10_grl5c")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
-prior_mag = 63.99948
+prior_mag = 67.566605
 next_mag = 31.276058
 prior_pt_init = NodePath("../RP_005")
 next_pt_init = NodePath("../RP_003")
 
-[node name="RP_005" type="Node3D" parent="RoadManager/Road_001" unique_id=1163199185]
-transform = Transform3D(0.27892822, 0, 0.96031195, 0, 1, 0, -0.96031195, 0, 0.27892822, -184.81413, 0.25013733, 306.04922)
+[node name="RP_005" type="Node3D" parent="RoadManager/Road_001" unique_id=224624855]
+transform = Transform3D(0.15826535, 0, 0.98739666, 0, 1, 0, -0.98739666, 0, 0.15826535, -119.78722, 0.2501335, 922.70654)
 script = ExtResource("10_grl5c")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
-prior_mag = 63.99948
-next_mag = 63.99948
+prior_mag = 117.616135
+next_mag = 93.43713
+prior_pt_init = NodePath("../RP_006")
 next_pt_init = NodePath("../RP_004")
+
+[node name="RP_006" type="Node3D" parent="RoadManager/Road_001" unique_id=1666457939]
+transform = Transform3D(0.5419616, 0, 0.8404032, 0, 1, 0, -0.8404032, 0, 0.5419616, -331.89584, 0.25, 829.57513)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 113.705864
+next_mag = 35.29184
+prior_pt_init = NodePath("../RP_007")
+next_pt_init = NodePath("../RP_005")
+
+[node name="RP_007" type="Node3D" parent="RoadManager/Road_001" unique_id=1469573102]
+transform = Transform3D(-0.11649063, 0, 0.9931918, 0, 1, 0, -0.9931918, 0, -0.11649063, -532.6, 0.25, 722.64557)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 121.058044
+next_mag = 94.62747
+prior_pt_init = NodePath("../RP_008")
+next_pt_init = NodePath("../RP_006")
+
+[node name="RP_008" type="Node3D" parent="RoadManager/Road_001" unique_id=1978033191]
+transform = Transform3D(-0.99992764, 0, -0.01202932, 0, 1, 0, 0.01202932, 0, -0.99992764, -678.0208, 0.25, 827.17255)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 485.7125
+next_mag = 38.16266
+prior_pt_init = NodePath("../RP_009")
+next_pt_init = NodePath("../RP_007")
+
+[node name="RP_009" type="Node3D" parent="RoadManager/Road_001" unique_id=1320111796]
+transform = Transform3D(-0.9999598, 0, -0.008965046, 0, 1, 0, 0.008965046, 0, -0.9999598, -667.82355, 0.24987793, 1798.544)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 485.7125
+next_mag = 485.7125
+next_pt_init = NodePath("../RP_008")
 
 [node name="RoadPath" type="Path3D" parent="." unique_id=1032634714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, -24)
 curve = SubResource("Curve3D_plq68")
-script = ExtResource("2_plq68")
+script = ExtResource("6_v3ouk")
 
 [node name="CarRoute" type="PathFollow3D" parent="RoadPath" unique_id=972304914]
-transform = Transform3D(-0.9649061, 0, 0.26254624, 0, 0.9999871, 0, -0.26254866, 0, -0.9648972, 0.041475773, 0.00036621094, 0.6808324)
+transform = Transform3D(-0.9646867, 0, 0.26333627, 0, 0.9999871, 0, -0.26333895, 0, -0.9646769, -0.12950325, 0.25048828, 8.168472)
 script = ExtResource("3_route")
 
 [node name="Car" parent="RoadPath/CarRoute" unique_id=614255730 instance=ExtResource("5_car")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, -2.9802322e-08, 0, 1, 0, 0.25000322, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, -2.9802322e-08, 0, 1, 0, -0.0071536005, 0)
 
 [node name="ChaseCam" type="Camera3D" parent="RoadPath/CarRoute" unique_id=1491476341]
-transform = Transform3D(0.9333827, -0.08626208, 0.34836206, -0.05476466, 0.9250797, 0.37580347, -0.35468033, -0.3698464, 0.85872924, 5.379657, 6, 5.7618647)
+transform = Transform3D(0.93922055, 0.044377394, 0.34047014, 0, 0.991625, -0.1292499, -0.34335327, 0.12139371, 0.9313512, 3.368361, 0.97893155, 5.721628)
 fov = 60.0
+
+[node name="DroneShotPath" type="Path3D" parent="." unique_id=1077689154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -718.5, 56.5, 846.5)
+curve = SubResource("Curve3D_v3ouk")
+
+[node name="DroneCamRoute" type="PathFollow3D" parent="DroneShotPath" unique_id=1172894131]
+transform = Transform3D(1, 0, 0, 0, 0.6884759, -0.72525907, 0, 0.72525907, 0.6884759, 0.0234375, 0.14004517, -0.06262207)
+script = ExtResource("9_grl5c")
+
+[node name="DroneCam" type="Camera3D" parent="DroneShotPath/DroneCamRoute" unique_id=1596457085]
+transform = Transform3D(-0.77714527, 0.26854408, -0.5691479, 0.45642102, 0.86315966, -0.21595275, 0.4332726, -0.42759773, -0.79336965, 0, 0, 0)
 
 [node name="Player" parent="." unique_id=1234029208 instance=ExtResource("3_37sh5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -3)
 
 [node name="UI" parent="." unique_id=693540099 instance=ExtResource("6_ui")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1782090871]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
+[node name="Environment" type="Node3D" parent="." unique_id=711972602]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=830392400]
-environment = SubResource("Environment_37sh5")
-
-[node name="Platform" type="CSGBox3D" parent="." unique_id=141757020]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 218)
+[node name="Platform" type="CSGBox3D" parent="Environment" unique_id=141757020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -556.25, 0, 772.5)
 use_collision = true
-size = Vector3(500, 0.001, 500)
+size = Vector3(1379, 0.001, 2010)
 material = ExtResource("2_gral6")
 
-[node name="Buildings" type="Node3D" parent="." unique_id=219977011]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 218)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=1782090871]
+transform = Transform3D(1, 0, 0, 0, 1.19248815e-08, 1.0000002, 0, -0.9999999, 1.19248815e-08, 0, 0, 0)
+light_color = Color(0.6509804, 0.76862746, 0.76862746, 1)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Buildings" unique_id=209055212]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5, 18.7505, -15.5)
-size = Vector3(10, 37.5, 10)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Buildings" unique_id=593635420]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 29.7505, -51.5)
-size = Vector3(15, 59.5, 16.5)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Buildings" unique_id=175864455]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -52, 9.7505, -34.25)
-size = Vector3(10, 19.5, 21.5)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="Buildings" unique_id=1796754521]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -91, 9.7505, -67.75)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D17" type="CSGBox3D" parent="Buildings" unique_id=1142865933]
-transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, -274.72867, 18.7505, -24.88406)
-size = Vector3(10, 37.5, 10)
-
-[node name="CSGBox3D18" type="CSGBox3D" parent="Buildings" unique_id=978374889]
-transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, -262.80176, 29.7505, -76.22604)
-size = Vector3(15, 59.5, 16.5)
-
-[node name="CSGBox3D19" type="CSGBox3D" parent="Buildings" unique_id=214686637]
-transform = Transform3D(0.9659258, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659258, -266.2407, 9.7505, -47.682453)
-size = Vector3(10, 19.5, 21.5)
-
-[node name="CSGBox3D20" type="CSGBox3D" parent="Buildings" unique_id=1655775371]
-transform = Transform3D(0.9659258, 0, -0.2588191, 0, 1, 0, 0.2588191, 0, 0.9659258, -256.72885, 9.7505, -98.20744)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Buildings" unique_id=2031305895]
-transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, 52.556953, 18.7505, 45.374146)
-size = Vector3(10, 37.5, 10)
-
-[node name="CSGBox3D10" type="CSGBox3D" parent="Buildings" unique_id=208970343]
-transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, 77.365746, 29.7505, -1.1314821)
-size = Vector3(15, 59.5, 16.5)
-
-[node name="CSGBox3D11" type="CSGBox3D" parent="Buildings" unique_id=752218208]
-transform = Transform3D(0.8660254, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.8660254, 66.656364, 9.7505, 25.54944)
-size = Vector3(10, 19.5, 21.5)
-
-[node name="CSGBox3D12" type="CSGBox3D" parent="Buildings" unique_id=242044938]
-transform = Transform3D(0.8660254, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.8660254, 88.92094, 9.7505, -20.792107)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D13" type="CSGBox3D" parent="Buildings" unique_id=282241825]
-transform = Transform3D(0.7071067, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071067, 141.97037, 18.7505, -43.515167)
-size = Vector3(10, 37.5, 10)
-
-[node name="CSGBox3D14" type="CSGBox3D" parent="Buildings" unique_id=1087655775]
-transform = Transform3D(0.7071067, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071067, 89.290924, 29.7505, -41.747402)
-size = Vector3(15, 59.5, 16.5)
-
-[node name="CSGBox3D15" type="CSGBox3D" parent="Buildings" unique_id=2000653834]
-transform = Transform3D(-2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, -2.9802322e-08, 117.75197, 9.7505, -45.813263)
-size = Vector3(10, 19.5, 21.5)
-
-[node name="CSGBox3D16" type="CSGBox3D" parent="Buildings" unique_id=1767595633]
-transform = Transform3D(-2.9802322e-08, 0, 1, 0, 1, 0, -1, 0, -2.9802322e-08, 66.48673, 9.7505, -41.924164)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D21" type="CSGBox3D" parent="Buildings" unique_id=674822117]
-transform = Transform3D(-0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.7071068, 51.90755, 18.7505, -80.55558)
-size = Vector3(10, 37.5, 10)
-
-[node name="CSGBox3D22" type="CSGBox3D" parent="Buildings" unique_id=167144143]
-transform = Transform3D(-0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.7071068, 104.587006, 29.7505, -82.32335)
-size = Vector3(15, 59.5, 16.5)
-
-[node name="CSGBox3D23" type="CSGBox3D" parent="Buildings" unique_id=2057578979]
-transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 76.12596, 9.7505, -78.257484)
-size = Vector3(10, 19.5, 21.5)
-
-[node name="CSGBox3D26" type="CSGBox3D" parent="Buildings" unique_id=719017754]
-transform = Transform3D(0.4999999, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.4999999, 121.45051, 9.7505, -136.44298)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D27" type="CSGBox3D" parent="Buildings" unique_id=1441617033]
-transform = Transform3D(-1, 0, -7.351371e-08, 0, 1, 0, 7.351371e-08, 0, -1, 100.31845, 9.7505, -114.00877)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D28" type="CSGBox3D" parent="Buildings" unique_id=1069653686]
-transform = Transform3D(0.7071068, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071068, 61.687042, 18.7505, -99.42958)
-size = Vector3(10, 37.5, 10)
-
-[node name="CSGBox3D29" type="CSGBox3D" parent="Buildings" unique_id=1391643107]
-transform = Transform3D(0.9999999, 0, 4.371138e-08, 0, 1, 0, -4.371138e-08, 0, 0.9999999, 63.985138, 9.7505, -123.647995)
-size = Vector3(10, 19.5, 21.5)
-
-[node name="CSGBox3D30" type="CSGBox3D" parent="Buildings" unique_id=624199294]
-transform = Transform3D(0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, 0.8660253, 113.84662, 9.7505, -154.7282)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D31" type="CSGBox3D" parent="Buildings" unique_id=1715172934]
-transform = Transform3D(-0.86602545, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, -0.86602545, 84.32861, 9.7505, -145.86563)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D32" type="CSGBox3D" parent="Buildings" unique_id=1387499270]
-transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, 43.583237, 18.7505, -152.55539)
-size = Vector3(10, 37.5, 10)
-
-[node name="CSGBox3D33" type="CSGBox3D" parent="Buildings" unique_id=786532574]
-transform = Transform3D(0.86602527, 0, -0.4999999, 0, 1, 0, 0.4999999, 0, 0.86602527, 57.682655, 9.7505, -172.3801)
-size = Vector3(10, 19.5, 21.5)
-
-[node name="CSGBox3D24" type="CSGBox3D" parent="Buildings" unique_id=865681471]
-transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, 127.391205, 9.7505, -82.146576)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D25" type="CSGBox3D" parent="Buildings" unique_id=1955465867]
-transform = Transform3D(0.86602545, 0, 0.5, 0, 1, 0, -0.5, 0, 0.86602545, 134.475, 9.7505, -112.14119)
-size = Vector3(10, 19.5, 8.5)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="Buildings" unique_id=1536277413]
-transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -44.000854, 18.7505, -119.931946)
-size = Vector3(10, 37.5, 10)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="Buildings" unique_id=887527814]
-transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -90.506485, 29.7505, -144.74075)
-size = Vector3(15, 59.5, 16.5)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="Buildings" unique_id=122715520]
-transform = Transform3D(0.49999997, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, 0.49999997, -63.82556, 9.7505, -134.03137)
-size = Vector3(10, 19.5, 21.5)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="Buildings" unique_id=1130698030]
-transform = Transform3D(0.49999997, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, 0.49999997, -110.1671, 9.7505, -156.29593)
-size = Vector3(10, 19.5, 8.5)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment" unique_id=830392400]
+environment = SubResource("Environment_37sh5")

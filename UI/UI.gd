@@ -1,8 +1,15 @@
 class_name UI
 extends CanvasLayer
 
+@export_group("Crosshair")
 @export var crosshair_handler: Control
 @export var interact_prompt: Label
+
+@export_group("Dialogue System")
+@export var speaker_label: Label
+@export var dialogue_label: Label
+@export var dialogue_container: MarginContainer
+
 var interact_prompt_tween: Tween
 
 
@@ -13,11 +20,11 @@ func _ready() -> void:
 
 func _on_interactable_detected(detected: bool, prompt: String) -> void:
 	crosshair_handler.show_interact_crosshair(detected)
-	set_prompt(prompt)
+	set_interact_prompt(prompt)
 
 
-func set_prompt(prompt: String):
-	if not prompt: 
+func set_interact_prompt(prompt: String = ""):
+	if not prompt:
 		interact_prompt.text = ""
 		interact_prompt.modulate.a = 0.0
 	else:
@@ -28,5 +35,6 @@ func set_prompt(prompt: String):
 		interact_prompt_tween.tween_property(interact_prompt, "modulate:a", 1.0, crosshair_handler.fade_duration)
 
 
-func set_hud_visible(set_visible: bool):
-	crosshair_handler.set_crosshair_visible(set_visible)
+func set_hud_visible(show_hud: bool):
+	crosshair_handler.visible = show_hud
+	set_interact_prompt("")

@@ -5,10 +5,10 @@ signal finished
 
 const CURVATURE_SPAN := 2.0
 
-@export var cruise_speed := 12.0
-@export var acceleration := 2.0
+@export var cruise_speed := 24.0
+@export var acceleration := 6.0
 @export var corner_slowdown := 0.6
-@export var look_ahead := 3.0
+@export var look_ahead := 4.0
 
 var speed := 0.0
 var curvature := 0.0

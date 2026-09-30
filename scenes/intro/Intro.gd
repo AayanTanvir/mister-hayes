@@ -1,34 +1,56 @@
 class_name Intro
 extends Node3D
 
-@export var route: CarRoute
+@export var car_route: CarRoute
+@export var drone_route: DroneCamRoute
 @export var car: CarCabinFX
-@export var player: Player
-@export var ui: UI
 @export var chase_cam: Camera3D
-
-@export var chase_duration := 8.0
+@export var drone_cam: Camera3D
+@export var chase_duration := 10.0
 @export_range(0.0, 1.0) var handoff_ratio := 0.85	## route progress where the interior phase ends
+
+var player: Player
+var ui: UI
+
+var intro_dialogue: Array[Dictionary] = [
+	{
+		"speaker": "Ethan",
+		"text": "Why did they do this to me?"
+	},
+	{
+		"speaker": "Ethan",
+		"text": "I'm so done with this..."
+	},
+]
 
 
 func _ready() -> void:
-	player.interact_controller.interactable_detected.connect(ui._on_interactable_detected)
+	player = GameManager.get_current_node(Player)
+	ui = GameManager.get_current_node(UI)
+	
+	start_intro()
+
+
+func start_intro():
 	player.seat_in(car.seat)
 	player.set_look_enabled(false)
 	ui.set_hud_visible(false)
 
 	# 1. exterior cutscene
 	chase_cam.make_current()
-	route.start()
+	car_route.start()
 	await get_tree().create_timer(chase_duration).timeout
 
 	# 2. inside the car, player looks around and interacts with props
 	player.camera.make_current()
 	player.set_look_enabled(true)
 	ui.set_hud_visible(true)
-	await route.wait_until_ratio(handoff_ratio)
+	await get_tree().create_timer(3.0).timeout
+	DialogueManager.start_dialogue(intro_dialogue, false)
+	await car_route.wait_until_ratio(handoff_ratio)
 
-	# 3. drone shot of the village, then title card
+	# 3. drone shot of the map, then title card
 	player.set_look_enabled(false)
 	ui.set_hud_visible(false)
-	# TODO: drone_cam.make_current(), await route.finished, show title card
+	drone_cam.make_current()
+	drone_route.start()

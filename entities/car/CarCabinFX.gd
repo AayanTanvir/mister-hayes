@@ -28,7 +28,7 @@ extends Node3D
 var _steer := 0.0
 var _accel := 0.0
 var _prev_speed := 0.0
-var _wheel_rest: Basis
+var _steering_wheel_rest: Basis
 var _fl_rest: Basis
 var _fr_rest: Basis
 var _bl_rest: Basis
@@ -40,7 +40,7 @@ var _wheel_spin := 0.0
 
 func _ready() -> void:
 	# rotate relative to these
-	_wheel_rest = steering_wheel.basis
+	_steering_wheel_rest = steering_wheel.basis
 	_fl_rest = wheel_fl.basis
 	_fr_rest = wheel_fr.basis
 	_bl_rest = wheel_bl.basis
@@ -59,22 +59,22 @@ func _process(delta: float) -> void:
 	
 	_steer = lerpf(_steer, target, 1.0 - exp(-steering_smoothing * delta))
 
-	steering_wheel.basis = _wheel_rest * Basis(Vector3.BACK, -(_steer * steering_ratio))
+	steering_wheel.basis = (_steering_wheel_rest * Basis(Vector3.BACK, _steer * steering_ratio))
 	
 	# Spin and rotate wheels
 	_wheel_spin += (route.speed / wheel_radius) * delta
 	wheel_fl.basis = (
 		_fl_rest
 		* Basis(Vector3.UP, _steer)
-		* Basis(Vector3.RIGHT, _wheel_spin)
+		* Basis(Vector3.RIGHT, -_wheel_spin)
 	)
 	wheel_fr.basis = (
 		_fr_rest
 		* Basis(Vector3.UP, _steer)
-		* Basis(Vector3.RIGHT, _wheel_spin)
+		* Basis(Vector3.RIGHT, -_wheel_spin)
 	)
-	wheel_bl.basis = (_bl_rest * Basis(Vector3.RIGHT, _wheel_spin))
-	wheel_br.basis = (_br_rest * Basis(Vector3.RIGHT, _wheel_spin))
+	wheel_bl.basis = (_bl_rest * Basis(Vector3.RIGHT, -_wheel_spin))
+	wheel_br.basis = (_br_rest * Basis(Vector3.RIGHT, -_wheel_spin))
 
 
 	# Body motion

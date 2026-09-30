@@ -5,5 +5,5 @@ func _ready() -> void:
 	prompt = "Test Interactable"
 
 
-func interact() -> void:
-	pass
+func interact(_interact_key: InteractableComponent.INTERACT_KEY) -> void:
+	print("[TEST INTERACTABLE]")

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cejc433tkk0vo"]
+[gd_scene format=4 uid="uid://cejc433tkk0vo"]
 
 [ext_resource type="Script" uid="uid://dm04y5kc25hdq" path="res://scenes/testing/Testing.gd" id="1_adtqs"]
 [ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="1_krbb3"]
@@ -9,32 +9,43 @@
 [ext_resource type="Script" uid="uid://difs1qg4mpcpw" path="res://addons/road-generator/nodes/road_point.gd" id="5_adtqs"]
 [ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="6_muql7"]
 [ext_resource type="Script" uid="uid://erovhlbgx37n" path="res://scenes/testing/scripts/TestInteractable.gd" id="9_nbjwy"]
+[ext_resource type="Material" uid="uid://br0h25a86umv5" path="res://assets/materials/M_Prototype_Orange.tres" id="9_t3bdi"]
+[ext_resource type="PackedScene" uid="uid://gjy71yvsgmv3" path="res://entities/props/newspaper/Newspaper.tscn" id="11_t3bdi"]
+[ext_resource type="Script" uid="uid://c0sg6dkm2wdsb" path="res://scripts/component/RotateInteractable.gd" id="12_bw11d"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_krbb3"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t3bdi"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_l7nsk"]
-sky_material = SubResource("ProceduralSkyMaterial_krbb3")
+[sub_resource type="Sky" id="Sky_bw11d"]
+sky_material = SubResource("ProceduralSkyMaterial_t3bdi")
 
-[sub_resource type="Environment" id="Environment_8pknm"]
+[sub_resource type="Environment" id="Environment_c4wwq"]
 background_mode = 2
-sky = SubResource("Sky_l7nsk")
+sky = SubResource("Sky_bw11d")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 
-[node name="Testing" type="Node3D" unique_id=777932238 node_paths=PackedStringArray("car", "player", "ui")]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bw11d"]
+_surfaces = [{
+"aabb": AABB(-0.075, -0.2, -0.5, 0.15, 0.4, 1),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("mpmZvc3MTL4AAAA/mpmZvc3MTL4AAAC/mpmZvc3MTD4AAAC/mpmZPc3MTL4AAAC/mpmZvc3MTL4AAAC/mpmZvc3MTL4AAAA/mpmZvc3MTD4AAAC/mpmZvc3MTL4AAAC/mpmZPc3MTL4AAAC/mpmZvc3MTD4AAAC/mpmZvc3MTD4AAAA/mpmZvc3MTL4AAAA/mpmZvc3MTL4AAAA/mpmZvc3MTD4AAAA/mpmZPc3MTD4AAAA/mpmZPc3MTD4AAAA/mpmZvc3MTD4AAAA/mpmZvc3MTD4AAAC/mpmZvc3MTL4AAAA/mpmZPc3MTL4AAAA/mpmZPc3MTL4AAAC/mpmZPc3MTD4AAAA/mpmZPc3MTL4AAAA/mpmZvc3MTL4AAAA/mpmZPc3MTL4AAAC/mpmZPc3MTL4AAAA/mpmZPc3MTD4AAAA/mpmZPc3MTL4AAAC/mpmZPc3MTD4AAAC/mpmZvc3MTD4AAAC/mpmZvc3MTD4AAAC/mpmZPc3MTD4AAAC/mpmZPc3MTD4AAAA/mpmZPc3MTD4AAAA/mpmZPc3MTD4AAAC/mpmZPc3MTL4AAAC/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[node name="Testing" type="Node3D" unique_id=777932238 node_paths=PackedStringArray("car")]
 script = ExtResource("1_adtqs")
 car = NodePath("Car")
-player = NodePath("Player")
-ui = NodePath("UI")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=525443085]
-environment = SubResource("Environment_8pknm")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1298366025]
+environment = SubResource("Environment_c4wwq")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1429102305]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2096207630]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
 
 [node name="Platform" type="CSGBox3D" parent="." unique_id=53329381]
 use_collision = true
@@ -90,18 +101,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -4)
 [node name="Player" parent="." unique_id=1234029208 instance=ExtResource("2_l7nsk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3.5)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1226412574]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 1.4755007, -7.825)
+[node name="Newspaper" parent="." unique_id=1046253428 instance=ExtResource("11_t3bdi")]
+transform = Transform3D(0.49999997, -0.86602545, -3.7855173e-08, 0, -4.371139e-08, 1, -0.86602545, -0.49999997, -2.1855692e-08, -15.7, 1.2250003, -1.5)
+
+[node name="Props" type="Node3D" parent="." unique_id=698157753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Props" unique_id=1226412574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.4755007, -7.825)
 use_collision = true
 size = Vector3(2.5, 2.45, 0.35)
+material = ExtResource("9_t3bdi")
 
-[node name="TestInteractable" type="Area3D" parent="." unique_id=319947351]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.75, 1.4755007, -9.325)
+[node name="TestInteractable" type="Area3D" parent="Props" unique_id=319947351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.4755007, -9.325)
 collision_layer = 2
 monitoring = false
 monitorable = false
 script = ExtResource("9_nbjwy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestInteractable" unique_id=392532422]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TestInteractable" unique_id=392532422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 shape = SubResource("BoxShape3D_1vivr")
+
+[node name="TestInteractable2" type="Area3D" parent="Props" unique_id=770011659 node_paths=PackedStringArray("_mesh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6500001, -0.5249998)
+collision_layer = 2
+monitoring = false
+monitorable = false
+script = ExtResource("12_bw11d")
+_mesh = NodePath("CSGBakedMeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/TestInteractable2" unique_id=1512867476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("BoxShape3D_1vivr")
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Props/TestInteractable2" unique_id=1123219142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.55)
+mesh = SubResource("ArrayMesh_bw11d")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Props" unique_id=1889254661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.075, 0)
+use_collision = true
+size = Vector3(1.5, 0.15, 4.5)
+material = ExtResource("9_t3bdi")
