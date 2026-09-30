@@ -195,9 +195,11 @@ script = ExtResource("9_grl5c")
 transform = Transform3D(-0.77714527, 0.26854408, -0.5691479, 0.45642102, 0.86315966, -0.21595275, 0.4332726, -0.42759773, -0.79336965, 0, 0, 0)
 
 [node name="Player" parent="." unique_id=1234029208 instance=ExtResource("3_37sh5")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -3)
 
 [node name="UI" parent="." unique_id=693540099 instance=ExtResource("6_ui")]
+unique_name_in_owner = true
 
 [node name="Environment" type="Node3D" parent="." unique_id=711972602]
 

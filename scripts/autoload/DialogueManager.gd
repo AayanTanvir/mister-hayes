@@ -9,8 +9,8 @@ var showing_dialogue := false
 
 
 func _ready() -> void:
-	ui = get_tree().current_scene.get_node("UI") as UI
-	player = get_tree().current_scene.get_node("Player") as Player
+	ui = get_tree().current_scene.get_node("%UI") as UI
+	player = get_tree().current_scene.get_node("%Player") as Player
 	if not ui or not player:
 		push_error("Required nodes not found")
 		return

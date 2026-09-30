@@ -25,8 +25,8 @@ var intro_dialogue: Array[Dictionary] = [
 
 
 func _ready() -> void:
-	player = GameManager.get_current_node(Player)
-	ui = GameManager.get_current_node(UI)
+	player = GameManager.player
+	ui = GameManager.ui
 	
 	start_intro()
 

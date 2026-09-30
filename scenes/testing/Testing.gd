@@ -8,8 +8,8 @@ var ui: UI
 
 
 func _ready() -> void:
-	player = GameManager.get_current_node(Player)
-	ui = GameManager.get_current_node(UI)
+	player = GameManager.player
+	ui = GameManager.ui
 	
 	if start_in_car:
 		player.seat_in(car.seat)

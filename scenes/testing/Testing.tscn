@@ -97,8 +97,10 @@ next_pt_init = NodePath("../RP_002")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -4)
 
 [node name="UI" parent="." unique_id=1489775715 instance=ExtResource("3_tl5de")]
+unique_name_in_owner = true
 
 [node name="Player" parent="." unique_id=1234029208 instance=ExtResource("2_l7nsk")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3.5)
 
 [node name="Newspaper" parent="." unique_id=1046253428 instance=ExtResource("11_t3bdi")]

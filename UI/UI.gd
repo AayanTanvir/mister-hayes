@@ -1,14 +1,12 @@
 class_name UI
 extends CanvasLayer
 
-@export_group("Crosshair")
-@export var crosshair_handler: Control
-@export var interact_prompt: Label
-
-@export_group("Dialogue System")
+@onready var inspection_viewer: InspectionViewer = %InspectionViewer
+@onready var crosshair_handler: Control = %CrosshairHandler
+@onready var interact_prompt: Label = %InteractPrompt
+@export var dialogue_container: MarginContainer
 @export var speaker_label: Label
 @export var dialogue_label: Label
-@export var dialogue_container: MarginContainer
 
 var interact_prompt_tween: Tween
 

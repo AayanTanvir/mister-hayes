@@ -5,18 +5,12 @@ enum State { WALKING, SEATED }
 
 var state := State.WALKING
 
-@export var camera_controller: CameraController
-@export var movement_controller: Node3D
+@onready var camera_controller: CameraController = %CameraController
+@onready var movement_controller: Node3D = %MovementController
+@onready var collision_shape: CollisionShape3D = %PlayerCollisionShape
+@onready var mesh: MeshInstance3D = %PlayerMesh
+@onready var camera: Camera3D = %PlayerCamera
 @export var interact_controller: InteractController
-@export var collision_shape: CollisionShape3D
-@export var mesh: MeshInstance3D
-@export var camera: Camera3D
-@export var inspect_point: Marker3D
-@export var inspect_background: TextureRect
-
-
-func _ready() -> void:
-	inspect_background.visible = false
 
 
 ## Put the player in a seat. The seat marker is the eye position: the player is

@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://7lpdeyx3iik6"]
+
+[ext_resource type="Script" uid="uid://b0v82mhu8n87x" path="res://UI/InspectionViewer/InspectionViewer.gd" id="1_dp7x7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gk5cw"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_dp7x7"]
+sky_material = SubResource("ProceduralSkyMaterial_gk5cw")
+
+[sub_resource type="Environment" id="Environment_p1cvc"]
+sky = SubResource("Sky_dp7x7")
+sky_custom_fov = 1.0
+ambient_light_source = 2
+ambient_light_color = Color(0.6509804, 0.76862746, 0.76862746, 1)
+ambient_light_energy = 1.5
+tonemap_mode = 2
+tonemap_exposure = 0.8
+tonemap_white = 3.0
+ssao_enabled = true
+ssao_intensity = 1.0
+fog_mode = 1
+fog_light_color = Color(0.6509804, 0.76862746, 0.76862746, 1)
+fog_light_energy = 1.2
+fog_density = 1.0
+fog_sky_affect = 0.5
+adjustment_enabled = true
+adjustment_saturation = 1.25
+
+[node name="InspectionViewer" type="CanvasLayer" unique_id=1924631905]
+script = ExtResource("1_dp7x7")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1319602810]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.43137255)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2003094887]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1317547536]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1005158340]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+environment = SubResource("Environment_p1cvc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1426786075]
+light_color = Color(0.6509804, 0.76862746, 0.76862746, 1)
+
+[node name="Pivot" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1884190617]
+unique_name_in_owner = true

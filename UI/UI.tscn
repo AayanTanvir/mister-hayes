@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://h5k77o6vpxvs"]
 
 [ext_resource type="Script" uid="uid://b1nu7h27os40x" path="res://UI/UI.gd" id="1_ro3t7"]
+[ext_resource type="PackedScene" uid="uid://7lpdeyx3iik6" path="res://UI/InspectionViewer/InspectionViewer.tscn" id="2_f1fl4"]
 [ext_resource type="Texture2D" uid="uid://mkvgv141kg6w" path="res://assets/UI/crosshair.svg" id="2_q0uhn"]
-[ext_resource type="Script" uid="uid://dy3qc7spmwfau" path="res://UI/Crosshair.gd" id="2_ro3t7"]
+[ext_resource type="Script" uid="uid://dy3qc7spmwfau" path="res://UI/Misc/Crosshair.gd" id="2_ro3t7"]
 [ext_resource type="Texture2D" uid="uid://1v65gjgo0agj" path="res://assets/UI/interact_crosshair.svg" id="4_e707p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1vivr"]
@@ -25,15 +26,17 @@ corner_radius_bottom_right = 16
 [sub_resource type="LabelSettings" id="LabelSettings_e707p"]
 font_size = 14
 
-[node name="UI" type="CanvasLayer" unique_id=1489775715 node_paths=PackedStringArray("crosshair_handler", "interact_prompt", "speaker_label", "dialogue_label", "dialogue_container")]
+[node name="UI" type="CanvasLayer" unique_id=1489775715 node_paths=PackedStringArray("dialogue_container", "speaker_label", "dialogue_label")]
 script = ExtResource("1_ro3t7")
-crosshair_handler = NodePath("CrosshairHandler")
-interact_prompt = NodePath("InteractPrompt")
+dialogue_container = NodePath("DialogueContainer")
 speaker_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/SpeakerContainer/SpeakerLabel")
 dialogue_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/TextContainer/DialogueLabel")
-dialogue_container = NodePath("DialogueContainer")
+
+[node name="InspectionViewer" parent="." unique_id=1924631905 instance=ExtResource("2_f1fl4")]
+unique_name_in_owner = true
 
 [node name="CrosshairHandler" type="Control" parent="." unique_id=1282399062 node_paths=PackedStringArray("_interact_crosshair")]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,6 +86,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="InteractPrompt" type="Label" parent="." unique_id=1015445699]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.50200003
 anchor_top = 0.50600004

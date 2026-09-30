@@ -9,8 +9,8 @@ var mouse_captured := false
 func _ready() -> void:
 	set_mouse_visible(false)
 	
-	ui = get_tree().current_scene.get_node("UI") as UI
-	player = get_tree().current_scene.get_node("Player") as Player
+	ui = get_tree().current_scene.get_node("%UI") as UI
+	player = get_tree().current_scene.get_node("%Player") as Player
 	if not ui or not player:
 		push_error("Required nodes not found")
 		return
@@ -31,22 +31,11 @@ func update_interact_prompt(new_prompt: String):
 	ui.set_interact_prompt(new_prompt)
 
 
-func get_current_node(node: Object):
-	match node:
-		Player:
-			return player
-		UI:
-			return ui
-		_:
-			return null
-
-
 func set_inspection_mode(inspect: bool):
 	if player.state != player.State.SEATED:
 		player.set_movement_enabled(not inspect)
 	player.set_look_enabled(not inspect)
 	ui.set_hud_visible(not inspect)
-	#player.inspect_background.visible = inspect
 
 
 func set_mouse_visible(show: bool):
