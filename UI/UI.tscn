@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1nu7h27os40x" path="res://UI/UI.gd" id="1_ro3t7"]
 [ext_resource type="PackedScene" uid="uid://7lpdeyx3iik6" path="res://UI/InspectionViewer/InspectionViewer.tscn" id="2_f1fl4"]
+[ext_resource type="PackedScene" uid="uid://bq0am7ukvb4cg" path="res://UI/TextViewer/TextViewer.tscn" id="2_jqf55"]
 [ext_resource type="Texture2D" uid="uid://mkvgv141kg6w" path="res://assets/UI/crosshair.svg" id="2_q0uhn"]
 [ext_resource type="Script" uid="uid://dy3qc7spmwfau" path="res://UI/Misc/Crosshair.gd" id="2_ro3t7"]
 [ext_resource type="Texture2D" uid="uid://1v65gjgo0agj" path="res://assets/UI/interact_crosshair.svg" id="4_e707p"]
@@ -31,6 +32,9 @@ script = ExtResource("1_ro3t7")
 dialogue_container = NodePath("DialogueContainer")
 speaker_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/SpeakerContainer/SpeakerLabel")
 dialogue_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/TextContainer/DialogueLabel")
+
+[node name="TextViewer" parent="." unique_id=477262391 instance=ExtResource("2_jqf55")]
+unique_name_in_owner = true
 
 [node name="InspectionViewer" parent="." unique_id=1924631905 instance=ExtResource("2_f1fl4")]
 unique_name_in_owner = true

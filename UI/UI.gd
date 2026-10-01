@@ -2,6 +2,7 @@ class_name UI
 extends CanvasLayer
 
 @onready var inspection_viewer: InspectionViewer = %InspectionViewer
+@onready var text_viewer: TextViewer = %TextViewer
 @onready var crosshair_handler: Control = %CrosshairHandler
 @onready var interact_prompt: Label = %InteractPrompt
 @export var dialogue_container: MarginContainer

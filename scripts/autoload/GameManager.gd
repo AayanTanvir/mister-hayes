@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("esc") and mouse_captured:
+	if Input.is_action_just_pressed("grave") and mouse_captured:
 		set_mouse_visible(true)
 
 
@@ -30,12 +30,12 @@ func _assign_signals():
 func update_interact_prompt(new_prompt: String):
 	ui.set_interact_prompt(new_prompt)
 
-
-func set_inspection_mode(inspect: bool):
+## Disable player movement, look, and HUD
+func set_interact_mode(interact: bool):
 	if player.state != player.State.SEATED:
-		player.set_movement_enabled(not inspect)
-	player.set_look_enabled(not inspect)
-	ui.set_hud_visible(not inspect)
+		player.set_movement_enabled(not interact)
+	player.set_look_enabled(not interact)
+	ui.set_hud_visible(not interact)
 
 
 func set_mouse_visible(show: bool):
