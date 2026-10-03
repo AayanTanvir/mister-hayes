@@ -12,7 +12,11 @@ var _inspecting := false
 
 
 func _ready() -> void:
+	if not interact_keys.has(InteractableComponent.INTERACT_KEY.F):
+		printerr("[F] INSPECT INTERACT KEY NOT ASSIGNED")
 	prompt = extended_prompt + "\n" + inspect_prompt
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 
 
 func interact(interact_key: INTERACT_KEY) -> void:

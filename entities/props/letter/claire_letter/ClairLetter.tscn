@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://deacm0ytl4dkg"]
+
+[ext_resource type="PackedScene" uid="uid://cucc7aqgrbye1" path="res://entities/props/letter/claire_letter/model/ClairLetter.glb" id="1_8041s"]
+[ext_resource type="Script" uid="uid://bawdxsh1m64jl" path="res://entities/props/letter/Letter.gd" id="2_4jaoc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
+size = Vector3(0.35, 0.17285156, 0.05)
+
+[node name="ClairLetter" type="Node3D" unique_id=1835252003]
+
+[node name="ClairLetter" parent="." unique_id=541140467 instance=ExtResource("1_8041s")]
+
+[node name="Handler" type="Area3D" parent="." unique_id=2082844623]
+script = ExtResource("2_4jaoc")
+text = "Dad,
+
+I'm in Toronto now. New city, new apartment. Nothing here reminds me of what happened. That's been easier.
+
+When mom was in the hospital, I tried everything to contact you. I told mom that you were coming. I believed it with everything I had left.
+
+Mom died waiting for you, maybe a part of me too.
+
+I'm past fighting. I don't think there's anything left between us, and I don't think pretending otherwise is fair to either of us anymore.
+
+I want to build a new life, you should too.
+
+Please don't contact me. I don't know if I can forgive you. I don't know if I'm supposed to.
+
+— Claire"
+inspect_model = ExtResource("1_8041s")
+interact_keys = Array[int]([0, 1])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Handler" unique_id=1849267521]
+shape = SubResource("BoxShape3D_1vivr")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dnnrwyl0y3g86"
-path="res://.godot/imported/Car.glb-71f8e4fb2390e58b20e028f19e9e730b.scn"
+uid="uid://bb8rsloyqfrf5"
+path="res://.godot/imported/Newspaper.glb-9d48210e203082d3bfb6096622666def.scn"
 
 [deps]
 
-source_file="res://assets/models/car/Car.glb"
-dest_files=["res://.godot/imported/Car.glb-71f8e4fb2390e58b20e028f19e9e730b.scn"]
+source_file="res://entities/props/newspaper/model/Newspaper.glb"
+dest_files=["res://.godot/imported/Newspaper.glb-9d48210e203082d3bfb6096622666def.scn"]
 
 [params]
 
@@ -19,7 +19,7 @@ nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false
 array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.8
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true

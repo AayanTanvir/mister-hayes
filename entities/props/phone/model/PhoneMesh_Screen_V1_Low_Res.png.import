@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8we7ljct1exn"
-path.s3tc="res://.godot/imported/OpaqueBackground.png-1fd149d40fb8e26aeba75d8059657f68.s3tc.ctex"
+uid="uid://btbd6lymbiri"
+path.s3tc="res://.godot/imported/PhoneMesh_Screen_V1_Low_Res.png-1f7558df393a8e7b01be29277552696e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "2bf5688a76407e73d39681bb5e52eb38"
+}
 
 [deps]
 
-source_file="res://assets/textures/OpaqueBackground.png"
-dest_files=["res://.godot/imported/OpaqueBackground.png-1fd149d40fb8e26aeba75d8059657f68.s3tc.ctex"]
+source_file="res://entities/props/phone/model/PhoneMesh_Screen_V1_Low_Res.png"
+dest_files=["res://.godot/imported/PhoneMesh_Screen_V1_Low_Res.png-1f7558df393a8e7b01be29277552696e.s3tc.ctex"]
 
 [params]
 

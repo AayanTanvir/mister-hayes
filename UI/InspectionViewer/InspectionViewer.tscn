@@ -29,6 +29,7 @@ adjustment_enabled = true
 adjustment_saturation = 1.25
 
 [node name="InspectionViewer" type="CanvasLayer" unique_id=1924631905]
+process_mode = 3
 script = ExtResource("1_dp7x7")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1319602810]

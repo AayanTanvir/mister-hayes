@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://85fk7oqmuhsg"
-path.s3tc="res://.godot/imported/Car_radio_texture.png-bcd88046d42b6c4e5277eaa9fee7f0e5.s3tc.ctex"
+uid="uid://de6d3xw4crqb6"
+path.s3tc="res://.godot/imported/Car_Car_Black Car Texture.png-e349453c0cc0ecf6ebc0693ed258c85c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "804c44b273f1d40fb6985379124ed94b"
+"md5": "6ba69764d3e1b3de7f57243715072328"
 }
 
 [deps]
 
-source_file="res://assets/models/car/Car_radio_texture.png"
-dest_files=["res://.godot/imported/Car_radio_texture.png-bcd88046d42b6c4e5277eaa9fee7f0e5.s3tc.ctex"]
+source_file="res://entities/car/model/Car_Car_Black Car Texture.png"
+dest_files=["res://.godot/imported/Car_Car_Black Car Texture.png-e349453c0cc0ecf6ebc0693ed258c85c.s3tc.ctex"]
 
 [params]
 

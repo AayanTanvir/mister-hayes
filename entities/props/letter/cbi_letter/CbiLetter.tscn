@@ -1,0 +1,85 @@
+[gd_scene format=4 uid="uid://cwr0ii5morvt5"]
+
+[ext_resource type="Texture2D" uid="uid://cavwky258dvrg" path="res://entities/props/letter/cbi_letter/model/CbiLetter_cbi_letter_mat.png" id="1_ods7c"]
+[ext_resource type="Script" uid="uid://bawdxsh1m64jl" path="res://entities/props/letter/Letter.gd" id="2_85fuq"]
+[ext_resource type="PackedScene" uid="uid://cvu5a6sxm6ntc" path="res://entities/props/letter/cbi_letter/model/CbiLetter.glb" id="3_flvoj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mh1tw"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("1_ods7c")
+roughness = 0.5
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dwpof"]
+_surfaces = [{
+"aabb": AABB(-0.12096001, -0.17263561, -0.0049171373, 0.24192002, 0.34527123, 0.008682275),
+"format": 34359742465,
+"index_count": 108,
+"index_data": PackedByteArray("CwACAAAAAgAEAAAAAAAEAAwAAAAMAAsAAgADAAQADAAEAAMADQADAAIACwANAAIADAADAAkADQAJAAMACwAMAAoACgAMAAkADgANAAsACwAKAA4ADgAPAA0ADwAJAA0ACgAJABAADwAQAAkAEQAKABAADgAKABEAEgAPAA4ADgARABIAEgAIAA8ACAAQAA8AEQAQABMACAATABAABwARABMAEgARAAcAAQATAAgABQAIABIABQABAAgAEgAHAAUAAQAGABMABwATAAYABQAGAAEABQAHAAYA"),
+"lods": [0.045634147, PackedByteArray("AAAIAAIAAgAEAAAAAgADAAQACAADAAIABAADAAkACAAJAAMACgAEAAkAAAAEAAoACAAGAAkACgAJAAYABQAIAAAAAAAKAAUABQABAAgAAQAGAAgABQAGAAEABQAHAAYABwAKAAYABQAKAAcA"), 0.06845122, PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAQABQABAAAAAAAEAAUAAQAGAAMABAADAAYABQAGAAEABwAEAAYABQAEAAcABQAHAAYA")],
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("4Ln3vWTHMD6IwHY74Ln3PWTHML6IwHa74Ln3PWTHMD6IwHY74Ln3PWTHMD4sQSs74Ln3vWTHMD4sQSs74Ln3vWTHML6IwHa74Ln3PWTHML7wH6G74Ln3vWTHML7wH6G74Ln3PaxIsb1GwHY74Ln3PaxIsT3RH6G74rn3vY/C9SK1/pa64Ln3vaxIsT1GwHa74Ln3vaxIsT3RH6G74Ln3PaxIsT1GwHa74rn3vQAAAAAAAACA4rn3PQAAAAAAAACA4rn3PY/C9SK1/pa64Ln3vaxIsb3qQCs74Ln3vaxIsb1GwHY74Ln3PaxIsb3qQCs7")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6m03r"]
+resource_name = "CbiLetter_Plane"
+_surfaces = [{
+"aabb": AABB(-0.12096001, -0.17263561, -0.0049171373, 0.24192002, 0.34527123, 0.008682275),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AACAPwAAgD8AAAAAAAAAAAAAgD91xpM9c5wsP5X3Nz9ynCw/fcaTPbhrfj+W9zc/t2t+PwAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAIA/AAAAAAAAgD8AAIA/AACAPwAAQD/klw4/t2t+P2Nwyj5znCw/AAAAAAAAAD8AAIA/AABAPwAAgD8AAIA+AAAAAAAAgD4AAIA/AACAPgAAgD8AAEA/AAAAAAAAQD8AAAAAAABAPwAAgD8AAAA/AAAAAAAAAD8AAIA/AACAPgAAAAAAAIA+45cOP3KcLD8CYm8+uGt+P/1hbz5znCw//WFvPnOcLD9lcMo+uGt+PwJibz64a34/5JcOP7drfj/jlw4/cpwsPwAAAAAAAEA/AAAAAAAAQD8AAAAAAAAAPwAAAAAAAIA+AAAAAAAAgD4AAIA/AABAPwAAgD8AAAA/AACAPwAAAD8AAIA/AACAPg=="),
+"format": 34359742487,
+"index_count": 108,
+"index_data": PackedByteArray("HgACAAAAHgAfAAIAAwAgACEAAwABACAAIgAjACQAIgAYACMAJAAjACUAJAAlACYAJwAHABkAJwAFAAcABAAoAAYABAApACgAKgArACwAKgAaACsAGgAtACsAGgAuAC0ACAAJAAoACAALAAkALwAOAAwALwAwAA4AMQAwAC8AMQAbADAAMgAbADEAMgAzABsADwAzADIADwANADMAFAA0ABwAFAAXADQAHAA0ADUAHAA1ADYANgA1AB0ANgAdADcANwAdABUANwAVABYAEAARABIAEAATABEA"),
+"lods": [0.045634147, PackedByteArray("AAAYAAIAAwAYAAAAAwABABgABQAHABkAGgAFABkAGgAZAAYABAAaAAYACAAJAAoACAALAAkADAAbAA4ADwAbAAwADwANABsAFAAXABwAHAAXAB0AHAAdABUAHAAVABYAEAARABIAEAATABEA"), 0.06845122, PackedByteArray("AAABAAIAAwABAAAABAAFAAYABQAHAAYACAAJAAoACAALAAkADAANAA4ADwANAAwAEAARABIAEAATABEAFAAVABYAFAAXABUA")],
+"material": SubResource("StandardMaterial3D_mh1tw"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 56,
+"vertex_data": PackedByteArray("4Ln3vWTHMD6IwHY74Ln3PWTHML6IwHa74Ln3PWTHMD6IwHY74Ln3vWTHML6IwHa74Ln3vWTHML7wH6G74Ln3vWTHMD4sQSs74Ln3PWTHML7wH6G74Ln3PWTHMD4sQSs74Ln3PWTHMD6IwHY74Ln3vWTHMD4sQSs74Ln3vWTHMD6IwHY74Ln3PWTHMD4sQSs74Ln3vWTHML6IwHa74Ln3vWTHMD4sQSs74Ln3vWTHML7wH6G74Ln3vWTHMD6IwHY74Ln3vWTHML6IwHa74Ln3PWTHML7wH6G74Ln3PWTHML6IwHa74Ln3vWTHML7wH6G74Ln3PWTHML6IwHa74Ln3PWTHMD4sQSs74Ln3PWTHMD6IwHY74Ln3PWTHML7wH6G74Ln3PaxIsb1GwHY74Ln3PaxIsT3RH6G74rn3vY/C9SK1/pa64rn3vY/C9SK1/pa64Ln3PaxIsb1GwHY74Ln3PaxIsT3RH6G74Ln3vaxIsT1GwHa74Ln3PaxIsT1GwHa74Ln3PaxIsb1GwHY74Ln3vaxIsb1GwHY74Ln3vaxIsb1GwHY74rn3PQAAAAAAAACA4rn3vQAAAAAAAACA4Ln3PaxIsT1GwHa74Ln3vaxIsT1GwHa74Ln3vaxIsT3RH6G74Ln3PaxIsb3qQCs74Ln3vaxIsb3qQCs74Ln3vaxIsb3qQCs74rn3PY/C9SK1/pa64Ln3PaxIsb3qQCs74Ln3PaxIsT3RH6G74Ln3vaxIsT3RH6G74Ln3vaxIsb1GwHY74Ln3vaxIsb3qQCs74rn3vQAAAAAAAACA4Ln3vaxIsT1GwHa74Ln3vaxIsT3RH6G74Ln3PaxIsb3qQCs74rn3PY/C9SK1/pa64rn3PQAAAAAAAACA4Ln3PaxIsT1GwHa7sfX//////z+x9f//////P7H1//////8/sfX//////z//f7J1/3/Y+v9/snX/f9j6/3+ydf9/2Pr/f7J1/3/Y+v9/AAD///+//38AAP///7//fwAA////v/9/AAD///+/////f////7////9/////v////3////+/////f////7//f///////v/9///////+//3///////7//f///////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/p/oAAP///z//f7J1/3/Y+v9/VoVWhf7/////f////78AAP9/////vwAA/3////+/sfX//////z+x9f//////P7H1//////8/sfX//////z+n+gAA////P6f6AAD///8/p/oAAP///z+n+gAA////P6f6AAD///8//3+ydf9/2Pr/f7J1/3/Y+v9/snX/f9j6/39Whah6////f1aFVoX+//9/VoVWhf7//39WhVaF/v//f1aFVoX+/////3////+/////f////7////9/////v////3////+/////f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_dwpof")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
+size = Vector3(0.25, 0.35, 0.018554688)
+
+[node name="CbiLetter" type="Node3D" unique_id=497591060]
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=973825036]
+mesh = SubResource("ArrayMesh_6m03r")
+
+[node name="Handler" type="Area3D" parent="." unique_id=189641854]
+collision_layer = 2
+monitoring = false
+monitorable = false
+script = ExtResource("2_85fuq")
+text = "[b][font_size=20][center]CANADIAN BUREAU OF INVESTIGATION[/center][/font_size][/b]
+
+September 14                                                                4820 Garrison Street
+[right]Vancouver, BC V6B4N2[/right]
+
+[b][font_size=18]NOTICE OF REASSIGNMENT[/font_size][/b]
+
+Detective Ethan Hayes,
+Following the closure of the Ripeye case and the standard post-incident review, effective immediately you are reassigned to general duties at the Pritogn detachment.
+
+This posting is intended to allow a return to lighter duties following a difficult period. No active major files are attached.
+
+Detective Marcus will accompany you for continuity.
+
+Local arrangements (housing, detachment access) will be coordinated through Lieutenant Reeves upon arrival.
+
+Report no later than the date above.
+[right]Division Office[/right]
+[right]Pacific Region[/right]
+"
+inspect_model = ExtResource("3_flvoj")
+interact_keys = Array[int]([0, 1])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Handler" unique_id=35865837]
+shape = SubResource("BoxShape3D_1vivr")

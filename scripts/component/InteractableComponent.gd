@@ -15,4 +15,4 @@ func change_interact_prompt(new_prompt: String):
 		return
 	
 	prompt = new_prompt
-	GameManager.update_interact_prompt(new_prompt)
+	GameManager.ui.set_interact_prompt(new_prompt)

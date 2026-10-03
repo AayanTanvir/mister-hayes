@@ -27,14 +27,15 @@ func _assign_signals():
 	player.interact_controller.interactable_detected.connect(ui._on_interactable_detected)
 
 
-func update_interact_prompt(new_prompt: String):
-	ui.set_interact_prompt(new_prompt)
-
-## Disable player movement, look, and HUD
-func set_interact_mode(interact: bool):
-	if player.state != player.State.SEATED:
-		player.set_movement_enabled(not interact)
-	player.set_look_enabled(not interact)
+## [param pause_game]: pauses the game using [code]get_tree().paused[/code].
+## [param disable_camera]: the camera will not be able to move around, only the interaction logic will be disabled.
+func set_interact_mode(interact: bool, pause_game: bool = true, disable_camera: bool = true):
+	if pause_game:
+		get_tree().paused = interact
+	else:
+		player.set_look_enabled(not interact, disable_camera)
+		if not player.state == player.State.SEATED:
+			player.set_movement_enabled(not interact)
 	ui.set_hud_visible(not interact)
 
 

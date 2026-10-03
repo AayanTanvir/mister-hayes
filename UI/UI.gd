@@ -7,7 +7,7 @@ extends CanvasLayer
 @onready var interact_prompt: Label = %InteractPrompt
 @export var dialogue_container: MarginContainer
 @export var speaker_label: Label
-@export var dialogue_label: Label
+@export var dialogue_label: RichTextLabel
 
 var interact_prompt_tween: Tween
 
@@ -36,4 +36,5 @@ func set_interact_prompt(prompt: String = ""):
 
 func set_hud_visible(show_hud: bool):
 	crosshair_handler.visible = show_hud
-	set_interact_prompt("")
+	if not show_hud:
+		set_interact_prompt("")

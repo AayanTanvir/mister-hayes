@@ -8,6 +8,7 @@ extends Node3D
 @export var drone_cam: Camera3D
 @export var chase_duration := 10.0
 @export_range(0.0, 1.0) var handoff_ratio := 0.85	## route progress where the interior phase ends
+@export_range(0.0, 1.0) var ethan_dialogue_ratio := 0.7	## route progress where ethan says dialogue
 
 var player: Player
 var ui: UI
@@ -15,11 +16,11 @@ var ui: UI
 var intro_dialogue: Array[Dictionary] = [
 	{
 		"speaker": "Ethan",
-		"text": "Why did they do this to me?"
+		"text": "Middle of nowhere. 'Course they did."
 	},
 	{
 		"speaker": "Ethan",
-		"text": "I'm so done with this..."
+		"text": "Guess there's nothing left in the city for me anyway."
 	},
 ]
 
@@ -45,7 +46,7 @@ func start_intro():
 	player.camera.make_current()
 	player.set_look_enabled(true)
 	ui.set_hud_visible(true)
-	await get_tree().create_timer(3.0).timeout
+	await car_route.wait_until_ratio(ethan_dialogue_ratio)
 	DialogueManager.start_dialogue(intro_dialogue, false)
 	await car_route.wait_until_ratio(handoff_ratio)
 

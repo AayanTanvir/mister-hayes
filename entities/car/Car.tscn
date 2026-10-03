@@ -1,22 +1,28 @@
 [gd_scene format=3 uid="uid://fihslhghckv4"]
 
 [ext_resource type="Script" uid="uid://b711onmo4r2a3" path="res://entities/car/CarCabinFX.gd" id="2_fx"]
-[ext_resource type="PackedScene" uid="uid://dia8smq87rm2h" path="res://assets/models/car/CarMesh.tscn" id="2_room6"]
+[ext_resource type="PackedScene" uid="uid://dia8smq87rm2h" path="res://entities/car/model/CarMesh.tscn" id="2_room6"]
 [ext_resource type="Script" uid="uid://cl6ftikttg60y" path="res://entities/car/car_interactables/RadioHandler.gd" id="4_oefwb"]
 [ext_resource type="PackedScene" uid="uid://gjy71yvsgmv3" path="res://entities/props/newspaper/Newspaper.tscn" id="4_xjurd"]
 [ext_resource type="Script" uid="uid://c0sg6dkm2wdsb" path="res://scripts/component/RotateInteractable.gd" id="5_1uebn"]
+[ext_resource type="PackedScene" uid="uid://deacm0ytl4dkg" path="res://entities/props/letter/claire_letter/ClairLetter.tscn" id="5_rfouc"]
+[ext_resource type="PackedScene" uid="uid://cwr0ii5morvt5" path="res://entities/props/letter/cbi_letter/CbiLetter.tscn" id="6_46kew"]
+[ext_resource type="PackedScene" uid="uid://bmv1hr08cvrs0" path="res://entities/props/phone/Phone.tscn" id="8_rfouc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5gy4"]
 size = Vector3(0.5, 0.21, 0.07)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8vrlf"]
-size = Vector3(0.5, 0.2, 0.1)
+size = Vector3(0.5, 0.2, 0.08)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbdty"]
 size = Vector3(0.39999998, 0.03, 0.16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oefwb"]
 size = Vector3(0.41, 0.03, 0.16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_auskg"]
+size = Vector3(0.14999999, 0.24, 0.06)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 size = Vector3(2.6000001, 2.3, 7.2000003)
@@ -33,8 +39,17 @@ wheel_br = NodePath("CarMesh/R_Wheel_Back")
 
 [node name="Props" type="Node3D" parent="." unique_id=534939680]
 
+[node name="ClairLetter" parent="Props" unique_id=1835252003 instance=ExtResource("5_rfouc")]
+transform = Transform3D(0.99999994, -1.1266326e-09, 1.0394978e-08, -9.924405e-09, -0.25881904, 0.9659258, 1.4901161e-08, -0.96592575, -0.2588191, 0.6352094, 1.1200342, -1.2458258)
+
+[node name="CbiLetter" parent="Props" unique_id=497591060 instance=ExtResource("6_46kew")]
+transform = Transform3D(0.7071067, 0.70710695, 3.0908627e-08, 2.3798682e-16, -4.3711385e-08, 1, 0.70710695, -0.7071067, -3.0908613e-08, 0.62000006, 0.6503706, -1.08)
+
+[node name="Phone" parent="Props" unique_id=461075708 instance=ExtResource("8_rfouc")]
+transform = Transform3D(0.57357645, -0.81915206, 0, -3.5806274e-08, -2.5071824e-08, 1, -0.81915206, -0.57357645, -4.371139e-08, -0.39, 1.37, -1.34)
+
 [node name="Newspaper" parent="Props" unique_id=1046253428 instance=ExtResource("4_xjurd")]
-transform = Transform3D(-0.2684299, 0.96248204, -0.039670516, 0.04261771, 0.053007238, 0.9976843, 0.962356, 0.26611775, -0.055247523, 0.52550983, 1.008904, 0.5265328)
+transform = Transform3D(-0.2684299, 0.96248204, -0.039670516, 0.04261771, 0.053007238, 0.9976843, 0.962356, 0.26611775, -0.055247523, 0.62550986, 1.008904, -0.47346717)
 
 [node name="GloveBoxHandler" type="Area3D" parent="Props" unique_id=1797061507 node_paths=PackedStringArray("_mesh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62, 1.12, -1.13)
@@ -59,6 +74,7 @@ audio_player = NodePath("AudioStreamPlayer")
 interact_keys = Array[int]([0, 1])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Props/RadioHandler" unique_id=1992663287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00999999)
 shape = SubResource("BoxShape3D_8vrlf")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Props/RadioHandler" unique_id=401371028]
@@ -109,6 +125,10 @@ omni_range = 1.7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5500002, 0, -0.9000001)
 
 [node name="CarCollider" type="StaticBody3D" parent="." unique_id=1903198128]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CarCollider" unique_id=2023540263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30499995, 1.1950002, -1.165)
+shape = SubResource("BoxShape3D_auskg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CarCollider" unique_id=1458227678]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999952, 1.15, -0.1)

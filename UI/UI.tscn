@@ -24,9 +24,6 @@ bg_color = Color(0.06053035, 0.06053035, 0.060530342, 0.6627451)
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 
-[sub_resource type="LabelSettings" id="LabelSettings_e707p"]
-font_size = 14
-
 [node name="UI" type="CanvasLayer" unique_id=1489775715 node_paths=PackedStringArray("dialogue_container", "speaker_label", "dialogue_label")]
 script = ExtResource("1_ro3t7")
 dialogue_container = NodePath("DialogueContainer")
@@ -35,9 +32,11 @@ dialogue_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/TextC
 
 [node name="TextViewer" parent="." unique_id=477262391 instance=ExtResource("2_jqf55")]
 unique_name_in_owner = true
+visible = false
 
 [node name="InspectionViewer" parent="." unique_id=1924631905 instance=ExtResource("2_f1fl4")]
 unique_name_in_owner = true
+visible = false
 
 [node name="CrosshairHandler" type="Control" parent="." unique_id=1282399062 node_paths=PackedStringArray("_interact_crosshair")]
 unique_name_in_owner = true
@@ -106,7 +105,6 @@ label_settings = SubResource("LabelSettings_1vivr")
 horizontal_alignment = 1
 
 [node name="DialogueContainer" type="MarginContainer" parent="." unique_id=676723837]
-visible = false
 custom_minimum_size = Vector2(0, 64)
 anchors_preset = 12
 anchor_top = 1.0
@@ -150,9 +148,11 @@ custom_maximum_size = Vector2(500, 50)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8vrlf")
 
-[node name="DialogueLabel" type="Label" parent="DialogueContainer/CenterContainer/HBoxContainer/TextContainer" unique_id=586069433]
+[node name="DialogueLabel" type="RichTextLabel" parent="DialogueContainer/CenterContainer/HBoxContainer/TextContainer" unique_id=1811701759]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_e707p")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2

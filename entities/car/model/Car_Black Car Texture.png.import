@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://omcstveq028p"
-path.s3tc="res://.godot/imported/Newspaper_newspaper_texture.png-76585960d4126dd9e256254bf653930f.s3tc.ctex"
+uid="uid://cfyun35pqsdt2"
+path.s3tc="res://.godot/imported/Car_Black Car Texture.png-238a633037be86344ebfeb17225c4a67.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "3e1b50c6d756104d490ec24647b3c12f"
+"md5": "6ba69764d3e1b3de7f57243715072328"
 }
 
 [deps]
 
-source_file="res://assets/models/props/newspaper/Newspaper_newspaper_texture.png"
-dest_files=["res://.godot/imported/Newspaper_newspaper_texture.png-76585960d4126dd9e256254bf653930f.s3tc.ctex"]
+source_file="res://entities/car/model/Car_Black Car Texture.png"
+dest_files=["res://.godot/imported/Car_Black Car Texture.png-238a633037be86344ebfeb17225c4a67.s3tc.ctex"]
 
 [params]
 
