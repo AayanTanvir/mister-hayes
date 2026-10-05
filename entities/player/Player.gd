@@ -27,9 +27,9 @@ func seat_in(seat: Node3D) -> void:
 
 func set_look_enabled(enabled: bool, change_camera: bool = true) -> void:
 	if change_camera:
-		camera_controller.set_disabled(not enabled)
+		camera_controller.set_process_input(enabled)
 	interact_controller.set_disabled(not enabled)
 
 
 func set_movement_enabled(enabled: bool):
-	movement_controller.set_disabled(not enabled)
+	movement_controller.set_physics_process(enabled)

@@ -3,11 +3,12 @@ extends CanvasLayer
 
 @onready var inspection_viewer: InspectionViewer = %InspectionViewer
 @onready var text_viewer: TextViewer = %TextViewer
-@onready var crosshair_handler: Control = %CrosshairHandler
 @onready var interact_prompt: Label = %InteractPrompt
-@export var dialogue_container: MarginContainer
-@export var speaker_label: Label
+@onready var crosshair: TextureRect = %Crosshair
+
+@export var dialogue_container: Control
 @export var dialogue_label: RichTextLabel
+@export var speaker_label: Label
 
 var interact_prompt_tween: Tween
 
@@ -18,7 +19,6 @@ func _ready() -> void:
 
 
 func _on_interactable_detected(detected: bool, prompt: String) -> void:
-	crosshair_handler.show_interact_crosshair(detected)
 	set_interact_prompt(prompt)
 
 
@@ -31,10 +31,10 @@ func set_interact_prompt(prompt: String = ""):
 		
 		interact_prompt.text = prompt
 		interact_prompt_tween = create_tween()
-		interact_prompt_tween.tween_property(interact_prompt, "modulate:a", 1.0, crosshair_handler.fade_duration)
+		interact_prompt_tween.tween_property(interact_prompt, "modulate:a", 1.0, 0.2)
 
 
 func set_hud_visible(show_hud: bool):
-	crosshair_handler.visible = show_hud
+	crosshair.visible = show_hud
 	if not show_hud:
 		set_interact_prompt("")

@@ -59,9 +59,9 @@ collision_layer = 2
 monitoring = false
 monitorable = false
 script = ExtResource("2_wnkkg")
-text = "[b][font_size=18][center]THE NEWBURKE TIMES[/center][/font_size][/b]
+text = "[b][font_size=12][center]THE NEWBURKE TIMES[/center][/font_size][/b]
 
-[b][font_size=16]RIPEYE SLAIN: SERIAL KILLER'S REIGN ENDS AT LAST[/font_size][/b]
+[b][font_size=10]RIPEYE SLAIN: SERIAL KILLER'S REIGN ENDS AT LAST[/font_size][/b]
 
 Detective Ethan Hayes closes the case after a months-long manhunt
 

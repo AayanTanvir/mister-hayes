@@ -1,5 +1,5 @@
 class_name Intro
-extends Node3D
+extends Node
 
 @export var car_route: CarRoute
 @export var drone_route: DroneCamRoute

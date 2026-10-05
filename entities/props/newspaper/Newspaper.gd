@@ -20,8 +20,6 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	super._unhandled_input(event)
-	
 	if _reading and event is InputEventKey and event.is_action_pressed("esc"):
 		GameManager.ui.text_viewer.close()
 

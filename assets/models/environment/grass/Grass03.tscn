@@ -1,0 +1,46 @@
+[gd_scene format=4 uid="uid://c86jnnpkruk87"]
+
+[ext_resource type="PackedScene" uid="uid://dc675rmkvg5ml" path="res://assets/models/environment/grass/models/grass04.glb" id="1_bclw8"]
+[ext_resource type="Texture2D" uid="uid://bwwhtbvnky6ke" path="res://assets/models/environment/grass/models/grass_spring.png" id="2_jf52v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8v2xo"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_jf52v")
+texture_filter = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_kc8iy"]
+_surfaces = [{
+"aabb": AABB(-0.25, 0, -0.25, 0.5, 0.42857143, 0.5),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAAAAMABAAFAAAABgAHAAgABgAIAAkACgAGAAkACgALAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("AAD///9/AAAAAAAA4HoAAP//AADgegAA//////9/AAD//wAAHoUAAAAAAAAehQAA/3/+////AADgegAA//8AAOB6AAAAAAAA/3/+/wAAAAAehQAAAAAAAB6FAAD//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_di5t8"]
+resource_name = "grass04_grass4"
+_surfaces = [{
+"aabb": AABB(-0.25, 0, -0.25, 0.5, 0.42857143, 0.5),
+"attribute_data": PackedByteArray("AAAkUSkHeWMAAP+HKQfjiv8//4eYX+OK/z8kUZhfeWP/P/+HmF/jigAA/4cpB+OKAAAkUSkHeWP/PyRRmF95YwAAJFEpB3ljAAD/hykH44r/P/+HmF/jiv8//4eYX+OKAAD/hykH44oAACRRKQd5YwAAJFEpB3lj/z//h5hf44r/PyRRmF95Y/8//4eYX+OKAAAkUSkHeWP/PyRRmF95Yw=="),
+"format": 34896613431,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACwAMAA0ADgAPABAAEQASABMA"),
+"material": SubResource("StandardMaterial3D_8v2xo"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAD///9/8wAAAAAA4HrzAP//AADgevMA//////9/8wD//wAAHoXygAAAAAAehfKAAAD///9/8oD//////3/ygP9//v///6wA4HoAAP//rADgegAAAACsAB6FAAAAAADAHoUAAP//AMD/f/7///8AwP9//v///6wA4HoAAAAArAD/f/7/AACsAB6FAAAAAADA/3/+////AMD/f/7/AAAAwP///3////9/////f////3////9/////f////3////9/Qf+gP0H/oD9B/6A/6oJ1AeqCdQHqgnUBQf+gP0H/oD9B/6A/6oJ1AeqCdQHqgnUB")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_kc8iy")
+
+[node name="grass04" unique_id=2048850366 instance=ExtResource("1_bclw8")]
+
+[node name="grass4" parent="." index="0" unique_id=766669085]
+mesh = SubResource("ArrayMesh_di5t8")

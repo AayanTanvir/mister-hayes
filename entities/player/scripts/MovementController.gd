@@ -26,7 +26,3 @@ func _physics_process(delta: float) -> void:
 		player.velocity.z = move_toward(player.velocity.z, 0, SPEED)
 
 	player.move_and_slide()
-
-
-func set_disabled(disabled: bool):
-	set_physics_process(!disabled)

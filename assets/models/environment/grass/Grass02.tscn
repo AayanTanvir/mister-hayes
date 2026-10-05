@@ -1,0 +1,46 @@
+[gd_scene format=4 uid="uid://5skjbwwbky0k"]
+
+[ext_resource type="PackedScene" uid="uid://dtce27eh442qe" path="res://assets/models/environment/grass/models/grass03.glb" id="1_355uq"]
+[ext_resource type="Texture2D" uid="uid://bwwhtbvnky6ke" path="res://assets/models/environment/grass/models/grass_spring.png" id="2_7udcv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45qpp"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_7udcv")
+texture_filter = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6tou8"]
+_surfaces = [{
+"aabb": AABB(-0.16666675, 0, -0.16666675, 0.3333335, 0.425, 0.3333335),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAAAAMABAAFAAAABgAHAAgABgAIAAkACgAGAAkACgALAAYA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("/v////9/AAD//wAArYcAAAAAAACthwAAAAD///9/AAAAAAAAUXgAAP//AABReAAA/3///wAAAACthwAAAAAAAK2HAAD//wAA/3////7/AABReAAA//8AAFF4AAAAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wwt0x"]
+resource_name = "grass03_grass3"
+_surfaces = [{
+"aabb": AABB(-0.16666675, 0, -0.16666675, 0.3333335, 0.425, 0.3333335),
+"attribute_data": PackedByteArray("VMWZCQ/bpjJUxf8/D9u9Waqa/z8aoL1Zqpr/PxqgvVlUxf8/D9u9WVTFmQkP26YyVMWZCQ/bpjJUxf8/D9u9Waqa/z8aoL1Zqpr/PxqgvVlUxf8/D9u9WVTFmQkP26YyVMWZCQ/bpjKqmv8/GqC9WaqamQkaoKYyqpr/PxqgvVlUxZkJD9umMqqamQkaoKYyVMWZCQ/bpjKqmv8/GqC9WaqamQkaoKYyqpr/PxqgvVlUxZkJD9umMqqamQkaoKYy"),
+"format": 34896613431,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcA"),
+"material": SubResource("StandardMaterial3D_45qpp"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/v////9/9ID//wAArYf0gAAAAACth/SAAAAAAFF49QD//wAAUXj1AP7/////f/UA/3///wAAAMCthwAAAAAAwK2HAAD//wDAUXgAAP//rQBReAAAAACtAP9///8AAK0A/v////9/9IAAAAAArYf0gAAA////f/SAAAAAAFF49QD+/////3/1AAAA////f/UA/3///wAAAMCthwAA//8AwP9////+/wDAUXgAAP//rQD/f///AACtAP9////+/60A////f////3////9/////f////3////9/8IJ4AfCCeAHwgngBP/+fPz//nz8//58/////f////3////9/////f////3////9/8IJ4AfCCeAHwgngBP/+fPz//nz8//58/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6tou8")
+
+[node name="grass03" unique_id=1110587506 instance=ExtResource("1_355uq")]
+
+[node name="grass3" parent="." index="0" unique_id=695139359]
+mesh = SubResource("ArrayMesh_wwt0x")

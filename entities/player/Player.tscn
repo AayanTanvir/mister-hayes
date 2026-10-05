@@ -39,7 +39,6 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
 script = ExtResource("2_v6fml")
 camera_yaw = NodePath("..")
-mouse_sensitivity = null
 
 [node name="PlayerCamera" type="Camera3D" parent="CameraController" unique_id=1144761065]
 unique_name_in_owner = true

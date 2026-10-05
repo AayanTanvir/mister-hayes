@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 @export var start_in_car := false
 @export var car: CarCabinFX

@@ -40,9 +40,8 @@ _surfaces = [{
 "vertex_data": PackedByteArray("mpmZvc3MTL4AAAA/mpmZvc3MTL4AAAC/mpmZvc3MTD4AAAC/mpmZPc3MTL4AAAC/mpmZvc3MTL4AAAC/mpmZvc3MTL4AAAA/mpmZvc3MTD4AAAC/mpmZvc3MTL4AAAC/mpmZPc3MTL4AAAC/mpmZvc3MTD4AAAC/mpmZvc3MTD4AAAA/mpmZvc3MTL4AAAA/mpmZvc3MTL4AAAA/mpmZvc3MTD4AAAA/mpmZPc3MTD4AAAA/mpmZPc3MTD4AAAA/mpmZvc3MTD4AAAA/mpmZvc3MTD4AAAC/mpmZvc3MTL4AAAA/mpmZPc3MTL4AAAA/mpmZPc3MTL4AAAC/mpmZPc3MTD4AAAA/mpmZPc3MTL4AAAA/mpmZvc3MTL4AAAA/mpmZPc3MTL4AAAC/mpmZPc3MTL4AAAA/mpmZPc3MTD4AAAA/mpmZPc3MTL4AAAC/mpmZPc3MTD4AAAC/mpmZvc3MTD4AAAC/mpmZvc3MTD4AAAC/mpmZPc3MTD4AAAC/mpmZPc3MTD4AAAA/mpmZPc3MTD4AAAA/mpmZPc3MTD4AAAC/mpmZPc3MTL4AAAC/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
 }]
 
-[node name="Testing" type="Node3D" unique_id=777932238 node_paths=PackedStringArray("car")]
+[node name="Testing" type="Node" unique_id=2046542278 node_paths=PackedStringArray("car")]
 script = ExtResource("1_adtqs")
-start_in_car = true
 car = NodePath("Car")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1298366025]
@@ -101,9 +100,6 @@ next_pt_init = NodePath("../RP_002")
 [node name="Car" parent="." unique_id=414290366 instance=ExtResource("6_muql7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -4)
 
-[node name="UI" parent="." unique_id=1489775715 instance=ExtResource("3_tl5de")]
-unique_name_in_owner = true
-
 [node name="Player" parent="." unique_id=1234029208 instance=ExtResource("2_l7nsk")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3.5)
@@ -158,3 +154,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.
 
 [node name="Phone" parent="." unique_id=461075708 instance=ExtResource("15_vfnqh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.25, 1.2232306, -1.15)
+
+[node name="UI" parent="." unique_id=1489775715 instance=ExtResource("3_tl5de")]
+unique_name_in_owner = true

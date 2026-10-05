@@ -1,0 +1,121 @@
+{
+	"categories": [
+		{
+			"uuid": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"title": "Task",
+			"color": "569eff"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "358dcc9e-598d-4546-80e0-675562fa2720",
+			"title": "Todo",
+			"tasks": [
+				"084816b6-90fc-4e4b-8015-e912c61fc376",
+				"1bb38ec8-09db-4794-b4e6-47467e08c621"
+			]
+		},
+		{
+			"uuid": "c6f59e9d-60be-45ab-ba5e-992b37fe789f",
+			"title": "Bugs",
+			"tasks": [
+				"591ca411-111f-4894-bed2-f2c5f3120d2a",
+				"4ac79ef5-3280-4509-94b4-3c331e6e99ff"
+			]
+		},
+		{
+			"uuid": "53dc17d7-4b80-4968-af96-23220b671da4",
+			"title": "Doing",
+			"tasks": [
+				"3114b2f6-d1a5-4598-bd57-45779dcf5373"
+			]
+		},
+		{
+			"uuid": "7f9883af-2c16-423d-b238-5fc67ab418e4",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "591ca411-111f-4894-bed2-f2c5f3120d2a",
+			"title": "Dialogue intersects with inspect and interaction",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "3114b2f6-d1a5-4598-bd57-45779dcf5373",
+			"title": "Intro",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": [
+				{
+					"details": "Town",
+					"done": false
+				},
+				{
+					"details": "Environment",
+					"done": false
+				},
+				{
+					"details": "Drone shot",
+					"done": false
+				},
+				{
+					"details": "Title card",
+					"done": false
+				},
+				{
+					"details": "Car",
+					"done": true
+				},
+				{
+					"details": "Car Props",
+					"done": true
+				},
+				{
+					"details": "Ethan Dialogue",
+					"done": true
+				}
+			]
+		},
+		{
+			"uuid": "084816b6-90fc-4e4b-8015-e912c61fc376",
+			"title": "Interact obj outlines",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "1bb38ec8-09db-4794-b4e6-47467e08c621",
+			"title": "Bundle interact components",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "4ac79ef5-3280-4509-94b4-3c331e6e99ff",
+			"title": "TextViewer doesn't close",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"358dcc9e-598d-4546-80e0-675562fa2720"
+			],
+			[
+				"c6f59e9d-60be-45ab-ba5e-992b37fe789f"
+			],
+			[
+				"53dc17d7-4b80-4968-af96-23220b671da4"
+			],
+			[
+				"7f9883af-2c16-423d-b238-5fc67ab418e4"
+			]
+		]
+	}
+}

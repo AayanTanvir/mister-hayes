@@ -4,31 +4,31 @@
 [ext_resource type="PackedScene" uid="uid://7lpdeyx3iik6" path="res://UI/InspectionViewer/InspectionViewer.tscn" id="2_f1fl4"]
 [ext_resource type="PackedScene" uid="uid://bq0am7ukvb4cg" path="res://UI/TextViewer/TextViewer.tscn" id="2_jqf55"]
 [ext_resource type="Texture2D" uid="uid://mkvgv141kg6w" path="res://assets/UI/crosshair.svg" id="2_q0uhn"]
-[ext_resource type="Script" uid="uid://dy3qc7spmwfau" path="res://UI/Misc/Crosshair.gd" id="2_ro3t7"]
-[ext_resource type="Texture2D" uid="uid://1v65gjgo0agj" path="res://assets/UI/interact_crosshair.svg" id="4_e707p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1vivr"]
-font_size = 10
+line_spacing = -2.0
+font_size = 8
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vivr"]
-bg_color = Color(0, 0, 0, 0.6627451)
+bg_color = Color(0.05882353, 0.05882353, 0.05882353, 0.6627451)
 corner_radius_top_left = 16
 corner_radius_bottom_left = 16
 
 [sub_resource type="LabelSettings" id="LabelSettings_f1fl4"]
+font_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vrlf"]
 bg_color = Color(0.06053035, 0.06053035, 0.060530342, 0.6627451)
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 
-[node name="UI" type="CanvasLayer" unique_id=1489775715 node_paths=PackedStringArray("dialogue_container", "speaker_label", "dialogue_label")]
+[node name="UI" type="CanvasLayer" unique_id=1489775715 node_paths=PackedStringArray("dialogue_container", "dialogue_label", "speaker_label")]
 script = ExtResource("1_ro3t7")
-dialogue_container = NodePath("DialogueContainer")
-speaker_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/SpeakerContainer/SpeakerLabel")
-dialogue_label = NodePath("DialogueContainer/CenterContainer/HBoxContainer/TextContainer/DialogueLabel")
+dialogue_container = NodePath("Dialogue")
+dialogue_label = NodePath("Dialogue/HBoxContainer/TextContainer/DialogueLabel")
+speaker_label = NodePath("Dialogue/HBoxContainer/SpeakerContainer/SpeakerLabel")
 
 [node name="TextViewer" parent="." unique_id=477262391 instance=ExtResource("2_jqf55")]
 unique_name_in_owner = true
@@ -38,119 +38,85 @@ visible = false
 unique_name_in_owner = true
 visible = false
 
-[node name="CrosshairHandler" type="Control" parent="." unique_id=1282399062 node_paths=PackedStringArray("_interact_crosshair")]
+[node name="Crosshair" type="TextureRect" parent="." unique_id=1249398790]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_ro3t7")
-_interact_crosshair = NodePath("InteractCrosshair")
-fade_duration = 0.2
-
-[node name="Crosshair" type="TextureRect" parent="CrosshairHandler" unique_id=1249398790]
 texture_filter = 1
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = -24.0
-offset_right = 24.0
-offset_bottom = 24.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_q0uhn")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="InteractCrosshair" type="TextureRect" parent="CrosshairHandler" unique_id=239564792]
-visible = false
-texture_filter = 1
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -24.0
-offset_top = -24.0
-offset_right = 24.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_e707p")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="InteractPrompt" type="Label" parent="." unique_id=1015445699]
 unique_name_in_owner = true
+texture_filter = 1
 anchors_preset = -1
-anchor_left = 0.50200003
-anchor_top = 0.50600004
-anchor_right = 0.50200003
-anchor_bottom = 0.50600004
-offset_left = -204.30402
-offset_top = 4.111969
-offset_right = 203.69598
-offset_bottom = 93.11197
+anchor_left = 0.5
+anchor_top = 0.51500005
+anchor_right = 0.5
+anchor_bottom = 0.51500005
+offset_left = -55.0
+offset_top = 0.79997253
+offset_right = 57.047974
+offset_bottom = 15.807968
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_1vivr")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DialogueContainer" type="MarginContainer" parent="." unique_id=676723837]
-custom_minimum_size = Vector2(0, 64)
-anchors_preset = 12
+[node name="Dialogue" type="CenterContainer" parent="." unique_id=1123273933]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = -70.0
+offset_left = -300.0
+offset_top = -80.0
+offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
+mouse_filter = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="DialogueContainer" unique_id=1123273933]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="DialogueContainer/CenterContainer" unique_id=1902124786]
-custom_minimum_size = Vector2(600, 50)
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogue" unique_id=1902124786]
+custom_minimum_size = Vector2(500, 30)
+custom_maximum_size = Vector2(500, 30)
 layout_mode = 2
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="SpeakerContainer" type="PanelContainer" parent="DialogueContainer/CenterContainer/HBoxContainer" unique_id=736765704]
-custom_minimum_size = Vector2(100, 50)
-custom_maximum_size = Vector2(100, 50)
+[node name="SpeakerContainer" type="PanelContainer" parent="Dialogue/HBoxContainer" unique_id=736765704]
+custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1vivr")
 
-[node name="SpeakerLabel" type="Label" parent="DialogueContainer/CenterContainer/HBoxContainer/SpeakerContainer" unique_id=438859375]
+[node name="SpeakerLabel" type="Label" parent="Dialogue/HBoxContainer/SpeakerContainer" unique_id=438859375]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_f1fl4")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="TextContainer" type="PanelContainer" parent="DialogueContainer/CenterContainer/HBoxContainer" unique_id=1579864740]
-custom_minimum_size = Vector2(500, 50)
-custom_maximum_size = Vector2(500, 50)
+[node name="TextContainer" type="PanelContainer" parent="Dialogue/HBoxContainer" unique_id=1579864740]
+custom_minimum_size = Vector2(420, 30)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_8vrlf")
 
-[node name="DialogueLabel" type="RichTextLabel" parent="DialogueContainer/CenterContainer/HBoxContainer/TextContainer" unique_id=1811701759]
+[node name="DialogueLabel" type="RichTextLabel" parent="Dialogue/HBoxContainer/TextContainer" unique_id=1811701759]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 fit_content = true
 scroll_active = false

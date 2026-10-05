@@ -11,7 +11,7 @@ const SEAT_YAW_LIMIT := 130.0
 var seated := false
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventMouseMotion:
 		return
 

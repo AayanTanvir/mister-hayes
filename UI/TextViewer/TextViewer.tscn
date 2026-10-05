@@ -26,7 +26,8 @@ size_flags_vertical = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer" unique_id=54183454]
 unique_name_in_owner = true
-custom_maximum_size = Vector2(550, 600)
+custom_maximum_size = Vector2(550, 350)
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 fit_content = true

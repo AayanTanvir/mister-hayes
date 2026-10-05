@@ -58,12 +58,12 @@ collision_layer = 2
 monitoring = false
 monitorable = false
 script = ExtResource("2_85fuq")
-text = "[b][font_size=20][center]CANADIAN BUREAU OF INVESTIGATION[/center][/font_size][/b]
+text = "[b][font_size=12][center]CANADIAN BUREAU OF INVESTIGATION[/center][/font_size][/b]
 
 September 14                                                                4820 Garrison Street
 [right]Vancouver, BC V6B4N2[/right]
 
-[b][font_size=18]NOTICE OF REASSIGNMENT[/font_size][/b]
+[b][font_size=10]NOTICE OF REASSIGNMENT[/font_size][/b]
 
 Detective Ethan Hayes,
 Following the closure of the Ripeye case and the standard post-incident review, effective immediately you are reassigned to general duties at the Pritogn detachment.
