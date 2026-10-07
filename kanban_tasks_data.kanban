@@ -12,15 +12,16 @@
 			"title": "Todo",
 			"tasks": [
 				"084816b6-90fc-4e4b-8015-e912c61fc376",
-				"1bb38ec8-09db-4794-b4e6-47467e08c621"
+				"168bdf98-77de-406d-bd72-cd6693961228",
+				"11c53507-973e-426c-9b5d-d3dc759e2b04"
 			]
 		},
 		{
 			"uuid": "c6f59e9d-60be-45ab-ba5e-992b37fe789f",
 			"title": "Bugs",
 			"tasks": [
-				"591ca411-111f-4894-bed2-f2c5f3120d2a",
-				"4ac79ef5-3280-4509-94b4-3c331e6e99ff"
+				"e70abdba-ca7e-4f09-ada9-bb987ce7106f",
+				"5047e7bc-b1f9-4d8e-bf2c-042bbf9b8ab9"
 			]
 		},
 		{
@@ -33,7 +34,11 @@
 		{
 			"uuid": "7f9883af-2c16-423d-b238-5fc67ab418e4",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"4ac79ef5-3280-4509-94b4-3c331e6e99ff",
+				"591ca411-111f-4894-bed2-f2c5f3120d2a",
+				"1bb38ec8-09db-4794-b4e6-47467e08c621"
+			]
 		}
 	],
 	"tasks": [
@@ -97,6 +102,41 @@
 		{
 			"uuid": "4ac79ef5-3280-4509-94b4-3c331e6e99ff",
 			"title": "TextViewer doesn't close",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "7f1b25c9-7e24-4ea4-8d8f-8986cacbe720",
+			"title": "New task",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "168bdf98-77de-406d-bd72-cd6693961228",
+			"title": "Posterization",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "11c53507-973e-426c-9b5d-d3dc759e2b04",
+			"title": "Movement refactor",
+			"description": "bobbing, smooth walking, sprinting",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "e70abdba-ca7e-4f09-ada9-bb987ce7106f",
+			"title": "Car props intersect with dialogue",
+			"description": "when player is in the middle of inspecting the ethan dialogue may start and bug out",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "5047e7bc-b1f9-4d8e-bf2c-042bbf9b8ab9",
+			"title": "Phone prompt appears quickly",
 			"description": "",
 			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
 			"steps": []

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://deacm0ytl4dkg"]
 
 [ext_resource type="PackedScene" uid="uid://cucc7aqgrbye1" path="res://entities/props/letter/claire_letter/model/ClairLetter.glb" id="1_8041s"]
-[ext_resource type="Script" uid="uid://bawdxsh1m64jl" path="res://entities/props/letter/Letter.gd" id="2_4jaoc"]
+[ext_resource type="Script" uid="uid://jxrjni08aepa" path="res://scripts/component/interactables/Interactable.gd" id="2_4jaoc"]
+[ext_resource type="Script" uid="uid://b2rcoa8eveugw" path="res://scripts/component/interactables/ReadAction.gd" id="3_062y4"]
+[ext_resource type="Script" uid="uid://b1oej1mhfsc7u" path="res://scripts/component/interactables/InspectAction.gd" id="4_062y4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 size = Vector3(0.35, 0.17285156, 0.05)
@@ -12,6 +14,12 @@ size = Vector3(0.35, 0.17285156, 0.05)
 
 [node name="Handler" type="Area3D" parent="." unique_id=2082844623]
 script = ExtResource("2_4jaoc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Handler" unique_id=1849267521]
+shape = SubResource("BoxShape3D_1vivr")
+
+[node name="ReadAction" type="Node" parent="Handler" unique_id=1009637864]
+script = ExtResource("3_062y4")
 text = "Dad,
 
 I'm in Toronto now. New city, new apartment. Nothing here reminds me of what happened. That's been easier.
@@ -27,8 +35,8 @@ I want to build a new life, you should too.
 Please don't contact me. I don't know if I can forgive you. I don't know if I'm supposed to.
 
 — Claire"
-inspect_model = ExtResource("1_8041s")
-interact_keys = Array[int]([0, 1])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Handler" unique_id=1849267521]
-shape = SubResource("BoxShape3D_1vivr")
+[node name="InspectAction" type="Node" parent="Handler" unique_id=220702384]
+script = ExtResource("4_062y4")
+inspect_model = ExtResource("1_8041s")
+key = 1

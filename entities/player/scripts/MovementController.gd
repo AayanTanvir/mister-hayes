@@ -1,3 +1,4 @@
+class_name MovementController
 extends Node3D
 
 const SPEED = 5.0

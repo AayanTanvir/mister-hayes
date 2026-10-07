@@ -6,7 +6,7 @@ enum State { WALKING, SEATED }
 var state := State.WALKING
 
 @onready var camera_controller: CameraController = %CameraController
-@onready var movement_controller: Node3D = %MovementController
+@onready var movement_controller: MovementController = %MovementController
 @onready var collision_shape: CollisionShape3D = %PlayerCollisionShape
 @onready var mesh: MeshInstance3D = %PlayerMesh
 @onready var camera: Camera3D = %PlayerCamera
@@ -25,10 +25,10 @@ func seat_in(seat: Node3D) -> void:
 	mesh.visible = false
 
 
-func set_look_enabled(enabled: bool, change_camera: bool = true) -> void:
+func disable_look(disable: bool, change_camera: bool = true) -> void:
 	if change_camera:
-		camera_controller.set_process_input(enabled)
-	interact_controller.set_disabled(not enabled)
+		camera_controller.set_process_unhandled_input(not disable)
+	interact_controller.set_disabled(disable)
 
 
 func set_movement_enabled(enabled: bool):

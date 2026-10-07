@@ -13,6 +13,3 @@ func _ready() -> void:
 	
 	if start_in_car:
 		player.seat_in(car.seat)
-		player.camera.make_current()
-		player.set_look_enabled(true)
-	

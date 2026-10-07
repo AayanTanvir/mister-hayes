@@ -3,8 +3,14 @@ extends CanvasLayer
 
 @onready var label: RichTextLabel = %RichTextLabel
 
+
 func _ready() -> void:
 	hide()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if visible and event.is_action_pressed("esc"):
+		close()
 
 
 func show_text(text: String):

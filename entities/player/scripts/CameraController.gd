@@ -33,7 +33,3 @@ func enter_seat_mode(yaw_pivot: Node3D) -> void:
 	camera_yaw = yaw_pivot
 	seated = true
 	rotation = Vector3.ZERO
-
-
-func set_disabled(disable: bool) -> void:
-	set_process_input(not disable)

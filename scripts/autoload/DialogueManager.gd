@@ -7,7 +7,6 @@ var player: Player
 
 var showing_dialogue := false
 var _action_regex := RegEx.new()
-var _action_text_color := "#a0a0a0"
 
 var _chars_per_second := 30.0
 var _type_tween: Tween
@@ -42,7 +41,7 @@ func start_dialogue(dialogue: Array[Dictionary], disable_camera: bool = false):
 	
 	ui.dialogue_container.visible = true
 	
-	player.set_look_enabled(false, disable_camera)
+	player.disable_look(true, disable_camera)
 	ui.set_hud_visible(false)
 	
 	showing_dialogue = true
@@ -52,7 +51,7 @@ func start_dialogue(dialogue: Array[Dictionary], disable_camera: bool = false):
 		await input_detected
 		
 	_stop_dialogue()
-	player.set_look_enabled(true, disable_camera)
+	player.disable_look(false, disable_camera)
 	ui.set_hud_visible(true)
 
 
@@ -64,7 +63,7 @@ func say(dialogue: Dictionary, duration: float = 2.0, disable_camera: bool = fal
 	
 	ui.dialogue_container.visible = true
 	
-	player.set_look_enabled(false, disable_camera)
+	player.disable_look(true, disable_camera)
 	ui.set_hud_visible(false)
 	
 	showing_dialogue = true
@@ -74,13 +73,11 @@ func say(dialogue: Dictionary, duration: float = 2.0, disable_camera: bool = fal
 	await get_tree().create_timer(duration).timeout
 		
 	_stop_dialogue()
-	player.set_look_enabled(true, disable_camera)
+	player.disable_look(false, disable_camera)
 	ui.set_hud_visible(true)
 
 
 func _show_line(speaker: String, text: String) -> void:
-	ui.speaker_label.text = speaker
-
 	var label: RichTextLabel = ui.dialogue_label
 	label.text = format_text(text)
 	label.visible_ratio = 0.0
@@ -96,7 +93,6 @@ func _show_line(speaker: String, text: String) -> void:
 
 
 func _stop_dialogue():
-	ui.speaker_label.text = ""
 	ui.dialogue_label.text = ""
 	ui.dialogue_container.visible = false
 	showing_dialogue = false
@@ -117,7 +113,7 @@ func _validate_dialogues(dialogue: Array[Dictionary]):
 
 func format_text(raw: String) -> String:
 	raw = raw.replace("[", "[lb]")
-	return _action_regex.sub(raw, "[i][font_size=13][color=%s]$1[/color][/font_size][/i]" % _action_text_color, true)
+	return _action_regex.sub(raw, "[i][font_size=13][color=#a0a0a0]$1[/color][/font_size][/i]", true)
 
 
 func _finish_typing() -> void:

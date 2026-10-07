@@ -9,6 +9,7 @@ const CURVATURE_SPAN := 2.0
 @export var acceleration := 6.0
 @export var corner_slowdown := 0.6
 @export var look_ahead := 4.0
+@export_range(0.0, 1.0) var start_speed_ratio := 0.9	# 1 = maximum cruise speed
 
 var speed := 0.0
 var curvature := 0.0
@@ -24,7 +25,9 @@ func _ready() -> void:
 	rotation_mode = ROTATION_Y
 
 
-func start() -> void:
+func start(already_sped_up: bool = true) -> void:
+	if already_sped_up:
+		speed = cruise_speed * start_speed_ratio
 	_running = true
 
 

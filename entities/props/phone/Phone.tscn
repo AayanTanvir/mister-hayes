@@ -1,8 +1,9 @@
 [gd_scene format=4 uid="uid://bmv1hr08cvrs0"]
 
 [ext_resource type="Texture2D" uid="uid://7ufwk8j6wy5y" path="res://entities/props/phone/model/PhoneMesh_Mobile_Black_Low_Res.png" id="1_gma5x"]
-[ext_resource type="Script" uid="uid://dddd6mx32vg4f" path="res://entities/props/phone/Phone.gd" id="2_gma5x"]
+[ext_resource type="Script" uid="uid://dddd6mx32vg4f" path="res://entities/props/phone/PhoneAction.gd" id="2_gma5x"]
 [ext_resource type="Texture2D" uid="uid://btbd6lymbiri" path="res://entities/props/phone/model/PhoneMesh_Screen_V1_Low_Res.png" id="2_gr0rf"]
+[ext_resource type="Script" uid="uid://jxrjni08aepa" path="res://scripts/component/interactables/Interactable.gd" id="3_gr0rf"]
 [ext_resource type="Texture2D" uid="uid://n4uglaxaos37" path="res://assets/textures/stock/MessageIcon.png" id="3_ueilv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbsnh"]
@@ -133,18 +134,22 @@ mesh = SubResource("ArrayMesh_ffllj")
 transform = Transform3D(0.0039999997, 0, 0, 0, 0, -0.0039999997, 0, 0.0039999997, 0, 0, 0, 0)
 mesh = SubResource("ArrayMesh_74knp")
 
-[node name="Handler" type="Area3D" parent="." unique_id=1342712360 node_paths=PackedStringArray("screen_mesh", "screen_viewport", "inbox")]
+[node name="Handler" type="Area3D" parent="." unique_id=1342712360]
 collision_layer = 2
 monitoring = false
 monitorable = false
-script = ExtResource("2_gma5x")
-screen_mesh = NodePath("../Screen")
-screen_viewport = NodePath("../ScreenViewport")
-inbox = NodePath("../ScreenViewport/Inbox")
+script = ExtResource("3_gr0rf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Handler" unique_id=14346927]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0017698407, 0)
 shape = SubResource("BoxShape3D_1vivr")
+
+[node name="PhoneAction" type="Node" parent="Handler" unique_id=697453175 node_paths=PackedStringArray("_screen_mesh", "_screen_viewport", "_inbox", "_phone")]
+script = ExtResource("2_gma5x")
+_screen_mesh = NodePath("../../Screen")
+_screen_viewport = NodePath("../../ScreenViewport")
+_inbox = NodePath("../../ScreenViewport/Inbox")
+_phone = NodePath("../..")
 
 [node name="ScreenViewport" type="SubViewport" parent="." unique_id=1529946636]
 size = Vector2i(350, 350)
@@ -187,7 +192,7 @@ alignment = 1
 
 [node name="Time" type="Label" parent="ScreenViewport/Inbox/VBoxContainer/MarginContainer/Datetime" unique_id=95477963]
 layout_mode = 2
-text = "18:05"
+text = "21:03"
 label_settings = SubResource("LabelSettings_b1rn5")
 horizontal_alignment = 1
 vertical_alignment = 1

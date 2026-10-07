@@ -33,10 +33,10 @@ func set_interact_mode(interact: bool, pause_game: bool = true, disable_camera: 
 	if pause_game:
 		get_tree().paused = interact
 	else:
-		player.set_look_enabled(not interact, disable_camera)
+		player.disable_look(interact, disable_camera)
 		if not player.state == player.State.SEATED:
 			player.set_movement_enabled(not interact)
-	ui.set_hud_visible(not interact)
+	ui.set_hud_visible(not interact, true)
 
 
 func set_mouse_visible(show: bool):

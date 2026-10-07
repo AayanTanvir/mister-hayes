@@ -1,8 +1,10 @@
 [gd_scene format=4 uid="uid://cwr0ii5morvt5"]
 
 [ext_resource type="Texture2D" uid="uid://cavwky258dvrg" path="res://entities/props/letter/cbi_letter/model/CbiLetter_cbi_letter_mat.png" id="1_ods7c"]
-[ext_resource type="Script" uid="uid://bawdxsh1m64jl" path="res://entities/props/letter/Letter.gd" id="2_85fuq"]
+[ext_resource type="Script" uid="uid://jxrjni08aepa" path="res://scripts/component/interactables/Interactable.gd" id="2_flvoj"]
+[ext_resource type="Script" uid="uid://b2rcoa8eveugw" path="res://scripts/component/interactables/ReadAction.gd" id="3_5baw8"]
 [ext_resource type="PackedScene" uid="uid://cvu5a6sxm6ntc" path="res://entities/props/letter/cbi_letter/model/CbiLetter.glb" id="3_flvoj"]
+[ext_resource type="Script" uid="uid://b1oej1mhfsc7u" path="res://scripts/component/interactables/InspectAction.gd" id="4_7vaqt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mh1tw"]
 resource_name = "Material.001"
@@ -57,13 +59,19 @@ mesh = SubResource("ArrayMesh_6m03r")
 collision_layer = 2
 monitoring = false
 monitorable = false
-script = ExtResource("2_85fuq")
-text = "[b][font_size=12][center]CANADIAN BUREAU OF INVESTIGATION[/center][/font_size][/b]
+script = ExtResource("2_flvoj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Handler" unique_id=35865837]
+shape = SubResource("BoxShape3D_1vivr")
+
+[node name="ReadAction" type="Node" parent="Handler" unique_id=1685723666]
+script = ExtResource("3_5baw8")
+text = "[b][font_size=18][center]CANADIAN BUREAU OF INVESTIGATION[/center][/font_size][/b]
 
 September 14                                                                4820 Garrison Street
 [right]Vancouver, BC V6B4N2[/right]
 
-[b][font_size=10]NOTICE OF REASSIGNMENT[/font_size][/b]
+[b]NOTICE OF REASSIGNMENT[/b]
 
 Detective Ethan Hayes,
 Following the closure of the Ripeye case and the standard post-incident review, effective immediately you are reassigned to general duties at the Pritogn detachment.
@@ -78,8 +86,8 @@ Report no later than the date above.
 [right]Division Office[/right]
 [right]Pacific Region[/right]
 "
-inspect_model = ExtResource("3_flvoj")
-interact_keys = Array[int]([0, 1])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Handler" unique_id=35865837]
-shape = SubResource("BoxShape3D_1vivr")
+[node name="InspectAction" type="Node" parent="Handler" unique_id=1702080432]
+script = ExtResource("4_7vaqt")
+inspect_model = ExtResource("3_flvoj")
+key = 1

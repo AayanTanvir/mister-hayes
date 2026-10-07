@@ -1,8 +1,10 @@
 [gd_scene format=4 uid="uid://gjy71yvsgmv3"]
 
 [ext_resource type="Texture2D" uid="uid://omcstveq028p" path="res://entities/props/newspaper/model/Newspaper_newspaper_texture.png" id="1_b86x0"]
+[ext_resource type="Script" uid="uid://jxrjni08aepa" path="res://scripts/component/interactables/Interactable.gd" id="2_b86x0"]
 [ext_resource type="PackedScene" uid="uid://bb8rsloyqfrf5" path="res://entities/props/newspaper/model/Newspaper.glb" id="2_g81oa"]
-[ext_resource type="Script" uid="uid://pkdc1lloeffm" path="res://entities/props/newspaper/Newspaper.gd" id="2_wnkkg"]
+[ext_resource type="Script" uid="uid://b2rcoa8eveugw" path="res://scripts/component/interactables/ReadAction.gd" id="3_wnkkg"]
+[ext_resource type="Script" uid="uid://b1oej1mhfsc7u" path="res://scripts/component/interactables/InspectAction.gd" id="4_nuvyl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fnn46"]
 resource_name = "newspaper_mat"
@@ -58,19 +60,25 @@ mesh = SubResource("ArrayMesh_gv4ik")
 collision_layer = 2
 monitoring = false
 monitorable = false
-script = ExtResource("2_wnkkg")
-text = "[b][font_size=12][center]THE NEWBURKE TIMES[/center][/font_size][/b]
+script = ExtResource("2_b86x0")
 
-[b][font_size=10]RIPEYE SLAIN: SERIAL KILLER'S REIGN ENDS AT LAST[/font_size][/b]
+[node name="NewspaperCollider" type="CollisionShape3D" parent="NewspaperHandler" unique_id=1201769064]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.024999991)
+shape = SubResource("BoxShape3D_1vivr")
+
+[node name="ReadAction" type="Node" parent="NewspaperHandler" unique_id=1971754751]
+script = ExtResource("3_wnkkg")
+text = "[b][font_size=18]THE NEWBURKE TIMES[/font_size][/b]
+
+[b]RIPEYE SLAIN: SERIAL KILLER'S REIGN ENDS AT LAST[/b]
 
 Detective Ethan Hayes closes the case after a months-long manhunt
 
 Authorities confirmed Thursday that the killer known only as the \"Ripeye\" is dead, following a confrontation with Detective Ethan Hayes. Hayes, who led the investigation since early this year refused to comment on the circumstances.
 
 \"Newburke can rest easy,\" said Hayes's partner, Detective Marcus. \"Ethan didn't stop until it was over.\""
-inspect_model = ExtResource("2_g81oa")
-interact_keys = Array[int]([0, 1])
 
-[node name="NewspaperCollider" type="CollisionShape3D" parent="NewspaperHandler" unique_id=1201769064]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.024999991)
-shape = SubResource("BoxShape3D_1vivr")
+[node name="InspectAction" type="Node" parent="NewspaperHandler" unique_id=1058876296]
+script = ExtResource("4_nuvyl")
+inspect_model = ExtResource("2_g81oa")
+key = 1
