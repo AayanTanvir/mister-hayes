@@ -10,16 +10,16 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("esc"):
+		GameManager.paused_interact_mode(false)
 		close()
 
 
 func show_text(text: String):
-	GameManager.set_interact_mode(true)
+	GameManager.paused_interact_mode(true)
 	label.text = text
 	show()
 
 
 func close():
-	GameManager.set_interact_mode(false)
 	label.text = ""
 	hide()

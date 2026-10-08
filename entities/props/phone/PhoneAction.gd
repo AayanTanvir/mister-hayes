@@ -1,20 +1,28 @@
 class_name PhoneAction
 extends InteractAction
 
-const PICKUP_TIME := 0.6
-const RETURN_TIME := 0.5
-const FADE_IN_TIME := 0.3
-const FADE_OUT_TIME := 0.2
+const MOVE_TIME := 0.4
+const FADE_TIME := 0.2
 
 @export var _screen_mesh: MeshInstance3D
 @export var _screen_viewport: SubViewport
 @export var _inbox: Control
 @export var _phone: Node3D
-@export_range(1.0, 10.0, 0.5) var hold_duration := 2.0
+@export_range(1.0, 10.0, 0.5) var hold_duration := 1.5
 
 var _home: Node3D
 var _rest_local: Transform3D
 var _busy := false
+var _has_used := false
+
+var _post_use_lines = [
+	"Still nothing.",
+	"Real popular guy.",
+	"Eyes on the road.",
+	"Stop checking, Hayes.",
+	"Nope.",
+]
+var _line_idx := 0
 
 
 func _ready() -> void:
@@ -33,18 +41,26 @@ func execute(_k: ActionKey) -> void:
 		return
 	
 	_busy = true
-	GameManager.set_interact_mode(true, false, true)
+	GameManager.interact_mode(true)
+	
+	if _has_used:
+		var line = _next_post_use_line()
+		DialogueManager.say({"text": line})
+	else:
+		_has_used = true
 
-	await _slide_to(GameManager.player.hold_marker, Transform3D.IDENTITY, PICKUP_TIME, Tween.EASE_OUT)
-	await _fade_inbox(1.0, FADE_IN_TIME)
-	await get_tree().create_timer(hold_duration).timeout
+		await _slide_to(GameManager.player.hold_marker, Transform3D.IDENTITY, MOVE_TIME, Tween.EASE_OUT)
+		await _fade_inbox(1.0, FADE_TIME)
+		await get_tree().create_timer(hold_duration).timeout
 
-	_fade_inbox(0.0, FADE_OUT_TIME)  # not awaited on purpose. fades while it slides back
-	await _slide_to(_home, _rest_local, RETURN_TIME, Tween.EASE_IN_OUT)
+		_fade_inbox(0.0, FADE_TIME)  # not awaited on purpose. fades while it slides back
+		await _slide_to(_home, _rest_local, MOVE_TIME, Tween.EASE_IN_OUT)
 
-	DialogueManager.say({"speaker": "Ethan", "text": "*sighs* ...Right"})
+		DialogueManager.say({"text": "*sighs* ...Right"})
+		
+	await DialogueManager.idle
 	_busy = false
-	GameManager.set_interact_mode(false, false)
+	GameManager.interact_mode(false)
 
 
 func _slide_to(new_parent: Node3D, target: Transform3D, time: float, ease_type: Tween.EaseType) -> void:
@@ -66,3 +82,10 @@ func _setup_screen() -> void:
 	mat.albedo_texture = _screen_viewport.get_texture()
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	_screen_mesh.set_surface_override_material(0, mat)
+
+
+func _next_post_use_line() -> String:
+	if _line_idx == 0:
+		_post_use_lines.shuffle()
+	_line_idx = (_line_idx + 1) % _post_use_lines.size()
+	return _post_use_lines[_line_idx]

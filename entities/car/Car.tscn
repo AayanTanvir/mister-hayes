@@ -2,21 +2,15 @@
 
 [ext_resource type="Script" uid="uid://b711onmo4r2a3" path="res://entities/car/CarCabinFX.gd" id="2_fx"]
 [ext_resource type="PackedScene" uid="uid://dia8smq87rm2h" path="res://entities/car/model/CarMesh.tscn" id="2_room6"]
-[ext_resource type="Script" uid="uid://cl6ftikttg60y" path="res://entities/car/car_interactables/RadioAction.gd" id="4_oefwb"]
 [ext_resource type="PackedScene" uid="uid://gjy71yvsgmv3" path="res://entities/props/newspaper/Newspaper.tscn" id="4_xjurd"]
 [ext_resource type="PackedScene" uid="uid://deacm0ytl4dkg" path="res://entities/props/letter/claire_letter/ClairLetter.tscn" id="5_rfouc"]
 [ext_resource type="PackedScene" uid="uid://cwr0ii5morvt5" path="res://entities/props/letter/cbi_letter/CbiLetter.tscn" id="6_46kew"]
 [ext_resource type="Script" uid="uid://jxrjni08aepa" path="res://scripts/component/interactables/Interactable.gd" id="8_20dsh"]
 [ext_resource type="PackedScene" uid="uid://bmv1hr08cvrs0" path="res://entities/props/phone/Phone.tscn" id="8_rfouc"]
-[ext_resource type="AudioStream" uid="uid://x2wbl2yp4asb" path="res://assets/sounds/radio/1.mp3" id="9_7iobv"]
 [ext_resource type="Script" uid="uid://cc2gjf1ngkgxn" path="res://scripts/component/interactables/RotateAction.gd" id="9_avoeo"]
-[ext_resource type="AudioStream" uid="uid://3jd71uyufgb5" path="res://assets/sounds/radio/2.mp3" id="10_xdy77"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5gy4"]
 size = Vector3(0.5, 0.21, 0.07)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8vrlf"]
-size = Vector3(0.5, 0.2, 0.08)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbdty"]
 size = Vector3(0.39999998, 0.03, 0.16)
@@ -69,26 +63,6 @@ shape = SubResource("BoxShape3D_v5gy4")
 script = ExtResource("9_avoeo")
 _mesh = NodePath("../../../CarMesh/GloveBox")
 _interact_area = NodePath("..")
-
-[node name="RadioHandler" type="Area3D" parent="Props" unique_id=171443161]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999997, 1.21, -1.15)
-collision_layer = 2
-monitoring = false
-monitorable = false
-script = ExtResource("8_20dsh")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Props/RadioHandler" unique_id=1992663287]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00999999)
-shape = SubResource("BoxShape3D_8vrlf")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Props/RadioHandler" unique_id=401371028]
-volume_db = -25.0
-pitch_scale = 0.8
-
-[node name="RadioAction" type="Node" parent="Props/RadioHandler" unique_id=385844766 node_paths=PackedStringArray("audio_player")]
-script = ExtResource("4_oefwb")
-audio_player = NodePath("../AudioStreamPlayer")
-tracks = Array[AudioStream]([ExtResource("9_7iobv"), ExtResource("10_xdy77")])
 
 [node name="L_SunscreenHandler" type="Area3D" parent="Props" unique_id=834597792]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58000004, 2.11, -0.8)

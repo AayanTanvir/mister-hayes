@@ -20,12 +20,17 @@ func _on_interactable_detected(_detected: bool, prompt: String) -> void:
 	set_interact_prompt(prompt)
 
 
-func set_interact_prompt(prompt: String = ""):
+func set_interact_prompt(prompt: String):
 	interact_prompt.text = prompt
 	interact_prompt_container.visible = not not prompt
 
 
-func set_hud_visible(show_hud: bool, change_interact_prompt: bool = false):
-	crosshair.visible = show_hud
-	if change_interact_prompt:
-		interact_prompt_container.visible = show_hud
+func hud_visible(v: bool):
+	crosshair.visible = v
+	
+	if v:
+		GameManager.sync_interact_prompt()
+		DialogueManager.sync_dialogue_visiblity()
+	else:
+		interact_prompt_container.visible = false
+		dialogue_container.visible = false

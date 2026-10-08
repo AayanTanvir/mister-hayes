@@ -1,0 +1,916 @@
+[gd_scene format=3 uid="uid://rsxeejsy00mg"]
+
+[ext_resource type="Script" uid="uid://djee50up2ur7x" path="res://scenes/intro/Intro.gd" id="1_2xnbr"]
+[ext_resource type="PackedScene" uid="uid://bbh5j4hbsw5d5" path="res://assets/models/environment/trees/Tree01.tscn" id="2_n61yc"]
+[ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="3_37sh5"]
+[ext_resource type="PackedScene" uid="uid://cfx6xvbnfc76e" path="res://assets/models/environment/trees/Tree02.tscn" id="3_fvyfp"]
+[ext_resource type="Script" uid="uid://br78gtdiqhqx4" path="res://scenes/intro/scripts/CarRoute.gd" id="3_route"]
+[ext_resource type="Material" uid="uid://ci8pv8sga66al" path="res://assets/materials/M_Road.material" id="3_v3ouk"]
+[ext_resource type="PackedScene" uid="uid://do72tetk3dkhh" path="res://assets/models/environment/trees/Tree03.tscn" id="4_feb5t"]
+[ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="5_car"]
+[ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="6_ui"]
+[ext_resource type="Script" uid="uid://cawaqspco3rof" path="res://scenes/intro/scripts/RoadPath.gd" id="6_v3ouk"]
+[ext_resource type="Script" uid="uid://bxp3i4cnonh8y" path="res://addons/road-generator/nodes/road_manager.gd" id="8_kuy3d"]
+[ext_resource type="Script" uid="uid://dgqq1tf8prx5s" path="res://addons/proton_scatter/src/scatter.gd" id="9_43en7"]
+[ext_resource type="Script" uid="uid://cph7euje06kel" path="res://addons/road-generator/nodes/road_container.gd" id="9_v3ouk"]
+[ext_resource type="Script" uid="uid://ba8jou0xje0c7" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="10_4tk06"]
+[ext_resource type="Script" uid="uid://difs1qg4mpcpw" path="res://addons/road-generator/nodes/road_point.gd" id="10_grl5c"]
+[ext_resource type="Script" uid="uid://b5s7ggmsi8g5u" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="11_j1haf"]
+[ext_resource type="Script" uid="uid://gjjh4mw1wn51" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="12_rbyhr"]
+[ext_resource type="Script" uid="uid://b0332hlb7q5t1" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="13_fvafq"]
+[ext_resource type="Texture2D" uid="uid://b4cvrey1vk0kx" path="res://assets/textures/nature/ground_01.png" id="13_g40ee"]
+[ext_resource type="Script" uid="uid://dc4rwlje6dfca" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="14_hqj03"]
+[ext_resource type="Texture2D" uid="uid://cm30qxl66kjv4" path="res://assets/textures/nature/ground_01_n.png" id="14_lp6as"]
+[ext_resource type="Texture2D" uid="uid://c7cwfpxwfj0s2" path="res://assets/textures/nature/ground_02.png" id="15_ahulr"]
+[ext_resource type="Script" uid="uid://it6ja2wjneak" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="15_ett85"]
+[ext_resource type="Script" uid="uid://c85i0481q4uog" path="res://addons/proton_scatter/src/scatter_item.gd" id="16_6sa0f"]
+[ext_resource type="Texture2D" uid="uid://pvoja1046nqn" path="res://assets/textures/nature/ground_02_n.png" id="16_n61yc"]
+[ext_resource type="Script" uid="uid://dx7e7heldjwmg" path="res://addons/proton_scatter/src/scatter_shape.gd" id="17_f4m7j"]
+[ext_resource type="Script" uid="uid://stwgokpcvk0m" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="18_43en7"]
+[ext_resource type="Script" uid="uid://6mvg0gb77knh" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="19_4tk06"]
+[ext_resource type="Texture2D" uid="uid://cuog4nqprp25j" path="res://assets/textures/stock/MisterHayes.png" id="27_4tk06"]
+[ext_resource type="Texture2D" uid="uid://p3lhe23u0f0o" path="res://assets/textures/sky/NightSkyHDRI003_1K_TONEMAPPED.jpg" id="27_43en7"]
+
+[sub_resource type="Gradient" id="Gradient_n61yc"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fvyfp"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_feb5t"]
+noise = SubResource("FastNoiseLite_fvyfp")
+color_ramp = SubResource("Gradient_n61yc")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_65637"]
+_shader_parameters = {
+&"bias_distance": null,
+&"blend_sharpness": null,
+&"depth_blur": null,
+&"enable_macro_variation": null,
+&"enable_projection": null,
+&"flat_terrain_normals": null,
+&"macro_variation1": null,
+&"macro_variation2": null,
+&"macro_variation_slope": null,
+&"mipmap_bias": null,
+&"noise1_angle": null,
+&"noise1_offset": null,
+&"noise1_scale": null,
+&"noise2_scale": null,
+&"noise_texture": SubResource("NoiseTexture2D_feb5t"),
+&"projection_threshold": null
+}
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_n61yc"]
+name = "Tree01"
+scene_file = ExtResource("2_n61yc")
+density = 0.42990002
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+lod1_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_feb5t"]
+name = "Tree02"
+id = 1
+scene_file = ExtResource("3_fvyfp")
+density = 0.01
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_65637"]
+name = "Tree03"
+id = 2
+scene_file = ExtResource("4_feb5t")
+density = 0.01
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_lp6as"]
+name = "ground_01"
+albedo_texture = ExtResource("13_g40ee")
+normal_texture = ExtResource("14_lp6as")
+uv_scale = 0.25
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_fvyfp"]
+name = "ground_02"
+id = 1
+albedo_texture = ExtResource("15_ahulr")
+normal_texture = ExtResource("16_n61yc")
+uv_scale = 0.25
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_1vivr"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_n61yc"), SubResource("Terrain3DMeshAsset_feb5t"), SubResource("Terrain3DMeshAsset_65637")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_lp6as"), SubResource("Terrain3DTextureAsset_fvyfp")])
+
+[sub_resource type="Resource" id="Resource_4tk06"]
+script = ExtResource("12_rbyhr")
+amount = 250
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_j1haf"]
+script = ExtResource("13_fvafq")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(2, 360, 2)
+scale = Vector3(0.2, 0.4, 0.2)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_rbyhr"]
+script = ExtResource("14_hqj03")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_fvafq"]
+script = ExtResource("15_ett85")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_hqj03"]
+script = ExtResource("10_4tk06")
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_4tk06"), SubResource("Resource_j1haf"), SubResource("Resource_rbyhr"), SubResource("Resource_fvafq")])
+
+[sub_resource type="Curve3D" id="Curve3D_43en7"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -87.321884, 0, -134.81384, 0, 0, 0, 0, 0, 0, -103.56684, 0, -76.31081, 0, 0, 0, 0, 0, 0, -109.750244, 0, 1.38134, 0, 0, 0, 0, 0, 0, -88.790695, 0, 122.32532, 0, 0, 0, 0, 0, 0, -81.30649, 0, 172.98508, 0, 0, 0, 0, 0, 0, -76.7553, 0, 242.12122, 0, 0, 0, 0, 0, 0, -77.089355, 0, 302.8786, 0, 0, 0, 0, 0, 0, -70.00758, 0, 398.45166, 0, 0, 0, 0, 0, 0, -1.0346222, 0, 399.96725, 0, 0, 0, 0, 0, 0, -0.45466614, 0, -134.7031, 0, 0, 0, 0, 0, 0, -54.169785, 0, -269.42697),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 11
+
+[sub_resource type="Resource" id="Resource_4dxuf"]
+script = ExtResource("18_43en7")
+curve = SubResource("Curve3D_43en7")
+metadata/_custom_type_script = "uid://stwgokpcvk0m"
+
+[sub_resource type="Resource" id="Resource_ett85"]
+script = ExtResource("12_rbyhr")
+amount = 250
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_6sa0f"]
+script = ExtResource("13_fvafq")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(2, 360, 2)
+scale = Vector3(0.2, 0.4, 0.2)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_f4m7j"]
+script = ExtResource("14_hqj03")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_3wqtt"]
+script = ExtResource("15_ett85")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_3fgkd"]
+script = ExtResource("10_4tk06")
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_ett85"), SubResource("Resource_6sa0f"), SubResource("Resource_f4m7j"), SubResource("Resource_3wqtt")])
+
+[sub_resource type="Curve3D" id="Curve3D_4tk06"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 38.662296, 0, -195.885, 0, 0, 0, 0, 0, 0, 5.20467, 0, -85.009155, 0, 0, 0, 0, 0, 0, -0.82723427, 0, -22.104942, 0, 0, 0, 0, 0, 0, 1.2580776, 0, 32.95688, 0, 0, 0, 0, 0, 0, 8.797981, 0, 90.69089, 0, 0, 0, 0, 0, 0, 20.422743, 0, 155.6589, 0, 0, 0, 0, 0, 0, 25.436897, 0, 199.48328, 0, 0, 0, 0, 0, 0, 25.765234, 0, 285.50092, 0, 0, 0, 0, 0, 0, 30.399656, 0, 398.42236, 0, 0, 0, 0, 0, 0, -33.23917, 0, 398.85562, 0, 0, 0, 0, 0, 0, -44.72864, 0, -137.13603, 0, 0, 0, 0, 0, 0, 60.201767, 0, -299.78647),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
+
+[sub_resource type="Resource" id="Resource_8vrlf"]
+script = ExtResource("18_43en7")
+curve = SubResource("Curve3D_4tk06")
+metadata/_custom_type_script = "uid://stwgokpcvk0m"
+
+[sub_resource type="Resource" id="Resource_28slb"]
+script = ExtResource("12_rbyhr")
+amount = 250
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_cpwjo"]
+script = ExtResource("13_fvafq")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(2, 360, 2)
+scale = Vector3(0.2, 0.4, 0.2)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_djrh1"]
+script = ExtResource("14_hqj03")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_fry2l"]
+script = ExtResource("15_ett85")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_di2dv"]
+script = ExtResource("10_4tk06")
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_28slb"), SubResource("Resource_cpwjo"), SubResource("Resource_djrh1"), SubResource("Resource_fry2l")])
+
+[sub_resource type="Curve3D" id="Curve3D_j1haf"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -25.295639, 0, -222.82593, 0, 0, 0, 0, 0, 0, -13.094666, 0, 26.718018, 0, 0, 0, 0, 0, 0, -34.117424, 0, 126.043945, 0, 0, 0, 0, 0, 0, -87.32814, 0, 189.89264, 0, 0, 0, 0, 0, 0, -169.35585, 0, 219.34052, 0, 0, 0, 0, 0, 0, -306.52728, 0, 218.16522, 0, 0, 0, 0, 0, 0, -510.96814, 0, 113.99896, 0, 0, 0, 0, 0, 0, -487.27917, 0, 67.55664, 0, 0, 0, 0, 0, 0, -289.52084, 0, 163.7583, 0, 0, 0, 0, 0, 0, -209.71007, 0, 171.56586, 0, 0, 0, 0, 0, 0, -149.41824, 0, 152.04694, 0, 0, 0, 0, 0, 0, -115.15167, 0, 111.707825, 0, 0, 0, 0, 0, 0, -97.00179, 0, 41.86432, 0, 0, 0, 0, 0, 0, -101.63637, 0, -221.52466),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+
+[sub_resource type="Resource" id="Resource_jlt0o"]
+script = ExtResource("18_43en7")
+curve = SubResource("Curve3D_j1haf")
+metadata/_custom_type_script = "uid://stwgokpcvk0m"
+
+[sub_resource type="Resource" id="Resource_fjp0l"]
+script = ExtResource("12_rbyhr")
+amount = 250
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_kfwsd"]
+script = ExtResource("13_fvafq")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(2, 360, 2)
+scale = Vector3(0.2, 0.4, 0.2)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_kvwun"]
+script = ExtResource("14_hqj03")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_tyr7g"]
+script = ExtResource("15_ett85")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_jmd3u"]
+script = ExtResource("10_4tk06")
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_fjp0l"), SubResource("Resource_kfwsd"), SubResource("Resource_kvwun"), SubResource("Resource_tyr7g")])
+
+[sub_resource type="Curve3D" id="Curve3D_46lff"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -16.993547, 0, -219.67194, 0, 0, 0, 0, 0, 0, -14.574628, 0, -79.37579, 0, 0, 0, 0, 0, 0, -14.478125, 0, 32.96991, 0, 0, 0, 0, 0, 0, -22.912386, 0, 81.96307, 0, 0, 0, 0, 0, 0, -49.520264, 0, 118.24658, 0, 0, 0, 0, 0, 0, -95.88251, 0, 140.01666, 0, 0, 0, 0, 0, 0, -161.59592, 0, 131.1474, 0, 0, 0, 0, 0, 0, -242.68628, 0, 103.022644, 0, 0, 0, 0, 0, 0, -350.73044, 0, 38.518677, 0, 0, 0, 0, 0, 0, -312.56183, 0, -14.176514, 0, 0, 0, 0, 0, 0, -225.6189, 0, 34.52643, 0, 0, 0, 0, 0, 0, -154.2253, 0, 67.0957, 0, 0, 0, 0, 0, 0, -86.13009, 0, 48.549072, 0, 0, 0, 0, 0, 0, -84.75462, 0, -83.39221, 0, 0, 0, 0, 0, 0, -85.80899, 0, -217.031),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 15
+
+[sub_resource type="Resource" id="Resource_15lfp"]
+script = ExtResource("18_43en7")
+curve = SubResource("Curve3D_46lff")
+metadata/_custom_type_script = "uid://stwgokpcvk0m"
+
+[sub_resource type="Resource" id="Resource_fx433"]
+script = ExtResource("12_rbyhr")
+amount = 250
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_dmwxt"]
+script = ExtResource("13_fvafq")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(2, 360, 2)
+scale = Vector3(0.2, 0.4, 0.2)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_sviur"]
+script = ExtResource("14_hqj03")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_hr66v"]
+script = ExtResource("15_ett85")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_0aavb"]
+script = ExtResource("10_4tk06")
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_fx433"), SubResource("Resource_dmwxt"), SubResource("Resource_sviur"), SubResource("Resource_hr66v")])
+
+[sub_resource type="Curve3D" id="Curve3D_0aavb"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 81.1738, 0, 98.46576, 0, 0, 0, 0, 0, 0, 2.809723, 0, 31.86023, 0, 0, 0, 0, 0, 0, -40.57553, 0, 4.8843384, 0, 0, 0, 0, 0, 0, -80.27945, 0, -0.07867432, 0, 0, 0, 0, 0, 0, -126.518005, 0, 3.3849487, 0, 0, 0, 0, 0, 0, -171.3949, 0, 13.624634, 0, 0, 0, 0, 0, 0, -222.49976, 0, 34.221985, 0, 0, 0, 0, 0, 0, -257.57117, 0, 73.5, 0, 0, 0, 0, 0, 0, -268.47028, 0, 107.90845, 0, 0, 0, 0, 0, 0, -269.20905, 0, 156.66736, 0, 0, 0, 0, 0, 0, -310.3955, 0, 156.48267, 0, 0, 0, 0, 0, 0, -303.52765, 0, 64.55438, 0, 0, 0, 0, 0, 0, -273.09705, 0, 20.855164, 0, 0, 0, 0, 0, 0, -223.3797, 0, -8.325439, 0, 0, 0, 0, 0, 0, -165.81897, 0, -26.433777, 0, 0, 0, 0, 0, 0, -95.41754, 0, -34.280396, 0, 0, 0, 0, 0, 0, -24.12613, 0, -29.478394, 0, 0, 0, 0, 0, 0, 40.868774, 0, 4.17334, 0, 0, 0, 0, 0, 0, 118.143524, 0, 46.72003),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 19
+
+[sub_resource type="Resource" id="Resource_46lff"]
+script = ExtResource("18_43en7")
+curve = SubResource("Curve3D_0aavb")
+metadata/_custom_type_script = "uid://stwgokpcvk0m"
+
+[sub_resource type="Resource" id="Resource_fc37f"]
+script = ExtResource("12_rbyhr")
+amount = 250
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_4lkg5"]
+script = ExtResource("13_fvafq")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(2, 360, 2)
+scale = Vector3(0.2, 0.4, 0.2)
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_ue5g0"]
+script = ExtResource("14_hqj03")
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = false
+restrict_height = true
+
+[sub_resource type="Resource" id="Resource_foe07"]
+script = ExtResource("15_ett85")
+ray_length = 5.0
+ray_offset = 5.0
+remove_points_on_miss = false
+
+[sub_resource type="Resource" id="Resource_7w54k"]
+script = ExtResource("10_4tk06")
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_fc37f"), SubResource("Resource_4lkg5"), SubResource("Resource_ue5g0"), SubResource("Resource_foe07")])
+
+[sub_resource type="Curve3D" id="Curve3D_7w54k"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 83.55783, 0, 34.12451, 0, 0, 0, 0, 0, 0, 29.03363, 0, -12.102539, 0, 0, 0, 0, 0, 0, -12.452209, 0, -46.180176, 0, 0, 0, 0, 0, 0, -50.41925, 0, -60.815857, 0, 0, 0, 0, 0, 0, -89.23813, 0, -59.33423, 0, 0, 0, 0, 0, 0, -141.39175, 0, -51.03705, 0, 0, 0, 0, 0, 0, -187.02615, 0, -27.923523, 0, 0, 0, 0, 0, 0, -213.42538, 0, 1.9718018, 0, 0, 0, 0, 0, 0, -221.16678, 0, 41.865967, 0, 0, 0, 0, 0, 0, -221.20071, 0, 75.56897, 0, 0, 0, 0, 0, 0, -221.2922, 0, 151.00586, 0, 0, 0, 0, 0, 0, -220.26364, 0, 195.60034, 0, 0, 0, 0, 0, 0, -165.88046, 0, 195.47601, 0, 0, 0, 0, 0, 0, -168.59824, 0, 39.5791, 0, 0, 0, 0, 0, 0, -134.05026, 0, 4.3722534, 0, 0, 0, 0, 0, 0, -86.9415, 0, -3.0964355, 0, 0, 0, 0, 0, 0, -35.084167, 0, 7.867676, 0, 0, 0, 0, 0, 0, 56.662262, 0, 85.120056),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 18
+
+[sub_resource type="Resource" id="Resource_tc7hs"]
+script = ExtResource("18_43en7")
+curve = SubResource("Curve3D_7w54k")
+metadata/_custom_type_script = "uid://stwgokpcvk0m"
+
+[sub_resource type="Curve3D" id="Curve3D_plq68"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -2.49605, 0, 9.143754, -0.12950325, 0.25048828, 8.168472, 2.316847, 0, -9.190797, -2.4187543, 0, 9.5950575, -7.617653, 0.25048828, 35.599735, 1.7522998, -1.4706427e-05, -9.738836, -2.42711, 2.0369867e-05, 13.489259, -14.309887, 0.25048828, 64.52124, 0.4317393, 1.050816e-05, -13.699073, -0.8554592, -2.0821137e-05, 27.143692, -19.585394, 0.25061035, 105.29903, -2.8514955, -2.8102304e-05, -27.00705, 2.6039836, 2.5663008e-05, 24.662819, -14.240921, 0.25024414, 186.59505, -3.687464, 2.180179e-05, -24.524237, 2.9083292, -1.7195229e-05, 19.34244, -3.5098047, 0.25073242, 260.2168, -2.1494837, 8.145772e-05, -19.4414, 2.124771, -8.052121e-05, 19.217882, 5.476284, 0.25024414, 318.20425, -0.94464487, -5.907774e-06, -19.311895, 3.25365, 2.0348207e-05, 66.51617, 9.330004, 0.25024414, 376.08105, -1.8453759, -5.6988658e-05, -66.57013, 2.0491784, 6.328246e-05, 73.922104, 15.57547, 0.2503662, 575.7705, 0.5, 0, -14.5, -0.5, 0, 14.5, 19.986752, 0.25048828, 793.07996, 6.035792, 3.7005364e-05, -15.320655, -7.697246, -4.7191716e-05, 19.537924, 12.113539, 0.25048828, 846.1634, 16.541548, 4.4332673e-06, -12.936584, -20.825735, -5.5814635e-06, 16.287102, -21.937868, 0.2503662, 899.16626, 33.5, 0, -0.5, -33.5, 0, 0.5, -97.03269, 0.25048828, 924.6926, 23, 0, 7, -23, 0, -7, -193.38474, 0.2503662, 905.3606, 12, 0, 6, -12, 0, -6, -269.4981, 0.25024414, 872.51447, 17.5, 0, 13.5, -17.5, 0, -13.5, -371.97107, 0.2503662, 804.13104, 24.5, 0, 17.5, -24.5, 0, -17.5, -442.82288, 0.25048828, 744.4683, 21.638977, -1.1622826e-05, 1.3797141, -44.617306, 2.3965047e-05, -2.844826, -503.5157, 0.25073242, 721.0648, 38.547638, 4.2316874e-06, -22.646776, -13.763482, -1.5109293e-06, 8.086061, -633.7732, 0.2503662, 753.03595, 7.4159756, -2.1086526e-05, -14.13581, -5.2667065, 1.49753105e-05, 10.039023, -666.3856, 0.25048828, 788.1043, -0.5, 0, -19, 0.5, 0, 19, -674.0113, 0.25, 830.1246, -0.42626953, 4.0690105e-05, -42.193542, 0.42626953, -4.0690105e-05, 42.193542, -672.43506, 0.2503662, 947.89606, 0, 0, 0, 0, 0, 0, -671.24963, 0.25048828, 1075.0873, 0, 0, 0, 0, 0, 0, -668.7156, 0.2502454, 1279.4407, 0, 0, 0, 0, 0, 0, -667.3161, 0.25012207, 1428.9023, 0, 0, 0, 0, 0, 0, -665.31134, 0.2501208, 1599.1335),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 26
+
+[sub_resource type="Animation" id="Animation_43en7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DroneCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-662.71857, 41.229507, 791.84985)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Titlecard/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4tk06"]
+resource_name = "drone_shot_animation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DroneCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(-662.71857, 41.229507, 791.84985), Vector3(-665.75226, 94.977455, 745.56287)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Titlecard/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j1haf"]
+_data = {
+&"RESET": SubResource("Animation_43en7"),
+&"drone_pullback": SubResource("Animation_4tk06")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_1vivr"]
+size = Vector3(17.833435, 7.352661, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_43en7"]
+panorama = ExtResource("27_43en7")
+
+[sub_resource type="Sky" id="Sky_j1haf"]
+sky_material = SubResource("PanoramaSkyMaterial_43en7")
+
+[sub_resource type="Environment" id="Environment_37sh5"]
+background_mode = 2
+background_energy_multiplier = 1.4
+sky = SubResource("Sky_j1haf")
+sky_custom_fov = 90.0
+ambient_light_source = 2
+ambient_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 2
+tonemap_exposure = 0.8
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.75
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
+fog_light_energy = 0.3
+fog_density = 1.0
+fog_sky_affect = 0.95
+fog_depth_curve = 0.5
+fog_depth_begin = 5.0
+fog_depth_end = 102.5
+adjustment_enabled = true
+adjustment_contrast = 1.02
+adjustment_saturation = 1.25
+
+[node name="Intro" type="Node" unique_id=1251330761 node_paths=PackedStringArray("car_route", "car", "chase_cam", "drone_cam", "pass_by_cam", "drone_shot_anim_player")]
+script = ExtResource("1_2xnbr")
+car_route = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute")
+car = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute/Car")
+handoff_ratio = 0.7
+ethan_dialogue_ratio = 0.1
+chase_cam = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute/ChaseCam")
+drone_cam = NodePath("SubViewportContainer/SubViewport/DroneShot/DroneCam")
+pass_by_cam = NodePath("SubViewportContainer/SubViewport/PassByCam")
+drone_shot_anim_player = NodePath("SubViewportContainer/SubViewport/DroneShot/AnimationPlayer")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1144739562]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=986269365]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="PassByCam" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=266602542]
+transform = Transform3D(-0.52898514, 0.45063403, -0.7190993, 0, 0.84736377, 0.53101283, 0.84863114, 0.2808979, -0.44824284, -31.14138, 29.569622, 119.16506)
+fov = 60.0
+
+[node name="Terrain3D" type="Terrain3D" parent="SubViewportContainer/SubViewport" unique_id=900240703]
+data_directory = "res://scenes/intro/terrain_data"
+material = SubResource("Terrain3DMaterial_65637")
+assets = SubResource("Terrain3DAssets_1vivr")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="Scatters" type="Node" parent="SubViewportContainer/SubViewport" unique_id=144383301]
+
+[node name="ProtonScatterCache" type="Node" parent="SubViewportContainer/SubViewport/Scatters" unique_id=334053831]
+script = ExtResource("19_4tk06")
+cache_file = "res://addons/proton_scatter/cache/Intro_3296636132_scatter_cache.res"
+auto_rebuild_cache_when_saving = false
+metadata/_custom_type_script = "uid://6mvg0gb77knh"
+
+[node name="ProtonScatter" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=1722070278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 85)
+script = ExtResource("9_43en7")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_hqj03")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
+
+[node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter" unique_id=174818560]
+script = ExtResource("16_6sa0f")
+proportion = 50
+path = "uid://bbh5j4hbsw5d5"
+
+[node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter" unique_id=2056793010]
+script = ExtResource("16_6sa0f")
+proportion = 40
+path = "uid://cfx6xvbnfc76e"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter" unique_id=433061002]
+script = ExtResource("16_6sa0f")
+proportion = 10
+path = "uid://do72tetk3dkhh"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter" unique_id=76423035]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
+script = ExtResource("17_f4m7j")
+shape = SubResource("Resource_4dxuf")
+
+[node name="ProtonScatter2" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=833197904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.64043, 0, 85)
+script = ExtResource("9_43en7")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_3fgkd")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
+
+[node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter2" unique_id=1180245146]
+script = ExtResource("16_6sa0f")
+proportion = 50
+path = "uid://bbh5j4hbsw5d5"
+
+[node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter2" unique_id=948092607]
+script = ExtResource("16_6sa0f")
+proportion = 40
+path = "uid://cfx6xvbnfc76e"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter2" unique_id=468475617]
+script = ExtResource("16_6sa0f")
+proportion = 10
+path = "uid://do72tetk3dkhh"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter2" unique_id=1016546735]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
+script = ExtResource("17_f4m7j")
+shape = SubResource("Resource_8vrlf")
+
+[node name="ProtonScatter3" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=44355772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.513, 0, 714.60913)
+script = ExtResource("9_43en7")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_di2dv")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
+
+[node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter3" unique_id=644171931]
+script = ExtResource("16_6sa0f")
+proportion = 50
+path = "uid://bbh5j4hbsw5d5"
+
+[node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter3" unique_id=1714843728]
+script = ExtResource("16_6sa0f")
+proportion = 40
+path = "uid://cfx6xvbnfc76e"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter3" unique_id=401781766]
+script = ExtResource("16_6sa0f")
+proportion = 10
+path = "uid://do72tetk3dkhh"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter3" unique_id=1681041909]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
+script = ExtResource("17_f4m7j")
+shape = SubResource("Resource_jlt0o")
+
+[node name="ProtonScatter4" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=954347597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.168762, 0, 714.01245)
+script = ExtResource("9_43en7")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_jmd3u")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
+
+[node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter4" unique_id=825952919]
+script = ExtResource("16_6sa0f")
+proportion = 50
+path = "uid://bbh5j4hbsw5d5"
+
+[node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter4" unique_id=1933738582]
+script = ExtResource("16_6sa0f")
+proportion = 40
+path = "uid://cfx6xvbnfc76e"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter4" unique_id=1596996169]
+script = ExtResource("16_6sa0f")
+proportion = 10
+path = "uid://do72tetk3dkhh"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter4" unique_id=923346777]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
+script = ExtResource("17_f4m7j")
+shape = SubResource("Resource_15lfp")
+
+[node name="ProtonScatter5" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=1915942277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -475.56595, 0, 650.1361)
+script = ExtResource("9_43en7")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_0aavb")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
+
+[node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter5" unique_id=1991483107]
+script = ExtResource("16_6sa0f")
+proportion = 50
+path = "uid://bbh5j4hbsw5d5"
+
+[node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter5" unique_id=469704574]
+script = ExtResource("16_6sa0f")
+proportion = 40
+path = "uid://cfx6xvbnfc76e"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter5" unique_id=1903613385]
+script = ExtResource("16_6sa0f")
+proportion = 10
+path = "uid://do72tetk3dkhh"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter5" unique_id=1750150388]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
+script = ExtResource("17_f4m7j")
+shape = SubResource("Resource_46lff")
+
+[node name="ProtonScatter6" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=824859930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -494.0102, 0, 739.6451)
+script = ExtResource("9_43en7")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_7w54k")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
+
+[node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter6" unique_id=376964791]
+script = ExtResource("16_6sa0f")
+proportion = 50
+path = "uid://bbh5j4hbsw5d5"
+
+[node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter6" unique_id=728011001]
+script = ExtResource("16_6sa0f")
+proportion = 40
+path = "uid://cfx6xvbnfc76e"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter6" unique_id=1937359333]
+script = ExtResource("16_6sa0f")
+proportion = 10
+path = "uid://do72tetk3dkhh"
+metadata/_custom_type_script = "uid://c85i0481q4uog"
+
+[node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter6" unique_id=377297428]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
+script = ExtResource("17_f4m7j")
+shape = SubResource("Resource_tc7hs")
+
+[node name="RoadManager" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1853990698]
+script = ExtResource("8_kuy3d")
+material_resource = ExtResource("3_v3ouk")
+metadata/_custom_type_script = "uid://bxp3i4cnonh8y"
+
+[node name="Road_001" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager" unique_id=1690101157]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.030546, 0.00036621094, -30.439388)
+script = ExtResource("9_v3ouk")
+use_lowpoly_preview = true
+edge_containers = Array[NodePath]([NodePath(""), NodePath("")])
+edge_rp_targets = Array[NodePath]([NodePath(""), NodePath("")])
+edge_rp_target_dirs = Array[int]([-1, -1])
+edge_rp_locals = Array[NodePath]([NodePath("RP_009"), NodePath("RP_011")])
+edge_rp_local_dirs = Array[int]([1, 0])
+
+[node name="RP_001" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1576407352]
+transform = Transform3D(-0.97240216, 0, 0.23331115, 0, 1, 0, -0.23331115, 0, -0.97240216, 0, 0.25, 0)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+next_mag = 43.599728
+prior_pt_init = NodePath("../RP_002")
+next_pt_init = NodePath("../RP_010")
+
+[node name="RP_002" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=363441598]
+transform = Transform3D(-0.9996537, 0, -0.026314944, 0, 1, 0, 0.026314944, 0, -0.9996537, -23.96318, 0.25, 127.37453)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 61.96758
+next_mag = 51.35454
+prior_pt_init = NodePath("../RP_003")
+next_pt_init = NodePath("../RP_001")
+
+[node name="RP_003" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1721278937]
+transform = Transform3D(-0.9910013, 0, -0.13385205, 0, 1, 0, 0.13385205, 0, -0.9910013, 1.9019928, 0.25, 328.47284)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 31.276058
+next_mag = 61.96758
+prior_pt_init = NodePath("../RP_004")
+next_pt_init = NodePath("../RP_002")
+
+[node name="RP_004" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=2087697949]
+transform = Transform3D(-0.99926853, 0, 0.038242623, 0, 1, 0, -0.038242564, 0, -0.99926853, 16.290041, 0.2501335, 806.3181)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 67.566605
+next_mag = 31.276058
+prior_pt_init = NodePath("../RP_005")
+next_pt_init = NodePath("../RP_003")
+
+[node name="RP_005" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=224624855]
+transform = Transform3D(0.15826535, 0, 0.98739666, 0, 1, 0, -0.98739666, 0, 0.15826535, -119.78722, 0.2501335, 922.70654)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 117.616135
+next_mag = 93.43713
+prior_pt_init = NodePath("../RP_006")
+next_pt_init = NodePath("../RP_004")
+
+[node name="RP_006" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1666457939]
+transform = Transform3D(0.5419616, 0, 0.8404032, 0, 1, 0, -0.8404032, 0, 0.5419616, -331.89584, 0.25, 829.57513)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 113.705864
+next_mag = 35.29184
+prior_pt_init = NodePath("../RP_007")
+next_pt_init = NodePath("../RP_005")
+
+[node name="RP_007" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1469573102]
+transform = Transform3D(-0.11649063, 0, 0.9931918, 0, 1, 0, -0.9931918, 0, -0.11649063, -532.6, 0.25, 722.64557)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 121.058044
+next_mag = 94.62747
+prior_pt_init = NodePath("../RP_008")
+next_pt_init = NodePath("../RP_006")
+
+[node name="RP_008" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1978033191]
+transform = Transform3D(-0.99992764, 0, -0.01202932, 0, 1, 0, 0.01202932, 0, -0.99992764, -678.0208, 0.25, 827.17255)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 485.7125
+next_mag = 38.16266
+prior_pt_init = NodePath("../RP_009")
+next_pt_init = NodePath("../RP_007")
+
+[node name="RP_009" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1320111796]
+transform = Transform3D(-0.9999598, 0, -0.008965046, 0, 1, 0, 0.008965046, 0, -0.9999598, -667.82355, 0.24987793, 1798.544)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 485.7125
+next_mag = 485.7125
+next_pt_init = NodePath("../RP_008")
+
+[node name="RP_010" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=702861179]
+transform = Transform3D(-0.9719571, 0, 0.23515823, 0, 1, 0, -0.23515823, 0, -0.9719571, 20.425146, 0.24999619, -84.773575)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 43.599728
+next_mag = 91.881325
+prior_pt_init = NodePath("../RP_001")
+next_pt_init = NodePath("../RP_011")
+
+[node name="RP_011" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=161666076]
+transform = Transform3D(-0.926055, 0, 0.37738857, 0, 1, 0, -0.37738857, 0, -0.926055, 76.90119, 0.25, -259.64258)
+script = ExtResource("10_grl5c")
+traffic_dir = Array[int]([2, 2, 1, 1])
+lanes = Array[int]([2, 4, 4, 2])
+prior_mag = 91.881325
+next_mag = 91.881325
+prior_pt_init = NodePath("../RP_010")
+
+[node name="RoadPath" type="Path3D" parent="SubViewportContainer/SubViewport" unique_id=1032634714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, -24)
+curve = SubResource("Curve3D_plq68")
+script = ExtResource("6_v3ouk")
+
+[node name="CarRoute" type="PathFollow3D" parent="SubViewportContainer/SubViewport/RoadPath" unique_id=972304914]
+transform = Transform3D(-0.9646867, 0, 0.26333627, 0, 0.9999871, 0, -0.26333895, 0, -0.9646769, -0.12950325, 0.25048828, 8.168472)
+script = ExtResource("3_route")
+
+[node name="Car" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=614255730 instance=ExtResource("5_car")]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, -2.9802322e-08, 0, 1, 0, -0.0071536005, 0)
+
+[node name="ChaseCam" type="Camera3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=1491476341]
+transform = Transform3D(0.9853312, 0.027229141, 0.16856247, 0, 0.98721546, -0.1594722, -0.1707493, 0.15713248, 0.9727315, 3.1187696, 0.24175003, 7.6068745)
+fov = 60.0
+
+[node name="L_Headlight" type="SpotLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=567458555]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.7813174, 0.9937924, -3.4575648)
+light_color = Color(0.8745098, 1, 1, 1)
+spot_range = 20.0
+spot_attenuation = -0.5
+spot_angle = 20.0
+
+[node name="R_Headlight" type="SpotLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=1368590744]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.96979934, 0.9937924, -3.4575648)
+light_color = Color(0.8745098, 1, 1, 1)
+spot_range = 20.0
+spot_attenuation = -0.5
+spot_angle = 20.0
+
+[node name="L_Brakelight" type="OmniLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=1247506725]
+transform = Transform3D(-1, 8.742277e-08, 0, 8.742278e-08, 0.99999994, 8.742277e-08, 7.642742e-15, 8.742277e-08, -0.99999994, -0.78131753, 0.96260333, 3.4398358)
+light_color = Color(1, 0.5568628, 0.5647059, 1)
+omni_range = 0.6
+
+[node name="R_BrakeLight" type="OmniLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=880472214]
+transform = Transform3D(-1, 8.742277e-08, 0, 8.742278e-08, 0.99999994, 8.742277e-08, 7.642742e-15, 8.742277e-08, -0.99999994, 0.8549958, 0.9626032, 3.4398358)
+light_color = Color(1, 0.5568628, 0.5647059, 1)
+omni_range = 0.6
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=1912628050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.313226e-10, 1.7102736, -0.63616765)
+omni_range = 2.0
+
+[node name="DroneShot" type="Node" parent="SubViewportContainer/SubViewport" unique_id=200213398]
+
+[node name="DroneCam" type="Camera3D" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=1596457085]
+transform = Transform3D(-0.997859, 0.049512383, -0.042731382, 0, 0.6533631, 0.7570447, 0.065402195, 0.75542384, -0.65196425, -662.71857, 41.229507, 791.84985)
+
+[node name="DroneShotStart" type="Marker3D" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=873922494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -662.71857, 41.229507, 791.84985)
+
+[node name="DroneShotEnd" type="Marker3D" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=1695345340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -665.75226, 94.977455, 745.56287)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=908605969]
+libraries/ = SubResource("AnimationLibrary_j1haf")
+
+[node name="Titlecard" type="CanvasLayer" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=862708773]
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DroneShot/Titlecard" unique_id=1057313058]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("27_4tk06")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=51400517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -666.11096, 3.1763306, 802.0143)
+mesh = SubResource("BoxMesh_1vivr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=830392400]
+environment = SubResource("Environment_37sh5")
+
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=1234029208 instance=ExtResource("3_37sh5")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -3)
+
+[node name="UI" parent="." unique_id=693540099 instance=ExtResource("6_ui")]
+unique_name_in_owner = true

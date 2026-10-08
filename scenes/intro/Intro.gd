@@ -1,11 +1,15 @@
 class_name Intro
 extends Node
 
+@export_range(0.0, 1.0) var handoff_ratio := 0.655 	## route progress where the interior phase ends
+@export_range(0.0, 1.0) var ethan_dialogue_ratio := 0.1	## route progress where ethan says dialogue
+
+@export_group("References")
 @export var car_route: CarRoute
-@export var drone_route: DroneCamRoute
 @export var car: CarCabinFX
-@export_range(0.0, 1.0) var handoff_ratio := 0.85	## route progress where the interior phase ends
-@export_range(0.0, 1.0) var ethan_dialogue_ratio := 0.7	## route progress where ethan says dialogue
+@export var track_player: AudioStreamPlayer
+@export var black_screen: ColorRect
+@export var engine_audio: EngineAudio
 
 @export_group("Shots")
 @export var chase_cam: Camera3D
@@ -13,6 +17,7 @@ extends Node
 @export var pass_by_cam: Camera3D
 @export var chase_duration := 5.0
 @export var pass_by_duration := 3.0
+@export var drone_shot_anim_player: AnimationPlayer
 
 
 var player: Player
@@ -34,17 +39,24 @@ func _ready() -> void:
 	player = GameManager.player
 	ui = GameManager.ui
 	
+	black_screen.hide()
 	start_intro()
 
 
 func start_intro():
 	player.seat_in(car.seat)
-	player.disable_look(true)
-	ui.set_hud_visible(false)
-
+	player.disable_cam(true)
+	player.disable_interact(true)
+	ui.hud_visible(false)
+	
 	# chase
 	chase_cam.make_current()
 	car_route.start()
+	
+	track_player.play()
+	engine_audio.play()
+	engine_audio.set_inside(false)
+	
 	await get_tree().create_timer(chase_duration).timeout
 
 	# pass by shot
@@ -53,14 +65,26 @@ func start_intro():
 
 	# inside the car
 	player.camera.make_current()
-	player.disable_look(false)
-	ui.set_hud_visible(true)
-	await car_route.wait_until_ratio(ethan_dialogue_ratio)
-	DialogueManager.start_dialogue(intro_dialogue, false)
+	player.disable_cam(false)
+	ui.hud_visible(true)
+	engine_audio.set_inside(true)
+	
+	await get_tree().create_timer(1.0).timeout
+	DialogueManager.start_single_dialogue(intro_dialogue, true)
+	await DialogueManager.idle
+	player.disable_interact(false)	# Allow interaction after dialogue
+	
 	await car_route.wait_until_ratio(handoff_ratio)
 
-	# drone shot of the map, then title card
-	player.disable_look(true)
-	ui.set_hud_visible(false)
+	# drone shot, then title card
+	player.disable_cam(true)
+	player.disable_interact(true)
+	ui.hud_visible(false)
+	GameManager.restrict_changes(true)
+	
+	engine_audio.set_inside(false)
 	drone_cam.make_current()
-	drone_route.start()
+	drone_shot_anim_player.play("drone_pullback")
+	await drone_shot_anim_player.animation_finished
+	black_screen.show()
+	GameManager.restrict_changes(false)

@@ -25,9 +25,11 @@ func seat_in(seat: Node3D) -> void:
 	mesh.visible = false
 
 
-func disable_look(disable: bool, change_camera: bool = true) -> void:
-	if change_camera:
-		camera_controller.set_process_unhandled_input(not disable)
+func disable_cam(disable: bool) -> void:
+	camera_controller.set_process_unhandled_input(not disable)
+
+
+func disable_interact(disable: bool):
 	interact_controller.set_disabled(disable)
 
 

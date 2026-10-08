@@ -6,13 +6,16 @@ signal interactable_detected(detected: bool, prompt: String)
 @export var interact_ray: RayCast3D
 
 var current: Interactable
+var is_detecting := false
 
 
 func _process(_delta: float) -> void:
 	var new_target := interact_ray.get_collider() as Interactable if interact_ray.is_colliding() else null
-
+	
 	if new_target != current:
 		_set_current(new_target)
+	
+	is_detecting = not not current
 	
 	if not current: return
 	

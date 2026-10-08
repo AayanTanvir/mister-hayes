@@ -4,6 +4,7 @@ var ui: UI
 var player: Player
 
 var mouse_captured := false
+var _changes_restricted := false
 
 
 func _ready() -> void:
@@ -27,18 +28,57 @@ func _assign_signals():
 	player.interact_controller.interactable_detected.connect(ui._on_interactable_detected)
 
 
-## [param pause_game]: pauses the game using [code]get_tree().paused[/code].
-## [param disable_camera]: the camera will not be able to move around, only the interaction logic will be disabled.
-func set_interact_mode(interact: bool, pause_game: bool = true, disable_camera: bool = true):
-	if pause_game:
-		get_tree().paused = interact
-	else:
-		player.disable_look(interact, disable_camera)
-		if not player.state == player.State.SEATED:
-			player.set_movement_enabled(not interact)
-	ui.set_hud_visible(not interact, true)
+## Hides HUD and disables player cam/interact/movement.[br]
+## set global = true to disable other interactions to changing the mode
+func interact_mode(enable: bool):
+	if _changes_restricted:
+		return
+	
+	player.disable_cam(enable)
+	player.disable_interact(enable)
+	if not player.state == player.State.SEATED:
+		player.set_movement_enabled(not enable)
+	ui.hud_visible(not enable) # Changes interact
+
+
+func paused_interact_mode(enable: bool):
+	if _changes_restricted:
+		return
+	
+	pause_game(enable)
+	ui.hud_visible(not enable) # Changes interact
+
+
+## Hides HUD and disables only player interact/movement.
+func dialogue_mode(enable: bool):
+	if _changes_restricted:
+		return
+	
+	player.disable_interact(enable)
+	if not player.state == player.State.SEATED:
+		player.set_movement_enabled(not enable)
+	ui.hud_visible(not enable) # Changes interact
+
+
+func pause_game(pause: bool):
+	if _changes_restricted:
+		return
+	
+	get_tree().paused = pause
 
 
 func set_mouse_visible(show: bool):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if show else Input.MOUSE_MODE_CAPTURED
 	mouse_captured = not show
+
+
+func sync_interact_prompt():
+	if _changes_restricted:
+		return
+	
+	if ui.interact_prompt_container.visible != player.interact_controller.is_detecting:
+		ui.interact_prompt_container.visible = player.interact_controller.is_detecting
+
+
+func restrict_changes(restrict: bool):
+	_changes_restricted = restrict

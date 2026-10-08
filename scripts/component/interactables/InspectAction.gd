@@ -14,5 +14,4 @@ func get_prompt() -> String:
 
 
 func execute(_k: ActionKey) -> void:
-	GameManager.set_interact_mode(true, true)
 	GameManager.ui.inspection_viewer.open(inspect_model)

@@ -19,17 +19,12 @@
 		{
 			"uuid": "c6f59e9d-60be-45ab-ba5e-992b37fe789f",
 			"title": "Bugs",
-			"tasks": [
-				"e70abdba-ca7e-4f09-ada9-bb987ce7106f",
-				"5047e7bc-b1f9-4d8e-bf2c-042bbf9b8ab9"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "53dc17d7-4b80-4968-af96-23220b671da4",
 			"title": "Doing",
-			"tasks": [
-				"3114b2f6-d1a5-4598-bd57-45779dcf5373"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "7f9883af-2c16-423d-b238-5fc67ab418e4",
@@ -37,7 +32,12 @@
 			"tasks": [
 				"4ac79ef5-3280-4509-94b4-3c331e6e99ff",
 				"591ca411-111f-4894-bed2-f2c5f3120d2a",
-				"1bb38ec8-09db-4794-b4e6-47467e08c621"
+				"1bb38ec8-09db-4794-b4e6-47467e08c621",
+				"249308a5-8557-4976-a5de-7d29e701e40e",
+				"5047e7bc-b1f9-4d8e-bf2c-042bbf9b8ab9",
+				"e70abdba-ca7e-4f09-ada9-bb987ce7106f",
+				"216b1994-b24b-4290-8c69-0255970914c1",
+				"3114b2f6-d1a5-4598-bd57-45779dcf5373"
 			]
 		}
 	],
@@ -56,20 +56,16 @@
 			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
 			"steps": [
 				{
-					"details": "Town",
-					"done": false
-				},
-				{
-					"details": "Environment",
-					"done": false
-				},
-				{
 					"details": "Drone shot",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Title card",
-					"done": false
+					"done": true
+				},
+				{
+					"details": "Environment",
+					"done": true
 				},
 				{
 					"details": "Car",
@@ -137,6 +133,27 @@
 		{
 			"uuid": "5047e7bc-b1f9-4d8e-bf2c-042bbf9b8ab9",
 			"title": "Phone prompt appears quickly",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "249308a5-8557-4976-a5de-7d29e701e40e",
+			"title": "Trees loading late?",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "602d6e0d-54f4-4ba8-95d7-0af774b7cdbc",
+			"title": "Grass",
+			"description": "",
+			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
+			"steps": []
+		},
+		{
+			"uuid": "216b1994-b24b-4290-8c69-0255970914c1",
+			"title": "hud visible in drone shot",
 			"description": "",
 			"category": "afd9b637-47dc-4d2a-9d81-ded8f1b30bbf",
 			"steps": []

@@ -36,8 +36,8 @@ func _input(event: InputEvent) -> void:
 			_target_z /= wheel_factor
 	
 	if event is InputEventKey and event.is_action_pressed("esc"):
+		GameManager.paused_interact_mode(false)
 		close()
-		GameManager.set_interact_mode(false)
 
 
 func _process(delta: float) -> void:
@@ -58,6 +58,8 @@ func _process(delta: float) -> void:
 
 
 func open(scene: PackedScene) -> void:
+	GameManager.paused_interact_mode(true)
+	
 	_model = scene.instantiate()
 	pivot.add_child(_model)
 	pivot.transform = Transform3D.IDENTITY

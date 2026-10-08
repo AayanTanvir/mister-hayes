@@ -8,11 +8,11 @@
 [ext_resource type="Material" uid="uid://ci8pv8sga66al" path="res://assets/materials/M_Road.material" id="3_v3ouk"]
 [ext_resource type="PackedScene" uid="uid://do72tetk3dkhh" path="res://assets/models/environment/trees/Tree03.tscn" id="4_feb5t"]
 [ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="5_car"]
+[ext_resource type="PackedScene" uid="uid://dpl7hpwl2yoki" path="res://assets/models/environment/grass/GrassPatch01.tscn" id="5_rbyhr"]
 [ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="6_ui"]
 [ext_resource type="Script" uid="uid://cawaqspco3rof" path="res://scenes/intro/scripts/RoadPath.gd" id="6_v3ouk"]
 [ext_resource type="Script" uid="uid://bxp3i4cnonh8y" path="res://addons/road-generator/nodes/road_manager.gd" id="8_kuy3d"]
 [ext_resource type="Script" uid="uid://dgqq1tf8prx5s" path="res://addons/proton_scatter/src/scatter.gd" id="9_43en7"]
-[ext_resource type="Script" uid="uid://csjux7b5ygsti" path="res://scenes/intro/scripts/DroneCamRoute.gd" id="9_grl5c"]
 [ext_resource type="Script" uid="uid://cph7euje06kel" path="res://addons/road-generator/nodes/road_container.gd" id="9_v3ouk"]
 [ext_resource type="Script" uid="uid://ba8jou0xje0c7" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="10_4tk06"]
 [ext_resource type="Script" uid="uid://difs1qg4mpcpw" path="res://addons/road-generator/nodes/road_point.gd" id="10_grl5c"]
@@ -28,7 +28,12 @@
 [ext_resource type="Texture2D" uid="uid://pvoja1046nqn" path="res://assets/textures/nature/ground_02_n.png" id="16_n61yc"]
 [ext_resource type="Script" uid="uid://dx7e7heldjwmg" path="res://addons/proton_scatter/src/scatter_shape.gd" id="17_f4m7j"]
 [ext_resource type="Script" uid="uid://stwgokpcvk0m" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="18_43en7"]
+[ext_resource type="Script" uid="uid://6mvg0gb77knh" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="19_4tk06"]
+[ext_resource type="Texture2D" uid="uid://cuog4nqprp25j" path="res://assets/textures/stock/MisterHayes.png" id="27_4tk06"]
 [ext_resource type="Texture2D" uid="uid://p3lhe23u0f0o" path="res://assets/textures/sky/NightSkyHDRI003_1K_TONEMAPPED.jpg" id="27_43en7"]
+[ext_resource type="AudioStream" uid="uid://byst6iocn5pn" path="res://assets/sounds/car_engine_loop.wav" id="28_hqj03"]
+[ext_resource type="Script" uid="uid://py3kr8ugtm1u" path="res://scenes/intro/scripts/EngineAudio.gd" id="29_ett85"]
+[ext_resource type="AudioStream" uid="uid://bnfyaf83nxvr" path="res://assets/sounds/tracks/intro-track.wav" id="31_j1haf"]
 
 [sub_resource type="Gradient" id="Gradient_n61yc"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -98,6 +103,15 @@ last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
 
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_fvafq"]
+name = "GrassPatch01"
+id = 3
+scene_file = ExtResource("5_rbyhr")
+density = 4.5351467
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_lp6as"]
 name = "ground_01"
 albedo_texture = ExtResource("13_g40ee")
@@ -112,38 +126,38 @@ normal_texture = ExtResource("16_n61yc")
 uv_scale = 0.25
 
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_1vivr"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_n61yc"), SubResource("Terrain3DMeshAsset_feb5t"), SubResource("Terrain3DMeshAsset_65637")])
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_n61yc"), SubResource("Terrain3DMeshAsset_feb5t"), SubResource("Terrain3DMeshAsset_65637"), SubResource("Terrain3DMeshAsset_fvafq")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_lp6as"), SubResource("Terrain3DTextureAsset_fvyfp")])
 
-[sub_resource type="Resource" id="Resource_43en7"]
+[sub_resource type="Resource" id="Resource_rbyhr"]
 script = ExtResource("12_rbyhr")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_4tk06"]
+[sub_resource type="Resource" id="Resource_fvafq"]
 script = ExtResource("13_fvafq")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_j1haf"]
+[sub_resource type="Resource" id="Resource_hqj03"]
 script = ExtResource("14_hqj03")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_rbyhr"]
+[sub_resource type="Resource" id="Resource_ett85"]
 script = ExtResource("15_ett85")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_fvafq"]
+[sub_resource type="Resource" id="Resource_6sa0f"]
 script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_43en7"), SubResource("Resource_4tk06"), SubResource("Resource_j1haf"), SubResource("Resource_rbyhr")])
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_rbyhr"), SubResource("Resource_fvafq"), SubResource("Resource_hqj03"), SubResource("Resource_ett85")])
 
 [sub_resource type="Curve3D" id="Curve3D_43en7"]
 _data = {
@@ -157,35 +171,35 @@ script = ExtResource("18_43en7")
 curve = SubResource("Curve3D_43en7")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_hqj03"]
+[sub_resource type="Resource" id="Resource_f4m7j"]
 script = ExtResource("12_rbyhr")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ett85"]
+[sub_resource type="Resource" id="Resource_3wqtt"]
 script = ExtResource("13_fvafq")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_6sa0f"]
+[sub_resource type="Resource" id="Resource_3fgkd"]
 script = ExtResource("14_hqj03")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_f4m7j"]
+[sub_resource type="Resource" id="Resource_28slb"]
 script = ExtResource("15_ett85")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_3wqtt"]
+[sub_resource type="Resource" id="Resource_cpwjo"]
 script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_hqj03"), SubResource("Resource_ett85"), SubResource("Resource_6sa0f"), SubResource("Resource_f4m7j")])
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_f4m7j"), SubResource("Resource_3wqtt"), SubResource("Resource_3fgkd"), SubResource("Resource_28slb")])
 
 [sub_resource type="Curve3D" id="Curve3D_4tk06"]
 _data = {
@@ -199,35 +213,35 @@ script = ExtResource("18_43en7")
 curve = SubResource("Curve3D_4tk06")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_3fgkd"]
+[sub_resource type="Resource" id="Resource_djrh1"]
 script = ExtResource("12_rbyhr")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_28slb"]
+[sub_resource type="Resource" id="Resource_fry2l"]
 script = ExtResource("13_fvafq")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_cpwjo"]
+[sub_resource type="Resource" id="Resource_di2dv"]
 script = ExtResource("14_hqj03")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_djrh1"]
+[sub_resource type="Resource" id="Resource_fjp0l"]
 script = ExtResource("15_ett85")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_fry2l"]
+[sub_resource type="Resource" id="Resource_kfwsd"]
 script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_3fgkd"), SubResource("Resource_28slb"), SubResource("Resource_cpwjo"), SubResource("Resource_djrh1")])
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_djrh1"), SubResource("Resource_fry2l"), SubResource("Resource_di2dv"), SubResource("Resource_fjp0l")])
 
 [sub_resource type="Curve3D" id="Curve3D_j1haf"]
 _data = {
@@ -241,35 +255,35 @@ script = ExtResource("18_43en7")
 curve = SubResource("Curve3D_j1haf")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_di2dv"]
+[sub_resource type="Resource" id="Resource_kvwun"]
 script = ExtResource("12_rbyhr")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_fjp0l"]
+[sub_resource type="Resource" id="Resource_tyr7g"]
 script = ExtResource("13_fvafq")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_kfwsd"]
+[sub_resource type="Resource" id="Resource_jmd3u"]
 script = ExtResource("14_hqj03")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_kvwun"]
+[sub_resource type="Resource" id="Resource_fx433"]
 script = ExtResource("15_ett85")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_tyr7g"]
+[sub_resource type="Resource" id="Resource_dmwxt"]
 script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_di2dv"), SubResource("Resource_fjp0l"), SubResource("Resource_kfwsd"), SubResource("Resource_kvwun")])
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_kvwun"), SubResource("Resource_tyr7g"), SubResource("Resource_jmd3u"), SubResource("Resource_fx433")])
 
 [sub_resource type="Curve3D" id="Curve3D_46lff"]
 _data = {
@@ -283,35 +297,35 @@ script = ExtResource("18_43en7")
 curve = SubResource("Curve3D_46lff")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_jmd3u"]
+[sub_resource type="Resource" id="Resource_sviur"]
 script = ExtResource("12_rbyhr")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_fx433"]
+[sub_resource type="Resource" id="Resource_hr66v"]
 script = ExtResource("13_fvafq")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_dmwxt"]
+[sub_resource type="Resource" id="Resource_0aavb"]
 script = ExtResource("14_hqj03")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_sviur"]
+[sub_resource type="Resource" id="Resource_fc37f"]
 script = ExtResource("15_ett85")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_hr66v"]
+[sub_resource type="Resource" id="Resource_4lkg5"]
 script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_jmd3u"), SubResource("Resource_fx433"), SubResource("Resource_dmwxt"), SubResource("Resource_sviur")])
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_sviur"), SubResource("Resource_hr66v"), SubResource("Resource_0aavb"), SubResource("Resource_fc37f")])
 
 [sub_resource type="Curve3D" id="Curve3D_0aavb"]
 _data = {
@@ -325,35 +339,35 @@ script = ExtResource("18_43en7")
 curve = SubResource("Curve3D_0aavb")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_0aavb"]
+[sub_resource type="Resource" id="Resource_ue5g0"]
 script = ExtResource("12_rbyhr")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_fc37f"]
+[sub_resource type="Resource" id="Resource_foe07"]
 script = ExtResource("13_fvafq")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_4lkg5"]
+[sub_resource type="Resource" id="Resource_7w54k"]
 script = ExtResource("14_hqj03")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_ue5g0"]
+[sub_resource type="Resource" id="Resource_rf38p"]
 script = ExtResource("15_ett85")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_foe07"]
+[sub_resource type="Resource" id="Resource_3reor"]
 script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_0aavb"), SubResource("Resource_fc37f"), SubResource("Resource_4lkg5"), SubResource("Resource_ue5g0")])
+stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_ue5g0"), SubResource("Resource_foe07"), SubResource("Resource_7w54k"), SubResource("Resource_rf38p")])
 
 [sub_resource type="Curve3D" id="Curve3D_7w54k"]
 _data = {
@@ -374,12 +388,66 @@ _data = {
 }
 point_count = 26
 
-[sub_resource type="Curve3D" id="Curve3D_v3ouk"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.0234375, 0.14004517, -0.06262207, 0, -53.5, -3.5, 0, 53.5, 3.5, 0.0234375, 114.305115, -54.15094),
-"tilts": PackedFloat32Array(0, 0)
+[sub_resource type="Animation" id="Animation_43en7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DroneCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-662.71857, 41.229507, 791.84985)]
 }
-point_count = 2
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Titlecard/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4tk06"]
+resource_name = "drone_shot_animation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DroneCam:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(-662.71857, 41.229507, 791.84985), Vector3(-665.75226, 94.977455, 745.56287)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Titlecard/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j1haf"]
+_data = {
+&"RESET": SubResource("Animation_43en7"),
+&"drone_pullback": SubResource("Animation_4tk06")
+}
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_43en7"]
 panorama = ExtResource("27_43en7")
@@ -413,15 +481,17 @@ adjustment_enabled = true
 adjustment_contrast = 1.02
 adjustment_saturation = 1.25
 
-[node name="Intro" type="Node" unique_id=1251330761 node_paths=PackedStringArray("car_route", "drone_route", "car", "chase_cam", "drone_cam", "pass_by_cam")]
+[node name="Intro" type="Node" unique_id=1251330761 node_paths=PackedStringArray("car_route", "car", "track_player", "black_screen", "engine_audio", "chase_cam", "drone_cam", "pass_by_cam", "drone_shot_anim_player")]
 script = ExtResource("1_2xnbr")
 car_route = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute")
-drone_route = NodePath("SubViewportContainer/SubViewport/DroneShotPath/DroneCamRoute")
 car = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute/Car")
-ethan_dialogue_ratio = 0.5
+track_player = NodePath("IntroTrackPlayer")
+black_screen = NodePath("SubViewportContainer/SubViewport/DroneShot/Titlecard/BlackScreen")
+engine_audio = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute/EngineAudio")
 chase_cam = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute/ChaseCam")
-drone_cam = NodePath("SubViewportContainer/SubViewport/DroneShotPath/DroneCamRoute/DroneCam")
+drone_cam = NodePath("SubViewportContainer/SubViewport/DroneShot/DroneCam")
 pass_by_cam = NodePath("SubViewportContainer/SubViewport/PassByCam")
+drone_shot_anim_player = NodePath("SubViewportContainer/SubViewport/DroneShot/AnimationPlayer")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1144739562]
 anchors_preset = 15
@@ -434,6 +504,7 @@ stretch_shrink = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=986269365]
 handle_input_locally = false
+audio_listener_enable_3d = true
 physics_object_picking = true
 size = Vector2i(640, 360)
 render_target_update_mode = 4
@@ -451,10 +522,17 @@ metadata/_edit_lock_ = true
 
 [node name="Scatters" type="Node" parent="SubViewportContainer/SubViewport" unique_id=144383301]
 
+[node name="ProtonScatterCache" type="Node" parent="SubViewportContainer/SubViewport/Scatters" unique_id=334053831]
+script = ExtResource("19_4tk06")
+cache_file = "res://addons/proton_scatter/cache/Intro_3296636132_scatter_cache.res"
+auto_rebuild_cache_when_saving = false
+metadata/_custom_type_script = "uid://6mvg0gb77knh"
+
 [node name="ProtonScatter" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=1722070278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 85)
 script = ExtResource("9_43en7")
-modifier_stack = SubResource("Resource_fvafq")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_6sa0f")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
@@ -484,7 +562,8 @@ shape = SubResource("Resource_4dxuf")
 [node name="ProtonScatter2" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=833197904]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.64043, 0, 85)
 script = ExtResource("9_43en7")
-modifier_stack = SubResource("Resource_3wqtt")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_cpwjo")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
@@ -514,7 +593,8 @@ shape = SubResource("Resource_8vrlf")
 [node name="ProtonScatter3" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=44355772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.513, 0, 714.60913)
 script = ExtResource("9_43en7")
-modifier_stack = SubResource("Resource_fry2l")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_kfwsd")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
@@ -544,7 +624,8 @@ shape = SubResource("Resource_jlt0o")
 [node name="ProtonScatter4" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=954347597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.168762, 0, 714.01245)
 script = ExtResource("9_43en7")
-modifier_stack = SubResource("Resource_tyr7g")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_dmwxt")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
@@ -574,7 +655,8 @@ shape = SubResource("Resource_15lfp")
 [node name="ProtonScatter5" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=1915942277]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -475.56595, 0, 650.1361)
 script = ExtResource("9_43en7")
-modifier_stack = SubResource("Resource_hr66v")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_4lkg5")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
@@ -604,7 +686,8 @@ shape = SubResource("Resource_46lff")
 [node name="ProtonScatter6" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=824859930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -494.0102, 0, 739.6451)
 script = ExtResource("9_43en7")
-modifier_stack = SubResource("Resource_foe07")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_3reor")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
@@ -759,7 +842,7 @@ curve = SubResource("Curve3D_plq68")
 script = ExtResource("6_v3ouk")
 
 [node name="CarRoute" type="PathFollow3D" parent="SubViewportContainer/SubViewport/RoadPath" unique_id=972304914]
-transform = Transform3D(-0.9646867, 0, 0.26333627, 0, 0.9999871, 0, -0.26333895, 0, -0.9646769, -0.12950325, 0.25048828, 8.168472)
+transform = Transform3D(-0.96468616, 0, 0.26333615, 0, 0.9999871, 0, -0.2633388, 0, -0.96467644, -0.12950325, 0.25048828, 8.168472)
 script = ExtResource("3_route")
 
 [node name="Car" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=614255730 instance=ExtResource("5_car")]
@@ -797,16 +880,52 @@ omni_range = 0.6
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.313226e-10, 1.7102736, -0.63616765)
 omni_range = 2.0
 
-[node name="DroneShotPath" type="Path3D" parent="SubViewportContainer/SubViewport" unique_id=1077689154]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -718.5, 56.5, 846.5)
-curve = SubResource("Curve3D_v3ouk")
+[node name="EngineAudio" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=236477257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+stream = ExtResource("28_hqj03")
+bus = &"Engine"
+script = ExtResource("29_ett85")
 
-[node name="DroneCamRoute" type="PathFollow3D" parent="SubViewportContainer/SubViewport/DroneShotPath" unique_id=1172894131]
-transform = Transform3D(1, 0, 0, 0, 0.6884759, -0.72525907, 0, 0.72525907, 0.6884759, 0.0234375, 0.14004517, -0.06262207)
-script = ExtResource("9_grl5c")
+[node name="DroneShot" type="Node" parent="SubViewportContainer/SubViewport" unique_id=200213398]
 
-[node name="DroneCam" type="Camera3D" parent="SubViewportContainer/SubViewport/DroneShotPath/DroneCamRoute" unique_id=1596457085]
-transform = Transform3D(-0.77714527, 0.26854408, -0.5691479, 0.45642102, 0.86315966, -0.21595275, 0.4332726, -0.42759773, -0.79336965, 0, 0, 0)
+[node name="DroneCam" type="Camera3D" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=1596457085]
+transform = Transform3D(-0.997859, 0.049512383, -0.042731382, 0, 0.6533631, 0.7570447, 0.065402195, 0.75542384, -0.65196425, -662.71857, 41.229507, 791.84985)
+
+[node name="DroneShotStart" type="Marker3D" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=873922494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -662.71857, 41.229507, 791.84985)
+
+[node name="DroneShotEnd" type="Marker3D" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=1695345340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -665.75226, 94.977455, 745.56287)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=908605969]
+libraries/ = SubResource("AnimationLibrary_j1haf")
+
+[node name="Titlecard" type="CanvasLayer" parent="SubViewportContainer/SubViewport/DroneShot" unique_id=862708773]
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DroneShot/Titlecard" unique_id=1057313058]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("27_4tk06")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BlackScreen" type="ColorRect" parent="SubViewportContainer/SubViewport/DroneShot/Titlecard" unique_id=1365626546]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=830392400]
 environment = SubResource("Environment_37sh5")
@@ -817,3 +936,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -3)
 
 [node name="UI" parent="." unique_id=693540099 instance=ExtResource("6_ui")]
 unique_name_in_owner = true
+
+[node name="IntroTrackPlayer" type="AudioStreamPlayer" parent="." unique_id=693141109]
+stream = ExtResource("31_j1haf")
+pitch_scale = 0.8

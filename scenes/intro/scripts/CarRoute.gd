@@ -39,7 +39,7 @@ func wait_until_ratio(ratio: float) -> void:
 func _process(delta: float) -> void:
 	if not _running or _done:
 		return
-
+	
 	var remaining := _curve.get_baked_length() - progress
 	curvature = _road_curvature(progress + look_ahead)
 
