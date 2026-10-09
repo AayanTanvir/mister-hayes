@@ -4,9 +4,6 @@ signal input_detected
 signal typing_done
 signal idle
 
-var ui: UI
-var player: Player
-
 var showing_dialogue := false
 var _action_regex := RegEx.new()
 
@@ -18,12 +15,6 @@ var auto_advance_time := 10.0
 
 
 func _ready() -> void:
-	ui = get_tree().current_scene.get_node("%UI") as UI
-	player = get_tree().current_scene.get_node("%Player") as Player
-	if not ui or not player:
-		push_error("Required nodes not found")
-		return
-	
 	_action_regex.compile(r"\*(.+?)\*")
 	_set_dialogue_visible(false)
 
@@ -38,8 +29,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func sync_dialogue_visiblity():
-	if showing_dialogue != ui.dialogue_container.visible:
-		ui.dialogue_container.visible = showing_dialogue
+	if not is_instance_valid(GameManager.ui):
+		return
+	
+	if showing_dialogue != GameManager.ui.dialogue_container.visible:
+		GameManager.ui.dialogue_container.visible = showing_dialogue
 
 
 ## Display a series of multiple lines spokeb by a single person
@@ -72,7 +66,7 @@ func say(dialogue: Dictionary, duration: float = 1.5):
 
 
 func _show_line(text: String) -> void:
-	var label: RichTextLabel = ui.dialogue_label
+	var label: RichTextLabel = GameManager.ui.dialogue_label
 	label.text = format_text(text)
 	label.visible_ratio = 0.0
 
@@ -92,8 +86,8 @@ func _set_dialogue_visible(show: bool):
 
 
 func _focus(show: bool):
-	player.disable_interact(show)
-	ui.hud_visible(not show)
+	GameManager.player.disable_interact(show)
+	GameManager.ui.hud_visible(not show)
 
 
 func format_text(raw: String) -> String:
@@ -104,7 +98,7 @@ func format_text(raw: String) -> String:
 func _skip_typing() -> void:
 	if _type_tween:
 		_type_tween.kill()
-	ui.dialogue_label.visible_ratio = 1.0
+	GameManager.ui.dialogue_label.visible_ratio = 1.0
 	_end_typing()
 
 

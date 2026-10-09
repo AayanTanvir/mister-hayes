@@ -9,14 +9,9 @@ var _changes_restricted := false
 
 func _ready() -> void:
 	set_mouse_visible(false)
+	_bind_scene_nodes()	
+	get_tree().scene_changed.connect(_bind_scene_nodes)
 	
-	ui = get_tree().current_scene.get_node("%UI") as UI
-	player = get_tree().current_scene.get_node("%Player") as Player
-	if not ui or not player:
-		push_error("Required nodes not found")
-		return
-	
-	_assign_signals()
 
 
 func _process(_delta: float) -> void:
@@ -24,7 +19,20 @@ func _process(_delta: float) -> void:
 		set_mouse_visible(true)
 
 
-func _assign_signals():
+func _bind_scene_nodes() -> void:
+	ui = null
+	player = null
+
+	var scene := get_tree().current_scene
+	if scene == null:
+		print("RETURNING")
+		return
+
+	ui = scene.get_node_or_null("%UI") as UI
+	player = scene.get_node_or_null("%Player") as Player
+	if not ui or not player:
+		return  # TODO: fallback to main menu or something
+
 	player.interact_controller.interactable_detected.connect(ui._on_interactable_detected)
 
 

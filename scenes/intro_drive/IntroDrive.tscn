@@ -1,39 +1,39 @@
 [gd_scene format=3 uid="uid://rsxeejsy00mg"]
 
-[ext_resource type="Script" uid="uid://djee50up2ur7x" path="res://scenes/intro/Intro.gd" id="1_2xnbr"]
-[ext_resource type="PackedScene" uid="uid://bbh5j4hbsw5d5" path="res://assets/models/environment/trees/Tree01.tscn" id="2_n61yc"]
-[ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="3_37sh5"]
-[ext_resource type="PackedScene" uid="uid://cfx6xvbnfc76e" path="res://assets/models/environment/trees/Tree02.tscn" id="3_fvyfp"]
-[ext_resource type="Script" uid="uid://br78gtdiqhqx4" path="res://scenes/intro/scripts/CarRoute.gd" id="3_route"]
-[ext_resource type="Material" uid="uid://ci8pv8sga66al" path="res://assets/materials/M_Road.material" id="3_v3ouk"]
-[ext_resource type="PackedScene" uid="uid://do72tetk3dkhh" path="res://assets/models/environment/trees/Tree03.tscn" id="4_feb5t"]
-[ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="5_car"]
-[ext_resource type="PackedScene" uid="uid://dpl7hpwl2yoki" path="res://assets/models/environment/grass/GrassPatch01.tscn" id="5_rbyhr"]
-[ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="6_ui"]
-[ext_resource type="Script" uid="uid://cawaqspco3rof" path="res://scenes/intro/scripts/RoadPath.gd" id="6_v3ouk"]
-[ext_resource type="Script" uid="uid://bxp3i4cnonh8y" path="res://addons/road-generator/nodes/road_manager.gd" id="8_kuy3d"]
-[ext_resource type="Script" uid="uid://dgqq1tf8prx5s" path="res://addons/proton_scatter/src/scatter.gd" id="9_43en7"]
-[ext_resource type="Script" uid="uid://cph7euje06kel" path="res://addons/road-generator/nodes/road_container.gd" id="9_v3ouk"]
-[ext_resource type="Script" uid="uid://ba8jou0xje0c7" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="10_4tk06"]
-[ext_resource type="Script" uid="uid://difs1qg4mpcpw" path="res://addons/road-generator/nodes/road_point.gd" id="10_grl5c"]
-[ext_resource type="Script" uid="uid://b5s7ggmsi8g5u" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="11_j1haf"]
-[ext_resource type="Script" uid="uid://gjjh4mw1wn51" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="12_rbyhr"]
-[ext_resource type="Script" uid="uid://b0332hlb7q5t1" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="13_fvafq"]
-[ext_resource type="Texture2D" uid="uid://b4cvrey1vk0kx" path="res://assets/textures/nature/ground_01.png" id="13_g40ee"]
-[ext_resource type="Script" uid="uid://dc4rwlje6dfca" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="14_hqj03"]
-[ext_resource type="Texture2D" uid="uid://cm30qxl66kjv4" path="res://assets/textures/nature/ground_01_n.png" id="14_lp6as"]
-[ext_resource type="Texture2D" uid="uid://c7cwfpxwfj0s2" path="res://assets/textures/nature/ground_02.png" id="15_ahulr"]
-[ext_resource type="Script" uid="uid://it6ja2wjneak" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="15_ett85"]
-[ext_resource type="Script" uid="uid://c85i0481q4uog" path="res://addons/proton_scatter/src/scatter_item.gd" id="16_6sa0f"]
-[ext_resource type="Texture2D" uid="uid://pvoja1046nqn" path="res://assets/textures/nature/ground_02_n.png" id="16_n61yc"]
-[ext_resource type="Script" uid="uid://dx7e7heldjwmg" path="res://addons/proton_scatter/src/scatter_shape.gd" id="17_f4m7j"]
-[ext_resource type="Script" uid="uid://stwgokpcvk0m" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="18_43en7"]
-[ext_resource type="Script" uid="uid://6mvg0gb77knh" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="19_4tk06"]
-[ext_resource type="Texture2D" uid="uid://cuog4nqprp25j" path="res://assets/textures/stock/MisterHayes.png" id="27_4tk06"]
-[ext_resource type="Texture2D" uid="uid://p3lhe23u0f0o" path="res://assets/textures/sky/NightSkyHDRI003_1K_TONEMAPPED.jpg" id="27_43en7"]
-[ext_resource type="AudioStream" uid="uid://byst6iocn5pn" path="res://assets/sounds/car_engine_loop.wav" id="28_hqj03"]
-[ext_resource type="Script" uid="uid://py3kr8ugtm1u" path="res://scenes/intro/scripts/EngineAudio.gd" id="29_ett85"]
-[ext_resource type="AudioStream" uid="uid://bnfyaf83nxvr" path="res://assets/sounds/tracks/intro-track.wav" id="31_j1haf"]
+[ext_resource type="Script" uid="uid://5sdm61yx5svq" path="res://scenes/intro_drive/IntroDrive.gd" id="1_x78n5"]
+[ext_resource type="PackedScene" uid="uid://bbh5j4hbsw5d5" path="res://assets/models/environment/trees/Tree01.tscn" id="2_ta3fd"]
+[ext_resource type="PackedScene" uid="uid://cfx6xvbnfc76e" path="res://assets/models/environment/trees/Tree02.tscn" id="3_2ywrv"]
+[ext_resource type="PackedScene" uid="uid://do72tetk3dkhh" path="res://assets/models/environment/trees/Tree03.tscn" id="4_gyka5"]
+[ext_resource type="PackedScene" uid="uid://docm1r28ykee6" path="res://assets/models/environment/grass/Grass01.tscn" id="5_p3k6a"]
+[ext_resource type="Texture2D" uid="uid://b4cvrey1vk0kx" path="res://assets/textures/nature/ground_01.png" id="6_06lgi"]
+[ext_resource type="Texture2D" uid="uid://cm30qxl66kjv4" path="res://assets/textures/nature/ground_01_n.png" id="7_spyks"]
+[ext_resource type="Texture2D" uid="uid://c7cwfpxwfj0s2" path="res://assets/textures/nature/ground_02.png" id="8_1jkb6"]
+[ext_resource type="Texture2D" uid="uid://pvoja1046nqn" path="res://assets/textures/nature/ground_02_n.png" id="9_msuiv"]
+[ext_resource type="Script" uid="uid://6mvg0gb77knh" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="10_j4oyk"]
+[ext_resource type="Script" uid="uid://dgqq1tf8prx5s" path="res://addons/proton_scatter/src/scatter.gd" id="11_5mbhd"]
+[ext_resource type="Script" uid="uid://ba8jou0xje0c7" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="12_g7lqg"]
+[ext_resource type="Script" uid="uid://b5s7ggmsi8g5u" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="13_yvpa4"]
+[ext_resource type="Script" uid="uid://gjjh4mw1wn51" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="14_1oupj"]
+[ext_resource type="Script" uid="uid://b0332hlb7q5t1" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="15_jjvf7"]
+[ext_resource type="Script" uid="uid://dc4rwlje6dfca" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="16_qf4bq"]
+[ext_resource type="Script" uid="uid://it6ja2wjneak" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="17_garuj"]
+[ext_resource type="Script" uid="uid://c85i0481q4uog" path="res://addons/proton_scatter/src/scatter_item.gd" id="18_sjoy0"]
+[ext_resource type="Script" uid="uid://dx7e7heldjwmg" path="res://addons/proton_scatter/src/scatter_shape.gd" id="19_b0krs"]
+[ext_resource type="Script" uid="uid://stwgokpcvk0m" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="20_eqx6j"]
+[ext_resource type="Script" uid="uid://bxp3i4cnonh8y" path="res://addons/road-generator/nodes/road_manager.gd" id="21_7iqxe"]
+[ext_resource type="Material" uid="uid://ci8pv8sga66al" path="res://assets/materials/M_Road.material" id="22_tmdeb"]
+[ext_resource type="Script" uid="uid://cph7euje06kel" path="res://addons/road-generator/nodes/road_container.gd" id="23_eaufa"]
+[ext_resource type="Script" uid="uid://difs1qg4mpcpw" path="res://addons/road-generator/nodes/road_point.gd" id="24_ao168"]
+[ext_resource type="Script" uid="uid://cawaqspco3rof" path="res://scenes/intro_drive/scripts/RoadPath.gd" id="25_da3u4"]
+[ext_resource type="Script" uid="uid://br78gtdiqhqx4" path="res://scenes/intro_drive/scripts/CarRoute.gd" id="26_pv2tq"]
+[ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="27_23g5d"]
+[ext_resource type="AudioStream" uid="uid://byst6iocn5pn" path="res://assets/sounds/car_engine_loop.wav" id="28_g06bo"]
+[ext_resource type="Script" uid="uid://py3kr8ugtm1u" path="res://scenes/intro_drive/scripts/EngineAudio.gd" id="29_c3l66"]
+[ext_resource type="Texture2D" uid="uid://cuog4nqprp25j" path="res://assets/textures/stock/MisterHayes.png" id="30_i5qfk"]
+[ext_resource type="Texture2D" uid="uid://p3lhe23u0f0o" path="res://assets/textures/sky/NightSkyHDRI003_1K_TONEMAPPED.jpg" id="31_xlvoq"]
+[ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="32_jvun3"]
+[ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="33_imt7h"]
+[ext_resource type="AudioStream" uid="uid://bnfyaf83nxvr" path="res://assets/sounds/tracks/intro-track.wav" id="34_4yq1m"]
 
 [sub_resource type="Gradient" id="Gradient_n61yc"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -75,10 +75,12 @@ _shader_parameters = {
 &"noise_texture": SubResource("NoiseTexture2D_feb5t"),
 &"projection_threshold": null
 }
+world_background = 0
+texture_filtering = 1
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_n61yc"]
 name = "Tree01"
-scene_file = ExtResource("2_n61yc")
+scene_file = ExtResource("2_ta3fd")
 density = 0.42990002
 last_lod = 0
 last_shadow_lod = 0
@@ -88,7 +90,7 @@ lod1_range = 128.0
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_feb5t"]
 name = "Tree02"
 id = 1
-scene_file = ExtResource("3_fvyfp")
+scene_file = ExtResource("3_2ywrv")
 density = 0.01
 last_lod = 0
 last_shadow_lod = 0
@@ -97,7 +99,7 @@ lod0_range = 128.0
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_65637"]
 name = "Tree03"
 id = 2
-scene_file = ExtResource("4_feb5t")
+scene_file = ExtResource("4_gyka5")
 density = 0.01
 last_lod = 0
 last_shadow_lod = 0
@@ -106,58 +108,58 @@ lod0_range = 128.0
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_fvafq"]
 name = "GrassPatch01"
 id = 3
-scene_file = ExtResource("5_rbyhr")
-density = 4.5351467
+scene_file = ExtResource("5_p3k6a")
+cast_shadows = 0
 last_lod = 0
 last_shadow_lod = 0
-lod0_range = 128.0
+lod0_range = 80.0
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_lp6as"]
 name = "ground_01"
-albedo_texture = ExtResource("13_g40ee")
-normal_texture = ExtResource("14_lp6as")
+albedo_texture = ExtResource("6_06lgi")
+normal_texture = ExtResource("7_spyks")
 uv_scale = 0.25
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_fvyfp"]
 name = "ground_02"
 id = 1
-albedo_texture = ExtResource("15_ahulr")
-normal_texture = ExtResource("16_n61yc")
+albedo_texture = ExtResource("8_1jkb6")
+normal_texture = ExtResource("9_msuiv")
 uv_scale = 0.25
 
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_1vivr"]
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_n61yc"), SubResource("Terrain3DMeshAsset_feb5t"), SubResource("Terrain3DMeshAsset_65637"), SubResource("Terrain3DMeshAsset_fvafq")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_lp6as"), SubResource("Terrain3DTextureAsset_fvyfp")])
 
-[sub_resource type="Resource" id="Resource_rbyhr"]
-script = ExtResource("12_rbyhr")
+[sub_resource type="Resource" id="Resource_xgoj5"]
+script = ExtResource("14_1oupj")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_fvafq"]
-script = ExtResource("13_fvafq")
+[sub_resource type="Resource" id="Resource_ojtap"]
+script = ExtResource("15_jjvf7")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_hqj03"]
-script = ExtResource("14_hqj03")
+[sub_resource type="Resource" id="Resource_hroqy"]
+script = ExtResource("16_qf4bq")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_ett85"]
-script = ExtResource("15_ett85")
+[sub_resource type="Resource" id="Resource_ljmt4"]
+script = ExtResource("17_garuj")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_6sa0f"]
-script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_rbyhr"), SubResource("Resource_fvafq"), SubResource("Resource_hqj03"), SubResource("Resource_ett85")])
+[sub_resource type="Resource" id="Resource_ia70l"]
+script = ExtResource("12_g7lqg")
+stack = Array[ExtResource("13_yvpa4")]([SubResource("Resource_xgoj5"), SubResource("Resource_ojtap"), SubResource("Resource_hroqy"), SubResource("Resource_ljmt4")])
 
 [sub_resource type="Curve3D" id="Curve3D_43en7"]
 _data = {
@@ -167,39 +169,39 @@ _data = {
 point_count = 11
 
 [sub_resource type="Resource" id="Resource_4dxuf"]
-script = ExtResource("18_43en7")
+script = ExtResource("20_eqx6j")
 curve = SubResource("Curve3D_43en7")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_f4m7j"]
-script = ExtResource("12_rbyhr")
+[sub_resource type="Resource" id="Resource_oagrv"]
+script = ExtResource("14_1oupj")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_3wqtt"]
-script = ExtResource("13_fvafq")
+[sub_resource type="Resource" id="Resource_bw27w"]
+script = ExtResource("15_jjvf7")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_3fgkd"]
-script = ExtResource("14_hqj03")
+[sub_resource type="Resource" id="Resource_p82dm"]
+script = ExtResource("16_qf4bq")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_28slb"]
-script = ExtResource("15_ett85")
+[sub_resource type="Resource" id="Resource_ghsdw"]
+script = ExtResource("17_garuj")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_cpwjo"]
-script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_f4m7j"), SubResource("Resource_3wqtt"), SubResource("Resource_3fgkd"), SubResource("Resource_28slb")])
+[sub_resource type="Resource" id="Resource_b5ubg"]
+script = ExtResource("12_g7lqg")
+stack = Array[ExtResource("13_yvpa4")]([SubResource("Resource_oagrv"), SubResource("Resource_bw27w"), SubResource("Resource_p82dm"), SubResource("Resource_ghsdw")])
 
 [sub_resource type="Curve3D" id="Curve3D_4tk06"]
 _data = {
@@ -209,39 +211,39 @@ _data = {
 point_count = 12
 
 [sub_resource type="Resource" id="Resource_8vrlf"]
-script = ExtResource("18_43en7")
+script = ExtResource("20_eqx6j")
 curve = SubResource("Curve3D_4tk06")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_djrh1"]
-script = ExtResource("12_rbyhr")
+[sub_resource type="Resource" id="Resource_ydb0m"]
+script = ExtResource("14_1oupj")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_fry2l"]
-script = ExtResource("13_fvafq")
+[sub_resource type="Resource" id="Resource_mxnqp"]
+script = ExtResource("15_jjvf7")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_di2dv"]
-script = ExtResource("14_hqj03")
+[sub_resource type="Resource" id="Resource_vfupb"]
+script = ExtResource("16_qf4bq")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_fjp0l"]
-script = ExtResource("15_ett85")
+[sub_resource type="Resource" id="Resource_22d8e"]
+script = ExtResource("17_garuj")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_kfwsd"]
-script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_djrh1"), SubResource("Resource_fry2l"), SubResource("Resource_di2dv"), SubResource("Resource_fjp0l")])
+[sub_resource type="Resource" id="Resource_wkjqu"]
+script = ExtResource("12_g7lqg")
+stack = Array[ExtResource("13_yvpa4")]([SubResource("Resource_ydb0m"), SubResource("Resource_mxnqp"), SubResource("Resource_vfupb"), SubResource("Resource_22d8e")])
 
 [sub_resource type="Curve3D" id="Curve3D_j1haf"]
 _data = {
@@ -251,39 +253,39 @@ _data = {
 point_count = 14
 
 [sub_resource type="Resource" id="Resource_jlt0o"]
-script = ExtResource("18_43en7")
+script = ExtResource("20_eqx6j")
 curve = SubResource("Curve3D_j1haf")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_kvwun"]
-script = ExtResource("12_rbyhr")
+[sub_resource type="Resource" id="Resource_awfhx"]
+script = ExtResource("14_1oupj")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_tyr7g"]
-script = ExtResource("13_fvafq")
+[sub_resource type="Resource" id="Resource_eekdy"]
+script = ExtResource("15_jjvf7")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_jmd3u"]
-script = ExtResource("14_hqj03")
+[sub_resource type="Resource" id="Resource_da522"]
+script = ExtResource("16_qf4bq")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_fx433"]
-script = ExtResource("15_ett85")
+[sub_resource type="Resource" id="Resource_1xi1v"]
+script = ExtResource("17_garuj")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_dmwxt"]
-script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_kvwun"), SubResource("Resource_tyr7g"), SubResource("Resource_jmd3u"), SubResource("Resource_fx433")])
+[sub_resource type="Resource" id="Resource_pn7ks"]
+script = ExtResource("12_g7lqg")
+stack = Array[ExtResource("13_yvpa4")]([SubResource("Resource_awfhx"), SubResource("Resource_eekdy"), SubResource("Resource_da522"), SubResource("Resource_1xi1v")])
 
 [sub_resource type="Curve3D" id="Curve3D_46lff"]
 _data = {
@@ -293,39 +295,39 @@ _data = {
 point_count = 15
 
 [sub_resource type="Resource" id="Resource_15lfp"]
-script = ExtResource("18_43en7")
+script = ExtResource("20_eqx6j")
 curve = SubResource("Curve3D_46lff")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_sviur"]
-script = ExtResource("12_rbyhr")
+[sub_resource type="Resource" id="Resource_5svu8"]
+script = ExtResource("14_1oupj")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_hr66v"]
-script = ExtResource("13_fvafq")
+[sub_resource type="Resource" id="Resource_tmx8r"]
+script = ExtResource("15_jjvf7")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_0aavb"]
-script = ExtResource("14_hqj03")
+[sub_resource type="Resource" id="Resource_mrbh1"]
+script = ExtResource("16_qf4bq")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_fc37f"]
-script = ExtResource("15_ett85")
+[sub_resource type="Resource" id="Resource_u75fk"]
+script = ExtResource("17_garuj")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_4lkg5"]
-script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_sviur"), SubResource("Resource_hr66v"), SubResource("Resource_0aavb"), SubResource("Resource_fc37f")])
+[sub_resource type="Resource" id="Resource_71em0"]
+script = ExtResource("12_g7lqg")
+stack = Array[ExtResource("13_yvpa4")]([SubResource("Resource_5svu8"), SubResource("Resource_tmx8r"), SubResource("Resource_mrbh1"), SubResource("Resource_u75fk")])
 
 [sub_resource type="Curve3D" id="Curve3D_0aavb"]
 _data = {
@@ -335,39 +337,39 @@ _data = {
 point_count = 19
 
 [sub_resource type="Resource" id="Resource_46lff"]
-script = ExtResource("18_43en7")
+script = ExtResource("20_eqx6j")
 curve = SubResource("Curve3D_0aavb")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
-[sub_resource type="Resource" id="Resource_ue5g0"]
-script = ExtResource("12_rbyhr")
+[sub_resource type="Resource" id="Resource_nwgf4"]
+script = ExtResource("14_1oupj")
 amount = 250
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_foe07"]
-script = ExtResource("13_fvafq")
+[sub_resource type="Resource" id="Resource_4pdhk"]
+script = ExtResource("15_jjvf7")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(2, 360, 2)
 scale = Vector3(0.2, 0.4, 0.2)
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_7w54k"]
-script = ExtResource("14_hqj03")
+[sub_resource type="Resource" id="Resource_0tdhs"]
+script = ExtResource("16_qf4bq")
 offset_step = 0.2
 consecutive_step_multiplier = 0.75
 use_computeshader = false
 restrict_height = true
 
-[sub_resource type="Resource" id="Resource_rf38p"]
-script = ExtResource("15_ett85")
+[sub_resource type="Resource" id="Resource_o4sbh"]
+script = ExtResource("17_garuj")
 ray_length = 5.0
 ray_offset = 5.0
 remove_points_on_miss = false
 
-[sub_resource type="Resource" id="Resource_3reor"]
-script = ExtResource("10_4tk06")
-stack = Array[ExtResource("11_j1haf")]([SubResource("Resource_ue5g0"), SubResource("Resource_foe07"), SubResource("Resource_7w54k"), SubResource("Resource_rf38p")])
+[sub_resource type="Resource" id="Resource_2jd30"]
+script = ExtResource("12_g7lqg")
+stack = Array[ExtResource("13_yvpa4")]([SubResource("Resource_nwgf4"), SubResource("Resource_4pdhk"), SubResource("Resource_0tdhs"), SubResource("Resource_o4sbh")])
 
 [sub_resource type="Curve3D" id="Curve3D_7w54k"]
 _data = {
@@ -377,7 +379,7 @@ _data = {
 point_count = 18
 
 [sub_resource type="Resource" id="Resource_tc7hs"]
-script = ExtResource("18_43en7")
+script = ExtResource("20_eqx6j")
 curve = SubResource("Curve3D_7w54k")
 metadata/_custom_type_script = "uid://stwgokpcvk0m"
 
@@ -449,16 +451,16 @@ _data = {
 &"drone_pullback": SubResource("Animation_4tk06")
 }
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_43en7"]
-panorama = ExtResource("27_43en7")
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xgoj5"]
+panorama = ExtResource("31_xlvoq")
 
-[sub_resource type="Sky" id="Sky_j1haf"]
-sky_material = SubResource("PanoramaSkyMaterial_43en7")
+[sub_resource type="Sky" id="Sky_xgoj5"]
+sky_material = SubResource("PanoramaSkyMaterial_xgoj5")
 
-[sub_resource type="Environment" id="Environment_37sh5"]
+[sub_resource type="Environment" id="Environment_ojtap"]
 background_mode = 2
 background_energy_multiplier = 1.4
-sky = SubResource("Sky_j1haf")
+sky = SubResource("Sky_xgoj5")
 sky_custom_fov = 90.0
 ambient_light_source = 2
 ambient_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
@@ -481,8 +483,8 @@ adjustment_enabled = true
 adjustment_contrast = 1.02
 adjustment_saturation = 1.25
 
-[node name="Intro" type="Node" unique_id=1251330761 node_paths=PackedStringArray("car_route", "car", "track_player", "black_screen", "engine_audio", "chase_cam", "drone_cam", "pass_by_cam", "drone_shot_anim_player")]
-script = ExtResource("1_2xnbr")
+[node name="IntroDrive" type="Node" unique_id=1251330761 node_paths=PackedStringArray("car_route", "car", "track_player", "black_screen", "engine_audio", "chase_cam", "drone_cam", "pass_by_cam", "drone_shot_anim_player")]
+script = ExtResource("1_x78n5")
 car_route = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute")
 car = NodePath("SubViewportContainer/SubViewport/RoadPath/CarRoute/Car")
 track_player = NodePath("IntroTrackPlayer")
@@ -509,12 +511,8 @@ physics_object_picking = true
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="PassByCam" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=266602542]
-transform = Transform3D(-0.52898514, 0.45063403, -0.7190993, 0, 0.84736377, 0.53101283, 0.84863114, 0.2808979, -0.44824284, -31.14138, 29.569622, 119.16506)
-fov = 60.0
-
 [node name="Terrain3D" type="Terrain3D" parent="SubViewportContainer/SubViewport" unique_id=900240703]
-data_directory = "res://scenes/intro/terrain_data"
+data_directory = "res://scenes/intro_drive/terrain_data"
 material = SubResource("Terrain3DMaterial_65637")
 assets = SubResource("Terrain3DAssets_1vivr")
 top_level = true
@@ -523,205 +521,222 @@ metadata/_edit_lock_ = true
 [node name="Scatters" type="Node" parent="SubViewportContainer/SubViewport" unique_id=144383301]
 
 [node name="ProtonScatterCache" type="Node" parent="SubViewportContainer/SubViewport/Scatters" unique_id=334053831]
-script = ExtResource("19_4tk06")
+script = ExtResource("10_j4oyk")
 cache_file = "res://addons/proton_scatter/cache/Intro_3296636132_scatter_cache.res"
-auto_rebuild_cache_when_saving = false
 metadata/_custom_type_script = "uid://6mvg0gb77knh"
 
 [node name="ProtonScatter" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=1722070278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 85)
-script = ExtResource("9_43en7")
+script = ExtResource("11_5mbhd")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_6sa0f")
+modifier_stack = SubResource("Resource_ia70l")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
 
 [node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter" unique_id=174818560]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 50
+visibility_range_end = 100.0
 path = "uid://bbh5j4hbsw5d5"
 
 [node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter" unique_id=2056793010]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 40
+visibility_range_end = 100.0
 path = "uid://cfx6xvbnfc76e"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter" unique_id=433061002]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 10
+visibility_range_end = 100.0
 path = "uid://do72tetk3dkhh"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter" unique_id=76423035]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
-script = ExtResource("17_f4m7j")
+script = ExtResource("19_b0krs")
 shape = SubResource("Resource_4dxuf")
 
 [node name="ProtonScatter2" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=833197904]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92.64043, 0, 85)
-script = ExtResource("9_43en7")
+script = ExtResource("11_5mbhd")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_cpwjo")
+modifier_stack = SubResource("Resource_b5ubg")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
 
 [node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter2" unique_id=1180245146]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 50
+visibility_range_end = 100.0
 path = "uid://bbh5j4hbsw5d5"
 
 [node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter2" unique_id=948092607]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 40
+visibility_range_end = 100.0
 path = "uid://cfx6xvbnfc76e"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter2" unique_id=468475617]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 10
+visibility_range_end = 100.0
 path = "uid://do72tetk3dkhh"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter2" unique_id=1016546735]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
-script = ExtResource("17_f4m7j")
+script = ExtResource("19_b0krs")
 shape = SubResource("Resource_8vrlf")
 
 [node name="ProtonScatter3" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=44355772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.513, 0, 714.60913)
-script = ExtResource("9_43en7")
+script = ExtResource("11_5mbhd")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_kfwsd")
+modifier_stack = SubResource("Resource_wkjqu")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
 
 [node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter3" unique_id=644171931]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 50
+visibility_range_end = 100.0
 path = "uid://bbh5j4hbsw5d5"
 
 [node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter3" unique_id=1714843728]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 40
+visibility_range_end = 100.0
 path = "uid://cfx6xvbnfc76e"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter3" unique_id=401781766]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 10
+visibility_range_end = 100.0
 path = "uid://do72tetk3dkhh"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter3" unique_id=1681041909]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
-script = ExtResource("17_f4m7j")
+script = ExtResource("19_b0krs")
 shape = SubResource("Resource_jlt0o")
 
 [node name="ProtonScatter4" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=954347597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.168762, 0, 714.01245)
-script = ExtResource("9_43en7")
+script = ExtResource("11_5mbhd")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_dmwxt")
+modifier_stack = SubResource("Resource_pn7ks")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
 
 [node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter4" unique_id=825952919]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 50
+visibility_range_end = 100.0
 path = "uid://bbh5j4hbsw5d5"
 
 [node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter4" unique_id=1933738582]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 40
+visibility_range_end = 100.0
 path = "uid://cfx6xvbnfc76e"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter4" unique_id=1596996169]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 10
+visibility_range_end = 100.0
 path = "uid://do72tetk3dkhh"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter4" unique_id=923346777]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
-script = ExtResource("17_f4m7j")
+script = ExtResource("19_b0krs")
 shape = SubResource("Resource_15lfp")
 
 [node name="ProtonScatter5" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=1915942277]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -475.56595, 0, 650.1361)
-script = ExtResource("9_43en7")
+script = ExtResource("11_5mbhd")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_4lkg5")
+modifier_stack = SubResource("Resource_71em0")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
 
 [node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter5" unique_id=1991483107]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 50
+visibility_range_end = 100.0
 path = "uid://bbh5j4hbsw5d5"
 
 [node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter5" unique_id=469704574]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 40
+visibility_range_end = 100.0
 path = "uid://cfx6xvbnfc76e"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter5" unique_id=1903613385]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 10
+visibility_range_end = 100.0
 path = "uid://do72tetk3dkhh"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter5" unique_id=1750150388]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
-script = ExtResource("17_f4m7j")
+script = ExtResource("19_b0krs")
 shape = SubResource("Resource_46lff")
 
 [node name="ProtonScatter6" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters" unique_id=824859930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -494.0102, 0, 739.6451)
-script = ExtResource("9_43en7")
+script = ExtResource("11_5mbhd")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_3reor")
+modifier_stack = SubResource("Resource_2jd30")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://dgqq1tf8prx5s"
 
 [node name="Tree01" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter6" unique_id=376964791]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 50
+visibility_range_end = 100.0
 path = "uid://bbh5j4hbsw5d5"
 
 [node name="Tree02" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter6" unique_id=728011001]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 40
+visibility_range_end = 100.0
 path = "uid://cfx6xvbnfc76e"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="Tree03" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter6" unique_id=1937359333]
-script = ExtResource("16_6sa0f")
+script = ExtResource("18_sjoy0")
 proportion = 10
+visibility_range_end = 100.0
 path = "uid://do72tetk3dkhh"
 metadata/_custom_type_script = "uid://c85i0481q4uog"
 
 [node name="ScatterShape" type="Node3D" parent="SubViewportContainer/SubViewport/Scatters/ProtonScatter6" unique_id=377297428]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 66, 0, 26)
-script = ExtResource("17_f4m7j")
+script = ExtResource("19_b0krs")
 shape = SubResource("Resource_tc7hs")
 
 [node name="RoadManager" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1853990698]
-script = ExtResource("8_kuy3d")
-material_resource = ExtResource("3_v3ouk")
+script = ExtResource("21_7iqxe")
+material_resource = ExtResource("22_tmdeb")
 metadata/_custom_type_script = "uid://bxp3i4cnonh8y"
 
 [node name="Road_001" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager" unique_id=1690101157]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.030546, 0.00036621094, -30.439388)
-script = ExtResource("9_v3ouk")
+script = ExtResource("23_eaufa")
 use_lowpoly_preview = true
 edge_containers = Array[NodePath]([NodePath(""), NodePath("")])
 edge_rp_targets = Array[NodePath]([NodePath(""), NodePath("")])
@@ -731,7 +746,7 @@ edge_rp_local_dirs = Array[int]([1, 0])
 
 [node name="RP_001" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1576407352]
 transform = Transform3D(-0.97240216, 0, 0.23331115, 0, 1, 0, -0.23331115, 0, -0.97240216, 0, 0.25, 0)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 next_mag = 43.599728
@@ -740,7 +755,7 @@ next_pt_init = NodePath("../RP_010")
 
 [node name="RP_002" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=363441598]
 transform = Transform3D(-0.9996537, 0, -0.026314944, 0, 1, 0, 0.026314944, 0, -0.9996537, -23.96318, 0.25, 127.37453)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 61.96758
@@ -750,7 +765,7 @@ next_pt_init = NodePath("../RP_001")
 
 [node name="RP_003" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1721278937]
 transform = Transform3D(-0.9910013, 0, -0.13385205, 0, 1, 0, 0.13385205, 0, -0.9910013, 1.9019928, 0.25, 328.47284)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 31.276058
@@ -760,7 +775,7 @@ next_pt_init = NodePath("../RP_002")
 
 [node name="RP_004" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=2087697949]
 transform = Transform3D(-0.99926853, 0, 0.038242623, 0, 1, 0, -0.038242564, 0, -0.99926853, 16.290041, 0.2501335, 806.3181)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 67.566605
@@ -770,7 +785,7 @@ next_pt_init = NodePath("../RP_003")
 
 [node name="RP_005" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=224624855]
 transform = Transform3D(0.15826535, 0, 0.98739666, 0, 1, 0, -0.98739666, 0, 0.15826535, -119.78722, 0.2501335, 922.70654)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 117.616135
@@ -780,7 +795,7 @@ next_pt_init = NodePath("../RP_004")
 
 [node name="RP_006" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1666457939]
 transform = Transform3D(0.5419616, 0, 0.8404032, 0, 1, 0, -0.8404032, 0, 0.5419616, -331.89584, 0.25, 829.57513)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 113.705864
@@ -790,7 +805,7 @@ next_pt_init = NodePath("../RP_005")
 
 [node name="RP_007" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1469573102]
 transform = Transform3D(-0.11649063, 0, 0.9931918, 0, 1, 0, -0.9931918, 0, -0.11649063, -532.6, 0.25, 722.64557)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 121.058044
@@ -800,7 +815,7 @@ next_pt_init = NodePath("../RP_006")
 
 [node name="RP_008" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1978033191]
 transform = Transform3D(-0.99992764, 0, -0.01202932, 0, 1, 0, 0.01202932, 0, -0.99992764, -678.0208, 0.25, 827.17255)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 485.7125
@@ -810,7 +825,7 @@ next_pt_init = NodePath("../RP_007")
 
 [node name="RP_009" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=1320111796]
 transform = Transform3D(-0.9999598, 0, -0.008965046, 0, 1, 0, 0.008965046, 0, -0.9999598, -667.82355, 0.24987793, 1798.544)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 485.7125
@@ -819,7 +834,7 @@ next_pt_init = NodePath("../RP_008")
 
 [node name="RP_010" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=702861179]
 transform = Transform3D(-0.9719571, 0, 0.23515823, 0, 1, 0, -0.23515823, 0, -0.9719571, 20.425146, 0.24999619, -84.773575)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 43.599728
@@ -829,7 +844,7 @@ next_pt_init = NodePath("../RP_011")
 
 [node name="RP_011" type="Node3D" parent="SubViewportContainer/SubViewport/RoadManager/Road_001" unique_id=161666076]
 transform = Transform3D(-0.926055, 0, 0.37738857, 0, 1, 0, -0.37738857, 0, -0.926055, 76.90119, 0.25, -259.64258)
-script = ExtResource("10_grl5c")
+script = ExtResource("24_ao168")
 traffic_dir = Array[int]([2, 2, 1, 1])
 lanes = Array[int]([2, 4, 4, 2])
 prior_mag = 91.881325
@@ -839,14 +854,14 @@ prior_pt_init = NodePath("../RP_010")
 [node name="RoadPath" type="Path3D" parent="SubViewportContainer/SubViewport" unique_id=1032634714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, -24)
 curve = SubResource("Curve3D_plq68")
-script = ExtResource("6_v3ouk")
+script = ExtResource("25_da3u4")
 
 [node name="CarRoute" type="PathFollow3D" parent="SubViewportContainer/SubViewport/RoadPath" unique_id=972304914]
-transform = Transform3D(-0.96468616, 0, 0.26333615, 0, 0.9999871, 0, -0.2633388, 0, -0.96467644, -0.12950325, 0.25048828, 8.168472)
-script = ExtResource("3_route")
+transform = Transform3D(-0.964686, 0, 0.26333615, 0, 0.9999871, 0, -0.26333874, 0, -0.96467644, -0.12950325, 0.25048828, 8.168472)
+script = ExtResource("26_pv2tq")
 
-[node name="Car" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=614255730 instance=ExtResource("5_car")]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, -2.9802322e-08, 0, 1, 0, -0.0071536005, 0)
+[node name="Car" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=614255730 instance=ExtResource("27_23g5d")]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 0.99999976, 0, 0, 0, 1, 0, -0.0071536005, 0)
 
 [node name="ChaseCam" type="Camera3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=1491476341]
 transform = Transform3D(0.9853312, 0.027229141, 0.16856247, 0, 0.98721546, -0.1594722, -0.1707493, 0.15713248, 0.9727315, 3.1187696, 0.24175003, 7.6068745)
@@ -855,16 +870,14 @@ fov = 60.0
 [node name="L_Headlight" type="SpotLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=567458555]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.7813174, 0.9937924, -3.4575648)
 light_color = Color(0.8745098, 1, 1, 1)
-spot_range = 20.0
-spot_attenuation = -0.5
-spot_angle = 20.0
+spot_range = 15.0
+spot_attenuation = 0.0
 
 [node name="R_Headlight" type="SpotLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=1368590744]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.96979934, 0.9937924, -3.4575648)
 light_color = Color(0.8745098, 1, 1, 1)
-spot_range = 20.0
-spot_attenuation = -0.5
-spot_angle = 20.0
+spot_range = 15.0
+spot_attenuation = 0.0
 
 [node name="L_Brakelight" type="OmniLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=1247506725]
 transform = Transform3D(-1, 8.742277e-08, 0, 8.742278e-08, 0.99999994, 8.742277e-08, 7.642742e-15, 8.742277e-08, -0.99999994, -0.78131753, 0.96260333, 3.4398358)
@@ -877,14 +890,18 @@ light_color = Color(1, 0.5568628, 0.5647059, 1)
 omni_range = 0.6
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=1912628050]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.313226e-10, 1.7102736, -0.63616765)
+transform = Transform3D(1, 0, -2.9801821e-08, 0, 1, 0, 2.9801821e-08, 0, 1, -4.0177963e-09, 1.8555431, -0.5013491)
 omni_range = 2.0
 
 [node name="EngineAudio" type="AudioStreamPlayer3D" parent="SubViewportContainer/SubViewport/RoadPath/CarRoute" unique_id=236477257]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-stream = ExtResource("28_hqj03")
+stream = ExtResource("28_g06bo")
 bus = &"Engine"
-script = ExtResource("29_ett85")
+script = ExtResource("29_c3l66")
+
+[node name="PassByCam" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=266602542]
+transform = Transform3D(-0.52898514, 0.45063403, -0.7190993, 0, 0.84736377, 0.53101283, 0.84863114, 0.2808979, -0.44824284, -31.14138, 29.569622, 119.16506)
+fov = 60.0
 
 [node name="DroneShot" type="Node" parent="SubViewportContainer/SubViewport" unique_id=200213398]
 
@@ -915,7 +932,7 @@ offset_right = 300.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("27_4tk06")
+texture = ExtResource("30_i5qfk")
 expand_mode = 1
 stretch_mode = 5
 
@@ -927,16 +944,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=830392400]
-environment = SubResource("Environment_37sh5")
-
-[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=1234029208 instance=ExtResource("3_37sh5")]
+[node name="Player" parent="SubViewportContainer/SubViewport" unique_id=1234029208 instance=ExtResource("32_jvun3")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 0, -3)
 
-[node name="UI" parent="." unique_id=693540099 instance=ExtResource("6_ui")]
+[node name="UI" parent="." unique_id=693540099 instance=ExtResource("33_imt7h")]
 unique_name_in_owner = true
 
 [node name="IntroTrackPlayer" type="AudioStreamPlayer" parent="." unique_id=693141109]
-stream = ExtResource("31_j1haf")
+stream = ExtResource("34_4yq1m")
 pitch_scale = 0.8
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1841490683]
+environment = SubResource("Environment_ojtap")

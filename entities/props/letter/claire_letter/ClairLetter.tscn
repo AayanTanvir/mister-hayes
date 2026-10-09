@@ -1,9 +1,48 @@
-[gd_scene format=3 uid="uid://deacm0ytl4dkg"]
+[gd_scene format=4 uid="uid://deacm0ytl4dkg"]
 
 [ext_resource type="PackedScene" uid="uid://cucc7aqgrbye1" path="res://entities/props/letter/claire_letter/model/ClairLetter.glb" id="1_8041s"]
 [ext_resource type="Script" uid="uid://jxrjni08aepa" path="res://scripts/component/interactables/Interactable.gd" id="2_4jaoc"]
+[ext_resource type="Texture2D" uid="uid://vkbvlhq748ot" path="res://entities/props/letter/claire_letter/model/ClairLetter_claire_letter.png" id="2_s3ss7"]
 [ext_resource type="Script" uid="uid://b2rcoa8eveugw" path="res://scripts/component/interactables/ReadAction.gd" id="3_062y4"]
 [ext_resource type="Script" uid="uid://b1oej1mhfsc7u" path="res://scripts/component/interactables/InspectAction.gd" id="4_062y4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtmqx"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("2_s3ss7")
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bh8uj"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 150,
+"index_data": PackedByteArray("AAABAAEAAAAAAAEAAgAAAAEAAAACAAMAAgAEAAMAAAADAAUABAAFAAMAAgAGAAQAAgABAAYABQAAAAAAAQAAAAUABQAFAAAAAQAFAAAABgAHAAQABwAIAAQABAAIAAUABgAJAAcACAAIAAUACAAFAAUAAQAFAAgAAQAIAAUABgAKAAkABgABAAoACQALAAcACQAMAAsACwANAAcABwANAAgADAAOAAsACwAOAA0ACQAPAAwADAAPAA4ACQAKAA8ADQAIAAgADQANAAgACgANAAgACgAIAA0ACgAIAAEACgABAAgAAQABAAoAAQAKAAoADgANAA0ADgAOAA0ADwAKAA0ADwANAAoADwANAA4ADwAOAA0ACgAKAA8ADwAOAA4ACgAPAA8ADwAPAA4A"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAP//AABVVQAA//8AAAAAAAAAAAAAAAD//wAAAABVVf//AAAAAAAA/////wAAVVUAAAAAAACpqv//AAAAAFVV/////wAAqaoAAAAAAACpqgAA//8AAP////8AAAAA//8AAAAAAACpqv////8AAP///////wAA//8AAP//AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uiol1"]
+resource_name = "ClairLetter_Cube_001"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("BgAGAAYAV1UGAFdVBgCnqgYABgAGAKeq+P8GAAYA+P/4/wYABgD4//j/V1X4//j/+P9XVfj/+P/4/6eq+P+nqgYAp6r4/1dVBgBXVfj/BgAGAAYA+P+nqgYA+P/4//j/9aimV3e8J2v1qCdrd7ymVwBiR9YDI7Z+AGK2fgMjR9b+oEfW/qC2fvvfR9b737Z+9aigV3e8H0R3vKBX9agfRBJiQ3g4I7sgEmK7IDgjQ3jsoEN47KC7IMbfQ3jG37sgAsOgV4LJH0SCyaBXAsMfRIjJJ2sI0KZXCNAna4jJpld8vCdr/MKmV/zCJ2t8vKZXAsMna4LJpleCySdrAsOmV4jJoFcI0B9ECNCgV4jJH0R8vKBX/MIfRPzCoFd8vB9E"),
+"format": 34896613399,
+"index_count": 150,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEAAgADAAUABgAEAAAABQADAAcABgAIAAQABQAHAAkACgAIAAYACQAHAAsACgAMAAgACQALAA0ADgAMAAoADQALAA8ADgAPAAwADQAPAA4AEAARABIAEgARABMAEgATABQAEAAVABEAFgAVABAAFgAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAcAB4AIAAeACEAIgAgACEAIgAhACMAJAAlACYAJAAnACUAKAApACoAKAArACkALAAoACoALAAqAC0ALgAsAC0ALgAtAC8AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUA"),
+"material": SubResource("StandardMaterial3D_jtmqx"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 72,
+"vertex_data": PackedByteArray("AAAAAP///79VVQAA////v1VVAAD///+/qaoAAP///78AAAAA////v6mqAAD///+/AAD//////7///wAA////vwAA//////+///8AAP///79VVf//////v/////////+/VVX//////7//////////v6mq//////+/qar//////7+pqgAA//8AAFVV/////wAAVVUAAP//AAAAAP////8AAAAAAAD//wAAqar/////AAD//wAA//8AAP///////wAAAAAAAP////8AAP//AAD//wAA////////AAAAAAAA//+pqgAAAAD///////8AAP//qar//wAA/////wAAAAD//1VVAAAAAP//VVX//wAA//8AAAAAAAD//wAA//8AAP////8AAAAAVNX///////9U1f////8AAFTV//8AAP//VNVVVQAA//8AgAAA/////wCAVVX/////AIAAAAAA//8AgKmqAAD//wCAqar/////AID//wAA//8AgP///////wCAqaoAAAAA/7///wAA////v///AAAAAP+/qaoAAP///79VVf//AAD//wAA////////AAD//wAA//9VVf////////////8AAP//qar///////+pqv//AAD/////////////qar//wAA//9VVf///////1VV//8AAP//qar///////8AAAAAAAD/v1VVAAD///+/VVUAAAAA/78AAAAA////v1VVAAAAAP+/qaoAAP///7+pqgAAAAD/v1VVAAD///+/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f/+//7//v/+//7//v/+//7//v/+//7//v/+//7//v/+//z//f/8//3//P/9//z//f/9/////f////3////9/////f////3////9/////f///qiqqKqoqqiqqKqoqqiqqKv9/////f////3////9/////f////3////9/////f///AAD/fwAA/38AAP9/AAD/f/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//v/9//7//f/+//3//vwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_bh8uj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 size = Vector3(0.35, 0.17285156, 0.05)
@@ -11,6 +50,9 @@ size = Vector3(0.35, 0.17285156, 0.05)
 [node name="ClairLetter" type="Node3D" unique_id=1835252003]
 
 [node name="ClairLetter" parent="." unique_id=541140467 instance=ExtResource("1_8041s")]
+
+[node name="Cube" parent="ClairLetter" index="0" unique_id=174863172]
+mesh = SubResource("ArrayMesh_uiol1")
 
 [node name="Handler" type="Area3D" parent="." unique_id=2082844623]
 script = ExtResource("2_4jaoc")
@@ -40,3 +82,5 @@ Please don't contact me. I don't know if I can forgive you. I don't know if I'm 
 script = ExtResource("4_062y4")
 inspect_model = ExtResource("1_8041s")
 key = 1
+
+[editable path="ClairLetter"]

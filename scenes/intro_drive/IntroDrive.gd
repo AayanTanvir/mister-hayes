@@ -1,4 +1,4 @@
-class_name Intro
+class_name IntroDrive
 extends Node
 
 @export_range(0.0, 1.0) var handoff_ratio := 0.655 	## route progress where the interior phase ends
@@ -70,8 +70,8 @@ func start_intro():
 	engine_audio.set_inside(true)
 	
 	await get_tree().create_timer(1.0).timeout
-	DialogueManager.start_single_dialogue(intro_dialogue, true)
-	await DialogueManager.idle
+	ScriptManager.start_single_dialogue(intro_dialogue, true)
+	await ScriptManager.idle
 	player.disable_interact(false)	# Allow interaction after dialogue
 	
 	await car_route.wait_until_ratio(handoff_ratio)
@@ -82,9 +82,16 @@ func start_intro():
 	ui.hud_visible(false)
 	GameManager.restrict_changes(true)
 	
-	engine_audio.set_inside(false)
 	drone_cam.make_current()
+	await get_tree().process_frame
+	
+	engine_audio.set_inside(false)
 	drone_shot_anim_player.play("drone_pullback")
 	await drone_shot_anim_player.animation_finished
+	engine_audio.stop()
 	black_screen.show()
 	GameManager.restrict_changes(false)
+	await get_tree().create_timer(4.0).timeout
+	
+	GameState.set_state("intro_drive_sequence_completed", true)
+	SceneManager.change_scene(SceneManager.Scenes.TOWN)

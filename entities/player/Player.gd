@@ -5,11 +5,11 @@ enum State { WALKING, SEATED }
 
 var state := State.WALKING
 
-@onready var camera_controller: CameraController = %CameraController
-@onready var movement_controller: MovementController = %MovementController
 @onready var collision_shape: CollisionShape3D = %PlayerCollisionShape
 @onready var mesh: MeshInstance3D = %PlayerMesh
 @onready var camera: Camera3D = %PlayerCamera
+@export var movement_controller: MovementController
+@export var camera_controller: CameraController
 @export var interact_controller: InteractController
 @export var hold_marker: Marker3D
 

@@ -14,11 +14,16 @@ config/name="Mister Hayes"
 run/main_scene="uid://rsxeejsy00mg"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[audio]
+
+buses/default_bus_layout="uid://tvhd3gd6ik45"
+
 [autoload]
 
-DialogueManager="*uid://dsbc8ddrvkkbq"
+GameState="*uid://cat8sbmiq78c6"
 GameManager="*uid://coa7r2wh0s6im"
-GameState="uid://cat8sbmiq78c6"
+SceneManager="*uid://cdmnjdxh68yce"
+ScriptManager="*uid://dsbc8ddrvkkbq"
 
 [display]
 
@@ -140,4 +145,3 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-shading/overrides/force_vertex_shading=true

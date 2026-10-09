@@ -45,7 +45,7 @@ func execute(_k: ActionKey) -> void:
 	
 	if _has_used:
 		var line = _next_post_use_line()
-		DialogueManager.say({"text": line})
+		ScriptManager.say({"text": line})
 	else:
 		_has_used = true
 
@@ -56,9 +56,9 @@ func execute(_k: ActionKey) -> void:
 		_fade_inbox(0.0, FADE_TIME)  # not awaited on purpose. fades while it slides back
 		await _slide_to(_home, _rest_local, MOVE_TIME, Tween.EASE_IN_OUT)
 
-		DialogueManager.say({"text": "*sighs* ...Right"})
+		ScriptManager.say({"text": "*sighs* ...Right"})
 		
-	await DialogueManager.idle
+	await ScriptManager.idle
 	_busy = false
 	GameManager.interact_mode(false)
 

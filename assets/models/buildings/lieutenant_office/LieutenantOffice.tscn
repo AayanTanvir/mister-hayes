@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bm3r4m0y8xyoe"]
+
+[ext_resource type="PackedScene" uid="uid://qs1w246iaydn" path="res://assets/models/buildings/lieutenant_office/LieutenantOffice.glb" id="1_7svl2"]
+
+[node name="LieutenantOffice" unique_id=2099676457 instance=ExtResource("1_7svl2")]

@@ -8,7 +8,6 @@
 resource_name = "car_mat.001"
 cull_mode = 2
 albedo_texture = ExtResource("1_xwt82")
-roughness = 0.5
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lleqa"]
@@ -566,7 +565,6 @@ shadow_mesh = SubResource("ArrayMesh_8ql46")
 resource_name = "radio_mat"
 cull_mode = 2
 albedo_texture = ExtResource("3_tml8f")
-roughness = 0.5
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 

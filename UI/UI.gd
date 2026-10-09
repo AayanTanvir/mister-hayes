@@ -30,7 +30,7 @@ func hud_visible(v: bool):
 	
 	if v:
 		GameManager.sync_interact_prompt()
-		DialogueManager.sync_dialogue_visiblity()
+		ScriptManager.sync_dialogue_visiblity()
 	else:
 		interact_prompt_container.visible = false
 		dialogue_container.visible = false

@@ -1,19 +1,18 @@
 [gd_scene format=4 uid="uid://cwr0ii5morvt5"]
 
-[ext_resource type="Texture2D" uid="uid://cavwky258dvrg" path="res://entities/props/letter/cbi_letter/model/CbiLetter_cbi_letter_mat.png" id="1_ods7c"]
+[ext_resource type="Texture2D" uid="uid://cavwky258dvrg" path="res://entities/props/letter/cbi_letter/model/CbiLetter_cbi_letter_mat.png" id="2_7vaqt"]
 [ext_resource type="Script" uid="uid://jxrjni08aepa" path="res://scripts/component/interactables/Interactable.gd" id="2_flvoj"]
 [ext_resource type="Script" uid="uid://b2rcoa8eveugw" path="res://scripts/component/interactables/ReadAction.gd" id="3_5baw8"]
 [ext_resource type="PackedScene" uid="uid://cvu5a6sxm6ntc" path="res://entities/props/letter/cbi_letter/model/CbiLetter.glb" id="3_flvoj"]
 [ext_resource type="Script" uid="uid://b1oej1mhfsc7u" path="res://scripts/component/interactables/InspectAction.gd" id="4_7vaqt"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mh1tw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1k8sq"]
 resource_name = "Material.001"
 cull_mode = 2
-albedo_texture = ExtResource("1_ods7c")
-roughness = 0.5
+albedo_texture = ExtResource("2_7vaqt")
 metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_dwpof"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_hb708"]
 _surfaces = [{
 "aabb": AABB(-0.12096001, -0.17263561, -0.0049171373, 0.24192002, 0.34527123, 0.008682275),
 "format": 34359742465,
@@ -28,7 +27,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_6m03r"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_t11n1"]
 resource_name = "CbiLetter_Plane"
 _surfaces = [{
 "aabb": AABB(-0.12096001, -0.17263561, -0.0049171373, 0.24192002, 0.34527123, 0.008682275),
@@ -37,7 +36,7 @@ _surfaces = [{
 "index_count": 108,
 "index_data": PackedByteArray("HgACAAAAHgAfAAIAAwAgACEAAwABACAAIgAjACQAIgAYACMAJAAjACUAJAAlACYAJwAHABkAJwAFAAcABAAoAAYABAApACgAKgArACwAKgAaACsAGgAtACsAGgAuAC0ACAAJAAoACAALAAkALwAOAAwALwAwAA4AMQAwAC8AMQAbADAAMgAbADEAMgAzABsADwAzADIADwANADMAFAA0ABwAFAAXADQAHAA0ADUAHAA1ADYANgA1AB0ANgAdADcANwAdABUANwAVABYAEAARABIAEAATABEA"),
 "lods": [0.045634147, PackedByteArray("AAAYAAIAAwAYAAAAAwABABgABQAHABkAGgAFABkAGgAZAAYABAAaAAYACAAJAAoACAALAAkADAAbAA4ADwAbAAwADwANABsAFAAXABwAHAAXAB0AHAAdABUAHAAVABYAEAARABIAEAATABEA"), 0.06845122, PackedByteArray("AAABAAIAAwABAAAABAAFAAYABQAHAAYACAAJAAoACAALAAkADAANAA4ADwANAAwAEAARABIAEAATABEAFAAVABYAFAAXABUA")],
-"material": SubResource("StandardMaterial3D_mh1tw"),
+"material": SubResource("StandardMaterial3D_1k8sq"),
 "name": "Material.001",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -45,15 +44,17 @@ _surfaces = [{
 "vertex_data": PackedByteArray("4Ln3vWTHMD6IwHY74Ln3PWTHML6IwHa74Ln3PWTHMD6IwHY74Ln3vWTHML6IwHa74Ln3vWTHML7wH6G74Ln3vWTHMD4sQSs74Ln3PWTHML7wH6G74Ln3PWTHMD4sQSs74Ln3PWTHMD6IwHY74Ln3vWTHMD4sQSs74Ln3vWTHMD6IwHY74Ln3PWTHMD4sQSs74Ln3vWTHML6IwHa74Ln3vWTHMD4sQSs74Ln3vWTHML7wH6G74Ln3vWTHMD6IwHY74Ln3vWTHML6IwHa74Ln3PWTHML7wH6G74Ln3PWTHML6IwHa74Ln3vWTHML7wH6G74Ln3PWTHML6IwHa74Ln3PWTHMD4sQSs74Ln3PWTHMD6IwHY74Ln3PWTHML7wH6G74Ln3PaxIsb1GwHY74Ln3PaxIsT3RH6G74rn3vY/C9SK1/pa64rn3vY/C9SK1/pa64Ln3PaxIsb1GwHY74Ln3PaxIsT3RH6G74Ln3vaxIsT1GwHa74Ln3PaxIsT1GwHa74Ln3PaxIsb1GwHY74Ln3vaxIsb1GwHY74Ln3vaxIsb1GwHY74rn3PQAAAAAAAACA4rn3vQAAAAAAAACA4Ln3PaxIsT1GwHa74Ln3vaxIsT1GwHa74Ln3vaxIsT3RH6G74Ln3PaxIsb3qQCs74Ln3vaxIsb3qQCs74Ln3vaxIsb3qQCs74rn3PY/C9SK1/pa64Ln3PaxIsb3qQCs74Ln3PaxIsT3RH6G74Ln3vaxIsT3RH6G74Ln3vaxIsb1GwHY74Ln3vaxIsb3qQCs74rn3vQAAAAAAAACA4Ln3vaxIsT1GwHa74Ln3vaxIsT3RH6G74Ln3PaxIsb3qQCs74rn3PY/C9SK1/pa64rn3PQAAAAAAAACA4Ln3PaxIsT1GwHa7sfX//////z+x9f//////P7H1//////8/sfX//////z//f7J1/3/Y+v9/snX/f9j6/3+ydf9/2Pr/f7J1/3/Y+v9/AAD///+//38AAP///7//fwAA////v/9/AAD///+/////f////7////9/////v////3////+/////f////7//f///////v/9///////+//3///////7//f///////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/p/oAAP///z//f7J1/3/Y+v9/VoVWhf7/////f////78AAP9/////vwAA/3////+/sfX//////z+x9f//////P7H1//////8/sfX//////z+n+gAA////P6f6AAD///8/p/oAAP///z+n+gAA////P6f6AAD///8//3+ydf9/2Pr/f7J1/3/Y+v9/snX/f9j6/39Whah6////f1aFVoX+//9/VoVWhf7//39WhVaF/v//f1aFVoX+/////3////+/////f////7////9/////v////3////+/////f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vw==")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_dwpof")
+shadow_mesh = SubResource("ArrayMesh_hb708")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
 size = Vector3(0.25, 0.35, 0.018554688)
 
 [node name="CbiLetter" type="Node3D" unique_id=497591060]
 
-[node name="Mesh" type="MeshInstance3D" parent="." unique_id=973825036]
-mesh = SubResource("ArrayMesh_6m03r")
+[node name="Mesh" parent="." unique_id=2015157657 instance=ExtResource("3_flvoj")]
+
+[node name="CBI_Letter" parent="Mesh" index="0" unique_id=1690524717]
+mesh = SubResource("ArrayMesh_t11n1")
 
 [node name="Handler" type="Area3D" parent="." unique_id=189641854]
 collision_layer = 2
@@ -91,3 +92,5 @@ Report no later than the date above.
 script = ExtResource("4_7vaqt")
 inspect_model = ExtResource("3_flvoj")
 key = 1
+
+[editable path="Mesh"]

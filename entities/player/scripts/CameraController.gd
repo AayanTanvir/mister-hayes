@@ -14,7 +14,6 @@ var seated := false
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventMouseMotion:
 		return
-
 	var mouse_delta: Vector2 = event.screen_relative
 	rotate_x(-mouse_delta.y * mouse_sensitivity)
 	camera_yaw.rotate_y(-mouse_delta.x * mouse_sensitivity)

@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://ivhv6quvkjxr"]
+
+[ext_resource type="Script" uid="uid://68yg3kx41ph6" path="res://scenes/town/Town.gd" id="1_n5615"]
+[ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="2_ki453"]
+[ext_resource type="Texture2D" uid="uid://b4cvrey1vk0kx" path="res://assets/textures/nature/ground_01.png" id="4_8mv33"]
+[ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="4_25glc"]
+[ext_resource type="Texture2D" uid="uid://cm30qxl66kjv4" path="res://assets/textures/nature/ground_01_n.png" id="5_lersf"]
+[ext_resource type="Texture2D" uid="uid://p3lhe23u0f0o" path="res://assets/textures/sky/NightSkyHDRI003_1K_TONEMAPPED.jpg" id="5_uiijs"]
+[ext_resource type="Texture2D" uid="uid://c7cwfpxwfj0s2" path="res://assets/textures/nature/ground_02.png" id="6_v3pdc"]
+[ext_resource type="Texture2D" uid="uid://pvoja1046nqn" path="res://assets/textures/nature/ground_02_n.png" id="7_tyo6j"]
+[ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="9_lersf"]
+[ext_resource type="AudioStream" uid="uid://dpcifyajolgon" path="res://assets/sounds/car_door_close.wav" id="10_v3pdc"]
+[ext_resource type="PackedScene" uid="uid://bm3r4m0y8xyoe" path="res://assets/models/buildings/lieutenant_office/LieutenantOffice.tscn" id="11_tyo6j"]
+
+[sub_resource type="Gradient" id="Gradient_uiijs"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n5615"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tr5gk"]
+noise = SubResource("FastNoiseLite_n5615")
+color_ramp = SubResource("Gradient_uiijs")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_8mv33"]
+_shader_parameters = {
+&"bias_distance": null,
+&"blend_sharpness": null,
+&"depth_blur": null,
+&"enable_macro_variation": null,
+&"enable_projection": null,
+&"flat_terrain_normals": null,
+&"macro_variation1": null,
+&"macro_variation2": null,
+&"macro_variation_slope": null,
+&"mipmap_bias": null,
+&"noise1_angle": null,
+&"noise1_offset": null,
+&"noise1_scale": null,
+&"noise2_scale": null,
+&"noise_texture": SubResource("NoiseTexture2D_tr5gk"),
+&"projection_threshold": null
+}
+texture_filtering = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mv33"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_lersf"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_8mv33")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_1xjsg"]
+name = "ground_01"
+albedo_texture = ExtResource("4_8mv33")
+normal_texture = ExtResource("5_lersf")
+uv_scale = 0.25
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_ffnhu"]
+name = "ground_02"
+id = 1
+albedo_texture = ExtResource("6_v3pdc")
+normal_texture = ExtResource("7_tyo6j")
+uv_scale = 0.25
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_tyo6j"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_lersf")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_1xjsg"), SubResource("Terrain3DTextureAsset_ffnhu")])
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8mv33"]
+panorama = ExtResource("5_uiijs")
+
+[sub_resource type="Sky" id="Sky_8mv33"]
+sky_material = SubResource("PanoramaSkyMaterial_8mv33")
+
+[sub_resource type="Environment" id="Environment_lersf"]
+background_mode = 2
+background_energy_multiplier = 1.4
+sky = SubResource("Sky_8mv33")
+sky_custom_fov = 90.0
+ambient_light_source = 2
+ambient_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 2
+tonemap_exposure = 0.8
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.75
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
+fog_light_energy = 0.3
+fog_density = 1.0
+fog_sky_affect = 0.95
+fog_depth_curve = 0.5
+fog_depth_begin = 5.0
+fog_depth_end = 102.5
+adjustment_enabled = true
+adjustment_contrast = 1.02
+adjustment_saturation = 1.25
+
+[node name="Town" type="Node" unique_id=560915442]
+script = ExtResource("1_n5615")
+
+[node name="RetroViewportContainer" type="SubViewportContainer" parent="." unique_id=720255528]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="RetroViewport" type="SubViewport" parent="RetroViewportContainer" unique_id=1819535132]
+handle_input_locally = false
+audio_listener_enable_3d = true
+physics_object_picking = true
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Car" parent="RetroViewportContainer/RetroViewport" unique_id=414290366 instance=ExtResource("9_lersf")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -32.5, 0, -13.35)
+
+[node name="Player" parent="RetroViewportContainer/RetroViewport" unique_id=1234029208 instance=ExtResource("2_ki453")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -11)
+
+[node name="Terrain3D" type="Terrain3D" parent="RetroViewportContainer/RetroViewport" unique_id=1207075274]
+data_directory = "res://scenes/town/terrain_data"
+material = SubResource("Terrain3DMaterial_8mv33")
+assets = SubResource("Terrain3DAssets_tyo6j")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="UI" parent="." unique_id=1489775715 instance=ExtResource("4_25glc")]
+unique_name_in_owner = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1503268689]
+environment = SubResource("Environment_lersf")
+
+[node name="CarDoorClose" type="AudioStreamPlayer" parent="." unique_id=1544466986]
+stream = ExtResource("10_v3pdc")
+autoplay = true
+
+[node name="LieutenantOffice" parent="." unique_id=2099676457 instance=ExtResource("11_tyo6j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -13.5)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1205778659]
+transform = Transform3D(0.9659259, 1.13133405e-08, -0.25881907, 0.25881907, -4.222196e-08, 0.9659258, 0, -1, -4.371139e-08, -35, 12, -10.5)
+spot_range = 17.5
+spot_attenuation = 0.0
+spot_angle = 46.05169
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=1451373926]
+transform = Transform3D(-4.222196e-08, 1, 5.5024724e-08, 0.25881907, -4.2221956e-08, 0.9659258, 0.9659259, 5.5024724e-08, -0.25881907, -24.5, 12, -32)
+spot_range = 17.5
+spot_attenuation = 0.0
+spot_angle = 46.05169
+
+[editable path="LieutenantOffice"]
