@@ -22,7 +22,7 @@ size = Vector3(0.41, 0.03, 0.16)
 size = Vector3(0.14999999, 0.24, 0.06)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
-size = Vector3(2.6000001, 2.3, 7.2000003)
+size = Vector3(3, 2.3, 7.2000003)
 
 [node name="Car" type="Node3D" unique_id=414290366 node_paths=PackedStringArray("sway", "seat", "steering_wheel", "wheel_fl", "wheel_fr", "wheel_bl", "wheel_br")]
 script = ExtResource("2_fx")
@@ -40,13 +40,13 @@ wheel_br = NodePath("CarMesh/R_Wheel_Back")
 transform = Transform3D(0.99999994, -1.1266326e-09, 1.0394978e-08, -9.924405e-09, -0.25881904, 0.9659258, 1.4901161e-08, -0.96592575, -0.2588191, 0.6352094, 1.1200342, -1.2458258)
 
 [node name="CbiLetter" parent="Props" unique_id=497591060 instance=ExtResource("6_46kew")]
-transform = Transform3D(0.7071067, 0.70710695, 3.0908627e-08, 2.3798682e-16, -4.3711385e-08, 1, 0.70710695, -0.7071067, -3.0908613e-08, 0.62000006, 0.6503706, -1.08)
+transform = Transform3D(0.25881886, 0.96592593, 3.0908623e-08, 2.1855694e-08, -3.785517e-08, 1, 0.96592593, -0.25881886, -3.0908613e-08, 0.575171, 0.99037063, 0.5015169)
 
 [node name="Phone" parent="Props" unique_id=461075708 instance=ExtResource("8_rfouc")]
 transform = Transform3D(0.57357645, -0.81915206, 0, -3.5806274e-08, -2.5071824e-08, 1, -0.81915206, -0.57357645, -4.371139e-08, -0.39, 1.37, -1.34)
 
 [node name="Newspaper" parent="Props" unique_id=1046253428 instance=ExtResource("4_xjurd")]
-transform = Transform3D(-0.2684299, 0.96248204, -0.039670516, 0.04261771, 0.053007238, 0.9976843, 0.962356, 0.26611775, -0.055247523, 0.62550986, 1.008904, -0.47346717)
+transform = Transform3D(-0.2684299, 0.96248204, -0.039670516, 0.04261771, 0.053007238, 0.9976843, 0.962356, 0.26611775, -0.055247523, 0.4488002, 0.9780265, -0.5421717)
 
 [node name="GloveBoxHandler" type="Area3D" parent="Props" unique_id=1797061507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62, 1.12, -1.13)
@@ -102,11 +102,6 @@ _interact_area = NodePath("..")
 
 [node name="Seat" type="Marker3D" parent="Sway" unique_id=93007234]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6425395, 1.7500001, -0.46573317)
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="Sway" unique_id=1102485354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -0.79999995)
-visible = false
-omni_range = 1.7
 
 [node name="ExitPoint" type="Marker3D" parent="." unique_id=437869837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5500002, 0, -0.9000001)

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://kl2a6bynfokc"]
+
+[ext_resource type="PackedScene" uid="uid://djm6kavibpoe3" path="res://assets/models/environment/prigton/structures/parking_lot/ParkingLot.glb" id="1_dd071"]
+[ext_resource type="Material" uid="uid://hsoplajaw4ti" path="res://assets/materials/M_Atlas.tres" id="2_rk7wx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
+size = Vector3(1, 0.3642578, 28.423706)
+
+[node name="ParkingLot" unique_id=631670658 instance=ExtResource("1_dd071")]
+
+[node name="ParkingLot" parent="." index="0" unique_id=1750374882]
+surface_material_override/0 = ExtResource("2_rk7wx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=781881859]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1999601876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.310799, 0.1821289, 0.11907959)
+shape = SubResource("BoxShape3D_1vivr")

@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://de6d3xw4crqb6" path="res://entities/car/model/Car_Car_Black Car Texture.png" id="1_xwt82"]
 [ext_resource type="Texture2D" uid="uid://bq6ovh6itxi28" path="res://entities/car/model/Car_Car_Blue Car Texture.png" id="2_clcq4"]
-[ext_resource type="Texture2D" uid="uid://85fk7oqmuhsg" path="res://entities/car/model/Car_radio_texture.png" id="3_tml8f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3aq3a"]
 resource_name = "car_mat.001"
 cull_mode = 2
 albedo_texture = ExtResource("1_xwt82")
+texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_lleqa"]
@@ -148,6 +148,7 @@ transparency = 4
 cull_mode = 2
 albedo_color = Color(1, 1, 1, 0.1)
 albedo_texture = ExtResource("2_clcq4")
+roughness = 0.5
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
 
@@ -561,48 +562,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8ql46")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ejed"]
-resource_name = "radio_mat"
-cull_mode = 2
-albedo_texture = ExtResource("3_tml8f")
-texture_filter = 2
-metadata/_gltf_primary_texture_coord = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_tvhsf"]
-_surfaces = [{
-"aabb": AABB(-0.23731768, -0.10206509, -0.101835966, 0.48000017, 0.1870594, 0.12989402),
-"format": 34896613377,
-"index_count": 186,
-"index_data": PackedByteArray("DAANAA4ADwAMAA4ADAAQAA0ADwAOABEADQARAA4AEgAPABEAEAATAA0AEAAUABMAFQANABMAFAAVABMAFQARAA0AFAAWABUAEgARABcAGAASABcAEQAZABcAGAAXABkAEQAVABkAGgAYABkAFgAbABUAFgAaABsAGQAVABsAGgAZABsAHAAdAB4AHwAcAB4AHAAgAB0AHwAeACEAHQAhAB4AIgAfACEAIAAjAB0AIAAkACMAJQAdACMAJAAlACMAJQAhAB0AJAAmACUAIgAhACcAKAAiACcAIQApACcAKAAnACkAIQAlACkAKgAoACkAJgArACUAJgAqACsAKQAlACsAKgApACsAAAABAAIAAgABAAMAAAAEAAEABQAAAAIABQACAAYAAAAFAAcABgACAAgAAgADAAgABgAIAAkAAQAKAAMAAQAEAAoACAADAAoACwAEAAAACwAKAAQACAAKAAsACQAIAAsAAAAHAAsACQALAAcA"),
-"lods": [0.03386407, PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABQAAAAIABQACAAYAAAAFAAcABgACAAgAAgADAAgABgAIAAkAAQAKAAMAAQAEAAoACAADAAoACwAEAAAACwAKAAQACAAKAAsACQAIAAsAAAAHAAsACQALAAcA")],
-"name": "radio_mat",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 44,
-"vertex_data": PackedByteArray("AAAbF9v3AADB+OYi/t4AAP//Gxfb9wAAwfgC7yqrAAA9B+Yi/94AAAAAAAAjOwAA/v8AACM7AAAAAOPoAAAAAP////+4vAAA/v/j6AAAAAA9BwLvK6sAAAAA//+4vAAAWdAstLC4AADy23KwCO4AAFnQZbqB6wAAXsV9piq8AADy2zmqN7sAAF7Ftqz77gAAbsEwiZvDAABc4bCUFPUAAFzheI5DwgAAbN1jd4X8AABs3SpxtMkAAG7BaI9r9gAA2MZubafKAADYxqdzeP0AAHDSe2MuzQAAcNK0af//AADVGq+Rc8EAABwherKE7QAA1Rrol0P0AADVHa5zEckAABwhQqyzugAA1R3neeL7AABZKNJjGM0AAPssDrqX6wAA+yzVs8e4AAB/NzKqnu8AAH83+aPOvAAAWSgLauj/AAA4NGZrK8sAADg0nnH8/QAAfzr4hWzEAAB/OjGMPfcAAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_ewqij"]
-resource_name = "Car_Cube"
-_surfaces = [{
-"aabb": AABB(-0.23731768, -0.10206509, -0.101835966, 0.48000017, 0.1870594, 0.12989402),
-"attribute_data": PackedByteArray("cCf//+8RPQdwJwAA7xHB+BY6///RKdEPFjoAANEpLfD6LwAAP0At8Pov//8/QNEPBOUWozgcw1UE5cNVOBwWo6A25GujAEgBoDZIAaMA5GuEa04t6ABLY+gATi2Ea0tjYT7//98oPQdhPgAA3yjB+HY2tc54ABhkdjYYZHgAtc4z/7NqNskXADP/FwA2ybNqpfHx6vXtFOO88xTjOPAz6zjynOy88xTjpfkH6KXx8epf7yP0qu116F/vCO6K6b3pQOuu5kDra/Wq7TL3iunY70HxBfCl+QfoU/mT8zjynOxZ77LyU/mT88bxovpB8QXw5e3d8sbxovoI7N76We+y8hDtVfEI7N76wuVR9uXt3fLZ7dHtwuVR9n/lMuoQ7VXxOPAz63/lMur17RTj2e3R7UDsiusF5F3z0uPk50Prhe4w7wnp0uPk5xjth+BA7IrrSvQR50Dw++Se8p/jlO6T8JTuWOqe8qrySvRM7UDwBfQW8anoGO2H4IP0KOEw7wnpl/Hh6YP0KOHt+DjlFvGp6IXwAu3t+Djl7fig8Jfx4emp7YTv7fig8Mzv6PeF8ALt7OvI78zv6Pd86Fr3qe2E70Prhe586Fr3BeRd8+zryO8="),
-"format": 34896613399,
-"index_count": 186,
-"index_data": PackedByteArray("JAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0ALQAvADAALwAsADEAMQAsADIALwAxADMANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAVQBXAFgAVwBUAFkAWQBUAFoAVwBZAFsAXABdAF4AXABfAF0AYABhAGIAYABjAGEAZABlAGYAZABnAGUAaABpAGoAaABrAGkAbABtAG4AbABvAG0AcABxAHIAcABzAHEAAAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEA"),
-"lods": [0.03386407, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEA")],
-"material": SubResource("StandardMaterial3D_6ejed"),
-"name": "radio_mat",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 116,
-"vertex_data": PackedByteArray("AAAbF9v38sjB+OYi/t7yyP//Gxfb9/LIPQfmIv/e8sgAAP//uLyi/T0H5iL/3qL9AAAbF9v3ov09BwLvK6ui/f//Gxfb96L9wfgC7yqrov3/////uLyi/cH45iL+3qL9wfjmIv7eG4c9BwLvK6sbh8H4Au8qqxuHPQfmIv/eG4f+/+PoAACM2QAA//+4vIzZAADj6AAAjNn/////uLyM2QAAAAAjO/////8bF9v3///+/wAAIzv//wAAGxfb9////////7i80sM9BwLvK6vSwwAA//+4vNLDwfgC7yqr0sP+/wAAIztOwP////+4vE7A/v/j6AAATsD//xsX2/dOwAAAGxfb907AAADj6AAATsAAAP//uLxOwAAAAAAjO07AWdAstLC4SfXy23KwCO5d9VnQZbqB68z18ts5qje72/RexX2mKrxQ5FnQZbqB6/fiXsW2rPvuHNxZ0Cy0sLiu62zdY3eF/FSH8ttysAjuVIdc4bCUFPVUh17Ftqz77lSHWdBluoHrVIfYxqdzeP1Uh3DStGn//1SHbsFoj2v2VIduwTCJm8O9xF7Ftqz77tbDbsFoj2v2YcJexX2mKryoy9jGbm2nyjPQbsFoj2v2CdDYxqdzeP0mz27BMImbwxrRcNJ7Yy7NkPbYxqdzeP2K9nDStGn//2j22MZubafKsvZs3SpxtMli5XDStGn//+PjbN1jd4X8Etxw0ntjLs1+7VzheI5DwjjFbN1jd4X8icNc4bCUFPVMvmzdKnG0yY3P8ts5qje7P85c4bCUFPUazvLbcrAI7lLNXOF4jkPCDs/VGq+Rc8HA6hwherKE7d7t1Rrol0P0AP0cIUKss7q83NUdrnMRyQLc1Rrol0P0QtzVHed54vul3dUar5FzwaPafzcyqp7vO4ccIXqyhO07h/ssDrqX6zuH1R3neeL7O4fVGuiXQ/Q7hzg0nnH8/TuHfzoxjD33O4dZKAtq6P87h1ko0mMYzSG81R3neeL7ArxZKAtq6P9ou9UdrnMRyde8ODRmayvLNb5ZKAtq6P/9vjg0nnH8/eXDWSjSYxjN67p/OviFbMTS4Dg0nnH8/f7jfzoxjD33tPM4NGZrK8uR0n83+aPOvGrmfzoxjD33qeZ/NzKqnu8E6H86+IVsxBLl+yzVs8e4Vsl/NzKqnu88yfssDrqX67TIfzf5o8687MkcIUKss7pxy/ssDrqX6wnMHCF6soTtuM/7LNWzx7jbyN2g3aDdoN2g3aDdoN2g3aDHB1QfxwdUH8cHVB/HB1Qfq2DGh6tgxoerYMaHq2DGh/7//3/+//9//v//f/7//3/p0hUt6dIVLenSFS3p0hUt/3+YRf9/mEX/f5hF/3+YRQ0Z8eYNGfHmDRnx5g0Z8eaHiQ8Th4kPE4eJDxOHiQ8TD5N39g+Td/YPk3f2D5N39iNBYAgTQXcIuED3CH9B3gdDhbTGM4cGxhmRj8LeeofEg+Q1goPkNYKD5DWCguQ1goLkNYKC5DWCguQ1goPkNYKRhvLhvIuJ4aenH91DcfbMJ8C67uy/5+6dvuHva8HJ7fHJJ/buySz23MlI9gTKDPa+gb5CMYCWQfN3UUMwiUlI6IiBLcOESifkaxkgaZdCQ0BPGwmeT9MIr1E+B0tNmwr89jFApPN1PQHmTTJi9lC700iqlrpIZpYuSO6UX0kimEH+XWpB/l1qQf5dakH+XWpB/l1qQf5dakH+XmpB/l1qNzDwmjcweps6MHyeNDADmB0H66gJCRqscBEMuoYFhWMQACi+nAP+wIsRJMwGEfs967xycge9uHKgvTh0U7z1cMfUh2uz1BlrRdS9aDXV4W0/9a1ZbvPzVibrgkrw/lSW")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_tvhsf")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_endyy"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6ejed"]
 _surfaces = [{
 "aabb": AABB(-0.20001554, -0.019080877, -0.00036376715, 0.40003103, 0.026829243, 0.1603257),
 "format": 34896613377,
@@ -616,7 +576,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_jwmei"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_tvhsf"]
 resource_name = "Car_Cube_003"
 _surfaces = [{
 "aabb": AABB(-0.20001554, -0.019080877, -0.00036376715, 0.40003103, 0.026829243, 0.1603257),
@@ -632,9 +592,9 @@ _surfaces = [{
 "vertex_data": PackedByteArray("xPkamSb6xdMxBuvxfwfF08T5//+pB8XTMQYGi/v5xdP//xoq1fgKwPn/r+RWBwrA///+kFgGCsD5/8t90/kKwMv5QZMqAP//Mwbf2P4A//85Bi6FAAD//8X58uYpAf//AAD/bqb5Ef4FADOCKwYR/gAA5NUpBxH+BQBOG6j4Ef46BgAAVfjs1s35+HQDBuzWOgbkZtgF7NbN+RMOf/js1jMGvWzU/6GkAAD/bqb5oaQxBgaL+/mhpDEG6/F/B5bZAADk1SkHltkzBt/Y/gCW2TkGCxnV/vWpOgYAAFX49akFAE4bqPj1qTkGLoUAAC3fBQAzgisGLd86BuRm2AUt38X50Hr//6+kxPkamSb6r6T5/8t90/mvpMX58uYpAbHd+f+v5FYHsd3E+f//qQex3cv5HycA/+ep//8aKtX456nN+RMOf/jnqcv5QZMqAFDhzfn4dAMGUOH///6QWAZQ4TkGCxnV/sWPAAD/bqb5xY8zBr1s1P/FjwUAThuo+MWPMQYGi/v5y9oAAOTVKQfL2jEG6/F/B8vaAAD/bqb5y9ozBt/Y/gAw/QUAM4IrBjD9OQYuhQAAMP0AAOTVKQcw/ToG5GbYBTXeBQBOG6j4Nd46BgAAVfg13gUAM4IrBjXey/kfJwD/q6g6BgAAVfirqDkGCxnV/quozfkTDn/4q6g5Bi6FAACo5835+HQDBqjny/lBkyoAqOc6BuRm2AWo5////pBYBkPQzfkTDn/4Q9D//xoq1fhD0M35+HQDBkPQxfnQev//wo///xoq1fjCj8v5HycA/8KP+f/LfdP5wo/L+UGTKgB/8Pn/r+RWB3/wxfny5ikBf/D///6QWAZ/8MT5//+pB3fN+f/LfdP5d83E+RqZJvp3zfn/r+RWB3fNMwa9bNT/46LE+RqZJvrjosX50Hr//+OiMQYGi/v546LF+fLmKQHp4zEG6/F/B+njMwbf2P4A6ePE+f//qQfp4zkGCxnV/uOCxfnQev//44LL+R8nAP/jgjMGvWzU/+OCdta0KXbWtCl21rQpdta0KYV3AQSFdwEEhXcBBIV3AQSbhDwAm4Q8AJuEPACbhDwApf0qwaX9KsGl/SrBpf0qwWJUOlRiVDpUYlQ6VGJUOlSSzWihks1ooZLNaKGQ96JjkPeiY5D3omNcH2GtXB9hrVwfYa1VHCB2VRwgdlUcIHYO325NDt9uTQ7fbk37x2wx+8dsMfvHbDExLTxgMS08YDEtPGBJTCpGSUwqRklMKkZYbKnpWGyp6VhsqelYbKnpnt4QLp7eEC6e3hAunt4QLg//cpUP/3KVD/9ylQ//cpXHUABcx1AAXMdQAFzHUABcNgBQfzYAUH82AFB/NgBQf/dLxUv3S8VL90vFS/dLxUtfWKBLX1igS19YoEtfWKBLQWj+EkFo/hJBaP4SQWj+Ev16mQD9epkA/XqZAP16mQB/zekkf83pJH/N6SR/zekktv/NgLb/zYC2/82Atv/NgNLNXzLTzV8y081fMtLNXzI8AN+GPADfhjwA34Y8AN+G")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_endyy")
+shadow_mesh = SubResource("ArrayMesh_6ejed")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_rakld"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ewqij"]
 _surfaces = [{
 "aabb": AABB(-0.20001552, -0.019080877, -0.00036370754, 0.400031, 0.026829243, 0.1603257),
 "format": 34896613377,
@@ -648,7 +608,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_it2rw"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_endyy"]
 resource_name = "Car_Cube_004"
 _surfaces = [{
 "aabb": AABB(-0.20001552, -0.019080877, -0.00036370754, 0.400031, 0.026829243, 0.1603257),
@@ -664,69 +624,65 @@ _surfaces = [{
 "vertex_data": PackedByteArray("xPkamSb6xdMxBuvxfwfF08T5//+pB8XTMQYGi/v5xdP//xoq1fgKwPn/r+RWBwrA///+kFgGCsD5/8t90/kKwMv5QZMqAP//Mwbf2P4A//85Bi6FAAD//8X58uYpAf//AAD/bqb5Ef4FADOCKwYR/gAA5NUpBxH+BQBOG6j4Ef46BgAAVfjs1s35+HQDBuzWOgbkZtgF7NbN+RMOf/js1jMGvWzU/6GkAAD/bqb5oaQxBgaL+/mhpDEG6/F/B5bZAADk1SkHltkzBt/Y/gCW2TkGCxnV/vWpOgYAAFX49akFAE4bqPj1qTkGLoUAAC3fBQAzgisGLd86BuRm2AUt38X50Hr//6+kxPkamSb6r6T5/8t90/mvpMX58uYpAbHd+f+v5FYHsd3E+f//qQex3cv5HycA/+ep//8aKtX456nN+RMOf/jnqcv5QZMqAFDhzfn4dAMGUOH///6QWAZQ4TkGCxnV/sWPAAD/bqb5xY8zBr1s1P/FjwUAThuo+MWPMQYGi/v5y9oAAOTVKQfL2jEG6/F/B8vaAAD/bqb5y9ozBt/Y/gAw/QUAM4IrBjD9OQYuhQAAMP0AAOTVKQcw/ToG5GbYBTXeBQBOG6j4Nd46BgAAVfg13gUAM4IrBjXey/kfJwD/q6g6BgAAVfirqDkGCxnV/quozfkTDn/4q6g5Bi6FAACo5835+HQDBqjny/lBkyoAqOc6BuRm2AWo5////pBYBkPQzfkTDn/4Q9D//xoq1fhD0M35+HQDBkPQxfnQev//wo///xoq1fjCj8v5HycA/8KP+f/LfdP5wo/L+UGTKgB/8Pn/r+RWB3/wxfny5ikBf/D///6QWAZ/8MT5//+pB3fN+f/LfdP5d83E+RqZJvp3zfn/r+RWB3fNMwa9bNT/46LE+RqZJvrjosX50Hr//+OiMQYGi/v546LF+fLmKQHp4zEG6/F/B+njMwbf2P4A6ePE+f//qQfp4zkGCxnV/uOCxfnQev//44LL+R8nAP/jgjMGvWzU/+OCdta0KXbWtCl21rQpdta0KYV3AQSFdwEEhXcBBIV3AQSbhDwAm4Q8AJuEPACbhDwApf0qwaX9KsGl/SrBpf0qwWJUOlRiVDpUYlQ6VGJUOlSSzWihks1ooZHNaKGQ96JjkPeiY5D3omNcH2GtXB9hrVwfYa1VHCB2VRwgdlUcIHYO325NDt9uTQ7fbk37x2wx+8dsMfvHbDExLTxgMS08YDEtPGBJTCpGSUwqRklMKkZYbKnpWGyp6VhsqelYbKnpnt4QLp7eEC6e3hAunt4QLg//cpUP/3KVD/9ylQ//cpXHUABcx1AAXMdQAFzHUABcNgBQfzYAUH82AFB/NgBQf/dLxUv3S8VL90vFS/dLxUtfWKBLX1igS19YoEtfWKBLQWj+EkFo/hJBaP4SQWj+Ev16mQD9epkA/XqZAP16mQB/zekkf83pJH/N6SR/zekktv/NgLb/zYC2/82Atv/NgNPNXzLTzV8y081fMtPNXzI8AN+GPADfhjwA34Y8AN+G")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_rakld")
+shadow_mesh = SubResource("ArrayMesh_ewqij")
 
 [node name="CarMesh" type="Node3D" unique_id=1048909100]
 
-[node name="Trunk" type="MeshInstance3D" parent="." unique_id=1109196519]
+[node name="Trunk" type="MeshInstance3D" parent="." unique_id=166281803]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041671947, 1.3378062, 1.9860176)
 mesh = SubResource("ArrayMesh_jrbm0")
 
-[node name="SteeringWheel" type="MeshInstance3D" parent="." unique_id=1935818401]
+[node name="SteeringWheel" type="MeshInstance3D" parent="." unique_id=930446086]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.4226183, 0, -0.4226183, 0.90630776, -0.6277338, 1.20672, -1.0555853)
 mesh = SubResource("ArrayMesh_jevi6")
 
-[node name="R_Wheel_Front" type="MeshInstance3D" parent="." unique_id=917379858]
+[node name="R_Wheel_Front" type="MeshInstance3D" parent="." unique_id=2076552281]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1558212, 0.4407278, -2.0622833)
 mesh = SubResource("ArrayMesh_73rhg")
 
-[node name="R_Wheel_Back" type="MeshInstance3D" parent="." unique_id=738487240]
+[node name="R_Wheel_Back" type="MeshInstance3D" parent="." unique_id=2099036476]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1558226, 0.44072783, 1.5439905)
 mesh = SubResource("ArrayMesh_8dhbb")
 
-[node name="R_Door_Front" type="MeshInstance3D" parent="." unique_id=1337092067]
+[node name="R_Door_Front" type="MeshInstance3D" parent="." unique_id=708112988]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2525337, 1.356129, -1.5266743)
 mesh = SubResource("ArrayMesh_lhka5")
 
-[node name="R_Door_Back" type="MeshInstance3D" parent="." unique_id=1951244871]
+[node name="R_Door_Back" type="MeshInstance3D" parent="." unique_id=990206985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2384614, 1.3982768, 0.034037326)
 mesh = SubResource("ArrayMesh_dp7oq")
 
-[node name="L_Wheel_Front" type="MeshInstance3D" parent="." unique_id=1698062928]
+[node name="L_Wheel_Front" type="MeshInstance3D" parent="." unique_id=692712806]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1102307, 0.44071394, -2.0621002)
 mesh = SubResource("ArrayMesh_c0x3k")
 
-[node name="L_Wheel_Back" type="MeshInstance3D" parent="." unique_id=89288688]
+[node name="L_Wheel_Back" type="MeshInstance3D" parent="." unique_id=590243261]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1102288, 0.44072783, 1.5439911)
 mesh = SubResource("ArrayMesh_a7lo2")
 
-[node name="L_Door_Front" type="MeshInstance3D" parent="." unique_id=1365013142]
+[node name="L_Door_Front" type="MeshInstance3D" parent="." unique_id=34713387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1729907, 1.356129, -1.5266736)
 mesh = SubResource("ArrayMesh_q48uu")
 
-[node name="L_Door_Back" type="MeshInstance3D" parent="." unique_id=115499196]
+[node name="L_Door_Back" type="MeshInstance3D" parent="." unique_id=205380000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1589177, 1.3982768, 0.034038104)
 mesh = SubResource("ArrayMesh_a0gxx")
 
-[node name="Car_Hood" type="MeshInstance3D" parent="." unique_id=816742311]
+[node name="Car_Hood" type="MeshInstance3D" parent="." unique_id=905496938]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.041670877, 1.2640761, -1.5636649)
 mesh = SubResource("ArrayMesh_3af4e")
 
-[node name="Car_Base" type="MeshInstance3D" parent="." unique_id=337491800]
+[node name="Car_Base" type="MeshInstance3D" parent="." unique_id=575536802]
 mesh = SubResource("ArrayMesh_x3l2h")
 
-[node name="GloveBox" type="MeshInstance3D" parent="." unique_id=1780152558]
+[node name="GloveBox" type="MeshInstance3D" parent="." unique_id=1236403307]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6278237, 1.1226466, -1.121675)
 mesh = SubResource("ArrayMesh_6k0q5")
 
-[node name="Radio" type="MeshInstance3D" parent="." unique_id=1950494781]
-transform = Transform3D(1, 0, 0, 0, 0.9961947, 0.08715576, 0, -0.08715576, 0.9961947, -0.0453775, 1.2231643, -1.1562228)
-mesh = SubResource("ArrayMesh_ewqij")
-
-[node name="L_Sunscreen" type="MeshInstance3D" parent="." unique_id=131569567]
+[node name="L_Sunscreen" type="MeshInstance3D" parent="." unique_id=559067930]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5837958, 2.1156485, -0.7991793)
-mesh = SubResource("ArrayMesh_jwmei")
+mesh = SubResource("ArrayMesh_tvhsf")
 
-[node name="R_Sunscreen" type="MeshInstance3D" parent="." unique_id=920819817]
+[node name="R_Sunscreen" type="MeshInstance3D" parent="." unique_id=125571821]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6722981, 2.1164582, -0.7988337)
-mesh = SubResource("ArrayMesh_it2rw")
+mesh = SubResource("ArrayMesh_endyy")

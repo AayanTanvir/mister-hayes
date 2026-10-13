@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfyun35pqsdt2"
-path.s3tc="res://.godot/imported/Car_Black Car Texture.png-238a633037be86344ebfeb17225c4a67.s3tc.ctex"
+uid="uid://d34g8agsafrpp"
+path.s3tc="res://.godot/imported/atlas_emissive.png-e1c3a14a8c6a219877a70af0b2be768d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "6ba69764d3e1b3de7f57243715072328"
-}
 
 [deps]
 
-source_file="res://entities/car/model/Car_Black Car Texture.png"
-dest_files=["res://.godot/imported/Car_Black Car Texture.png-238a633037be86344ebfeb17225c4a67.s3tc.ctex"]
+source_file="res://assets/textures/atlas_emissive.png"
+dest_files=["res://.godot/imported/atlas_emissive.png-e1c3a14a8c6a219877a70af0b2be768d.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +22,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=2
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

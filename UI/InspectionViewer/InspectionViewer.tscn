@@ -61,7 +61,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 environment = SubResource("Environment_p1cvc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1426786075]
-light_color = Color(0.6509804, 0.76862746, 0.76862746, 1)
 
 [node name="Pivot" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1884190617]
 unique_name_in_owner = true

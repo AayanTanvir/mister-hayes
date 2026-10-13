@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dm0bxuy6063kx"]
+
+[ext_resource type="PackedScene" uid="uid://b7jd8j4hxapsh" path="res://assets/models/environment/prigton/props/street_light/StreetLight.glb" id="1_2thws"]
+[ext_resource type="Material" uid="uid://hsoplajaw4ti" path="res://assets/materials/M_Atlas.tres" id="2_b5ygb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
+size = Vector3(1.5, 11, 1.5)
+
+[node name="StreetLight" unique_id=1013938914 instance=ExtResource("1_2thws")]
+
+[node name="StreetLight" parent="." index="0" unique_id=1168552024]
+surface_material_override/0 = ExtResource("2_b5ygb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1147465800]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1042266945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+shape = SubResource("BoxShape3D_1vivr")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="2" unique_id=542477865]
+transform = Transform3D(1, 0, 0, 0, -0.08715577, 0.9961947, 0, -0.9961947, -0.08715577, 0, 10.85, 2.65)
+light_color = Color(0.43918297, 0.62747073, 0.65237707, 1)
+light_energy = 6.0
+spot_range = 15.0
+spot_attenuation = 0.5
+spot_angle = 40.0

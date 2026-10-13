@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cibp1w3sj4wt0"]
+
+[ext_resource type="PackedScene" uid="uid://nm2jn0ohmw02" path="res://assets/models/environment/prigton/structures/prigton_detachment_office/PrigtonDetachmentOffice.glb" id="1_rk1ip"]
+[ext_resource type="Material" uid="uid://hsoplajaw4ti" path="res://assets/materials/M_Atlas.tres" id="2_k0qcv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
+size = Vector3(7.7000003, 6.35, 2.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rk1ip"]
+size = Vector3(49, 6.35, 21.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8vrlf"]
+height = 4.6000004
+
+[node name="PrigtonDetachmentOffice" unique_id=28631326 instance=ExtResource("1_rk1ip")]
+
+[node name="PrigtonDetachmentOffice" parent="." index="0" unique_id=1365919871]
+surface_material_override/0 = ExtResource("2_k0qcv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1058876938]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1045028738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07499933, 3.175, -6.1749997)
+shape = SubResource("BoxShape3D_1vivr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1611435233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07499933, 3.175, -17.599998)
+shape = SubResource("BoxShape3D_rk1ip")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2" unique_id=137082319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55, 2.3000002, -0.8)
+shape = SubResource("CylinderShape3D_8vrlf")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3" unique_id=7198400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55, 2.3000002, -0.8)
+shape = SubResource("CylinderShape3D_8vrlf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1465400021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
+light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
+light_energy = 3.0

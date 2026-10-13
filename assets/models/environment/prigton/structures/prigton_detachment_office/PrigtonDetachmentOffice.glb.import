@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://qs1w246iaydn"
-path="res://.godot/imported/LieutenantOffice.glb-c10c452eb88be6cd6c8cc2b031ee0c38.scn"
+uid="uid://nm2jn0ohmw02"
+path="res://.godot/imported/PrigtonDetachmentOffice.glb-6639e5b12bbcfe8ba01a584a68ee9453.scn"
 
 [deps]
 
-source_file="res://assets/models/buildings/lieutenant_office/LieutenantOffice.glb"
-dest_files=["res://.godot/imported/LieutenantOffice.glb-c10c452eb88be6cd6c8cc2b031ee0c38.scn"]
+source_file="res://assets/models/environment/prigton/structures/prigton_detachment_office/PrigtonDetachmentOffice.glb"
+dest_files=["res://.godot/imported/PrigtonDetachmentOffice.glb-6639e5b12bbcfe8ba01a584a68ee9453.scn"]
 
 [params]
 

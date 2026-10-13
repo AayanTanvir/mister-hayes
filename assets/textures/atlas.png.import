@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxu415mfytmry"
-path.s3tc="res://.godot/imported/Car_Blue Car Texture.png-09b04d6cbf839d5800300a53298aec63.s3tc.ctex"
+uid="uid://delam7jhky7yq"
+path.s3tc="res://.godot/imported/atlas.png-dbc02393dcd5674d7754886ec8280890.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://entities/car/model/Car_Blue Car Texture.png"
-dest_files=["res://.godot/imported/Car_Blue Car Texture.png-09b04d6cbf839d5800300a53298aec63.s3tc.ctex"]
+source_file="res://assets/textures/atlas.png"
+dest_files=["res://.godot/imported/atlas.png-dbc02393dcd5674d7754886ec8280890.s3tc.ctex"]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=2
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

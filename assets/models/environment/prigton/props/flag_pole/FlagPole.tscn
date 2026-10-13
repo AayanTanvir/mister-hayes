@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dc2vh8gwx7hs7"]
+
+[ext_resource type="PackedScene" uid="uid://cyj2vnhg8x7me" path="res://assets/models/environment/prigton/props/flag_pole/FlagPole.glb" id="1_r22yy"]
+[ext_resource type="Material" uid="uid://hsoplajaw4ti" path="res://assets/materials/M_Atlas.tres" id="2_ix71l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1vivr"]
+size = Vector3(1, 22, 1)
+
+[node name="FlagPole" unique_id=914434646 instance=ExtResource("1_r22yy")]
+
+[node name="FlagPole" parent="." index="0" unique_id=626036941]
+surface_material_override/0 = ExtResource("2_ix71l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=973442850]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=838212081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+shape = SubResource("BoxShape3D_1vivr")

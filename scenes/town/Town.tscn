@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ivhv6quvkjxr"]
 
 [ext_resource type="Script" uid="uid://68yg3kx41ph6" path="res://scenes/town/Town.gd" id="1_n5615"]
+[ext_resource type="Shader" uid="uid://ct3sljhomtq8k" path="res://shaders/DitherShader.gdshader" id="2_1xjsg"]
 [ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="2_ki453"]
 [ext_resource type="Texture2D" uid="uid://b4cvrey1vk0kx" path="res://assets/textures/nature/ground_01.png" id="4_8mv33"]
 [ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="4_25glc"]
@@ -8,15 +9,26 @@
 [ext_resource type="Texture2D" uid="uid://p3lhe23u0f0o" path="res://assets/textures/sky/NightSkyHDRI003_1K_TONEMAPPED.jpg" id="5_uiijs"]
 [ext_resource type="Texture2D" uid="uid://c7cwfpxwfj0s2" path="res://assets/textures/nature/ground_02.png" id="6_v3pdc"]
 [ext_resource type="Texture2D" uid="uid://pvoja1046nqn" path="res://assets/textures/nature/ground_02_n.png" id="7_tyo6j"]
+[ext_resource type="PackedScene" uid="uid://bbh5j4hbsw5d5" path="res://assets/models/environment/trees/Tree01.tscn" id="9_jnpjf"]
 [ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="9_lersf"]
+[ext_resource type="PackedScene" uid="uid://cfx6xvbnfc76e" path="res://assets/models/environment/trees/Tree02.tscn" id="10_6lfhq"]
 [ext_resource type="AudioStream" uid="uid://dpcifyajolgon" path="res://assets/sounds/car_door_close.wav" id="10_v3pdc"]
-[ext_resource type="PackedScene" uid="uid://bm3r4m0y8xyoe" path="res://assets/models/buildings/lieutenant_office/LieutenantOffice.tscn" id="11_tyo6j"]
+[ext_resource type="PackedScene" uid="uid://do72tetk3dkhh" path="res://assets/models/environment/trees/Tree03.tscn" id="11_tp21t"]
+[ext_resource type="PackedScene" uid="uid://kl2a6bynfokc" path="res://assets/models/environment/prigton/structures/parking_lot/ParkingLot.tscn" id="12_ffnhu"]
+[ext_resource type="PackedScene" uid="uid://cibp1w3sj4wt0" path="res://assets/models/environment/prigton/structures/prigton_detachment_office/PrigtonDetachmentOffice.tscn" id="13_r6lmy"]
+[ext_resource type="PackedScene" uid="uid://dc2vh8gwx7hs7" path="res://assets/models/environment/prigton/props/flag_pole/FlagPole.tscn" id="14_r6lmy"]
+[ext_resource type="PackedScene" uid="uid://dm0bxuy6063kx" path="res://assets/models/environment/prigton/props/street_light/StreetLight.tscn" id="15_nbo5m"]
 
-[sub_resource type="Gradient" id="Gradient_uiijs"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gr0rf"]
+shader = ExtResource("2_1xjsg")
+shader_parameter/levels = 70.0
+shader_parameter/dither_strength = 1.0
+
+[sub_resource type="Gradient" id="Gradient_r6lmy"]
 offsets = PackedFloat32Array(0.2, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_n5615"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nbo5m"]
 noise_type = 2
 frequency = 0.03
 cellular_jitter = 3.0
@@ -28,9 +40,9 @@ domain_warp_fractal_type = 2
 domain_warp_fractal_lacunarity = 1.5
 domain_warp_fractal_gain = 1.0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tr5gk"]
-noise = SubResource("FastNoiseLite_n5615")
-color_ramp = SubResource("Gradient_uiijs")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4x1qd"]
+noise = SubResource("FastNoiseLite_nbo5m")
+color_ramp = SubResource("Gradient_r6lmy")
 seamless = true
 
 [sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_8mv33"]
@@ -49,25 +61,33 @@ _shader_parameters = {
 &"noise1_offset": null,
 &"noise1_scale": null,
 &"noise2_scale": null,
-&"noise_texture": SubResource("NoiseTexture2D_tr5gk"),
+&"noise_texture": SubResource("NoiseTexture2D_4x1qd"),
 &"projection_threshold": null
 }
 texture_filtering = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mv33"]
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
-
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_lersf"]
-generated_type = 1
-height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_8mv33")
+name = "Tree01"
+scene_file = ExtResource("9_jnpjf")
+density = 0.5
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_pop26"]
+name = "Tree02"
+id = 1
+scene_file = ExtResource("10_6lfhq")
+density = 0.5
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_x0ujg"]
+name = "Tree03"
+id = 2
+scene_file = ExtResource("11_tp21t")
+density = 0.5
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
@@ -86,7 +106,7 @@ normal_texture = ExtResource("7_tyo6j")
 uv_scale = 0.25
 
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_tyo6j"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_lersf")])
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_lersf"), SubResource("Terrain3DMeshAsset_pop26"), SubResource("Terrain3DMeshAsset_x0ujg")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_1xjsg"), SubResource("Terrain3DTextureAsset_ffnhu")])
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8mv33"]
@@ -125,27 +145,44 @@ adjustment_saturation = 1.25
 script = ExtResource("1_n5615")
 
 [node name="RetroViewportContainer" type="SubViewportContainer" parent="." unique_id=720255528]
+texture_filter = 1
+material = SubResource("ShaderMaterial_gr0rf")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 2
+stretch_shrink = 3
 
 [node name="RetroViewport" type="SubViewport" parent="RetroViewportContainer" unique_id=1819535132]
 handle_input_locally = false
 audio_listener_enable_3d = true
 physics_object_picking = true
-size = Vector2i(640, 360)
+size = Vector2i(426, 240)
 render_target_update_mode = 4
 
+[node name="ParkingLot" parent="RetroViewportContainer/RetroViewport" unique_id=631670658 instance=ExtResource("12_ffnhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.75, 0.05, 9.3)
+
+[node name="PrigtonDetachmentOffice" parent="RetroViewportContainer/RetroViewport" unique_id=28631326 instance=ExtResource("13_r6lmy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.15, 0.05, -24.5)
+
+[node name="FlagPole" parent="RetroViewportContainer/RetroViewport" unique_id=914434646 instance=ExtResource("14_r6lmy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105114, 0, -17.790993)
+
+[node name="StreetLight" parent="RetroViewportContainer/RetroViewport" unique_id=1013938914 instance=ExtResource("15_nbo5m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -55.90968, 0, 0.5478934)
+
+[node name="StreetLight2" parent="RetroViewportContainer/RetroViewport" unique_id=301313437 instance=ExtResource("15_nbo5m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -55.90968, 0, 12.372324)
+
 [node name="Car" parent="RetroViewportContainer/RetroViewport" unique_id=414290366 instance=ExtResource("9_lersf")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -32.5, 0, -13.35)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50.5, 0, 3.6499996)
 
 [node name="Player" parent="RetroViewportContainer/RetroViewport" unique_id=1234029208 instance=ExtResource("2_ki453")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 0, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.4, 0, 6.2)
 
 [node name="Terrain3D" type="Terrain3D" parent="RetroViewportContainer/RetroViewport" unique_id=1207075274]
 data_directory = "res://scenes/town/terrain_data"
@@ -163,20 +200,3 @@ environment = SubResource("Environment_lersf")
 [node name="CarDoorClose" type="AudioStreamPlayer" parent="." unique_id=1544466986]
 stream = ExtResource("10_v3pdc")
 autoplay = true
-
-[node name="LieutenantOffice" parent="." unique_id=2099676457 instance=ExtResource("11_tyo6j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -13.5)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1205778659]
-transform = Transform3D(0.9659259, 1.13133405e-08, -0.25881907, 0.25881907, -4.222196e-08, 0.9659258, 0, -1, -4.371139e-08, -35, 12, -10.5)
-spot_range = 17.5
-spot_attenuation = 0.0
-spot_angle = 46.05169
-
-[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=1451373926]
-transform = Transform3D(-4.222196e-08, 1, 5.5024724e-08, 0.25881907, -4.2221956e-08, 0.9659258, 0.9659259, 5.5024724e-08, -0.25881907, -24.5, 12, -32)
-spot_range = 17.5
-spot_attenuation = 0.0
-spot_angle = 46.05169
-
-[editable path="LieutenantOffice"]
