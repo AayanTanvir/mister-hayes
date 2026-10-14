@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dde780v6im4d4"]
+
+[ext_resource type="Shader" uid="uid://cd2s7xj8rv2re" path="res://shaders/AtmosphericParticle.gdshader" id="1_ejy1x"]
+[ext_resource type="Script" uid="uid://dehquc6drhogc" path="res://entities/atmospheric_particles/AtmosphericParticles.gd" id="2_ytjct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pj0dr"]
+shader = ExtResource("1_ejy1x")
+shader_parameter/anchor = Vector3(0, 0, 0)
+shader_parameter/field_size = Vector3(24, 8, 24)
+shader_parameter/drift = 0.25
+
+[sub_resource type="Gradient" id="Gradient_prosl"]
+colors = PackedColorArray(1, 1, 1, 0.39215687, 0.57254905, 0.74509805, 0.80784315, 0.39215687)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tp21t"]
+gradient = SubResource("Gradient_prosl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8otme"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.87835, 0.9399367, 0.9462169, 1)
+albedo_texture = SubResource("GradientTexture2D_tp21t")
+billboard_mode = 1
+billboard_keep_scale = true
+distance_fade_mode = 2
+distance_fade_min_distance = 20.0
+distance_fade_max_distance = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_x0ujg"]
+material = SubResource("StandardMaterial3D_8otme")
+
+[node name="AtmosphericParticles" type="GPUParticles3D" unique_id=2121120998]
+amount = 300
+lifetime = 3600.0
+speed_scale = 0.5
+explosiveness = 1.0
+randomness = 1.0
+visibility_aabb = AABB(-2.5, -2, -2.5, 5, 4, 5)
+process_material = SubResource("ShaderMaterial_pj0dr")
+draw_pass_1 = SubResource("QuadMesh_x0ujg")
+script = ExtResource("2_ytjct")

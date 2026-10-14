@@ -10,7 +10,7 @@ size = Vector3(0.35, 0.17285156, 0.05)
 
 [node name="ClairLetter" type="Node3D" unique_id=1835252003]
 
-[node name="ClairLetter" parent="." unique_id=541140467 instance=ExtResource("1_8041s")]
+[node name="Mesh" parent="." unique_id=541140467 instance=ExtResource("1_8041s")]
 
 [node name="Handler" type="Area3D" parent="." unique_id=2082844623]
 script = ExtResource("2_4jaoc")
@@ -41,4 +41,4 @@ script = ExtResource("4_062y4")
 inspect_model = ExtResource("1_8041s")
 key = 1
 
-[editable path="ClairLetter"]
+[editable path="Mesh"]

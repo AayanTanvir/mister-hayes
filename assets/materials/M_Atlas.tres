@@ -1,8 +1,10 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://hsoplajaw4ti"]
 
 [ext_resource type="Texture2D" uid="uid://delam7jhky7yq" path="res://assets/textures/atlas.png" id="1_5a2ye"]
+[ext_resource type="Texture2D" uid="uid://d34g8agsafrpp" path="res://assets/textures/atlas_emissive.png" id="2_f11ta"]
 
 [resource]
 albedo_texture = ExtResource("1_5a2ye")
 emission_enabled = true
+emission_texture = ExtResource("2_f11ta")
 texture_filter = 0

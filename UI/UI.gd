@@ -9,6 +9,7 @@ extends CanvasLayer
 
 @export var dialogue_container: Control
 @export var dialogue_label: RichTextLabel
+@export var phone_overlay: TextureRect
 
 
 func _ready() -> void:

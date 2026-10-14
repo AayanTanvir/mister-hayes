@@ -62,7 +62,7 @@ func start_intro():
 	# pass by shot
 	pass_by_cam.make_current()
 	await get_tree().create_timer(pass_by_duration).timeout
-
+	
 	# inside the car
 	player.camera.make_current()
 	player.disable_cam(false)

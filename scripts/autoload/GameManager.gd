@@ -25,7 +25,7 @@ func _bind_scene_nodes() -> void:
 
 	var scene := get_tree().current_scene
 	if scene == null:
-		print("RETURNING")
+		printerr("scene is null. returning early without binding nodes")
 		return
 
 	ui = scene.get_node_or_null("%UI") as UI

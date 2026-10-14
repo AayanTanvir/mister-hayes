@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ivhv6quvkjxr"]
+[gd_scene format=4 uid="uid://ivhv6quvkjxr"]
 
 [ext_resource type="Script" uid="uid://68yg3kx41ph6" path="res://scenes/town/Town.gd" id="1_n5615"]
 [ext_resource type="Shader" uid="uid://ct3sljhomtq8k" path="res://shaders/DitherShader.gdshader" id="2_1xjsg"]
@@ -18,11 +18,49 @@
 [ext_resource type="PackedScene" uid="uid://cibp1w3sj4wt0" path="res://assets/models/environment/prigton/structures/prigton_detachment_office/PrigtonDetachmentOffice.tscn" id="13_r6lmy"]
 [ext_resource type="PackedScene" uid="uid://dc2vh8gwx7hs7" path="res://assets/models/environment/prigton/props/flag_pole/FlagPole.tscn" id="14_r6lmy"]
 [ext_resource type="PackedScene" uid="uid://dm0bxuy6063kx" path="res://assets/models/environment/prigton/props/street_light/StreetLight.tscn" id="15_nbo5m"]
+[ext_resource type="PackedScene" uid="uid://cwpjp2rp2htoq" path="res://entities/props/phone/model/PhoneMesh.glb" id="19_8dq74"]
+[ext_resource type="PackedScene" uid="uid://cvu5a6sxm6ntc" path="res://entities/props/letter/cbi_letter/model/CbiLetter.glb" id="20_v6jhq"]
+[ext_resource type="Texture2D" uid="uid://cavwky258dvrg" path="res://entities/props/letter/cbi_letter/model/CbiLetter_cbi_letter_mat.png" id="21_wui2e"]
+[ext_resource type="PackedScene" uid="uid://cucc7aqgrbye1" path="res://entities/props/letter/claire_letter/model/ClairLetter.glb" id="22_qet4j"]
+[ext_resource type="PackedScene" uid="uid://bb8rsloyqfrf5" path="res://entities/props/newspaper/model/Newspaper.glb" id="23_587hs"]
+[ext_resource type="PackedScene" uid="uid://dde780v6im4d4" path="res://entities/atmospheric_particles/AtmosphericParticles.tscn" id="24_gdn34"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gr0rf"]
 shader = ExtResource("2_1xjsg")
 shader_parameter/levels = 70.0
 shader_parameter/dither_strength = 1.0
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8mv33"]
+panorama = ExtResource("5_uiijs")
+
+[sub_resource type="Sky" id="Sky_8mv33"]
+sky_material = SubResource("PanoramaSkyMaterial_8mv33")
+
+[sub_resource type="Environment" id="Environment_lersf"]
+background_mode = 2
+background_energy_multiplier = 1.4
+sky = SubResource("Sky_8mv33")
+sky_custom_fov = 90.0
+ambient_light_source = 2
+ambient_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 2
+tonemap_exposure = 0.8
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.75
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
+fog_light_energy = 0.3
+fog_density = 1.0
+fog_sky_affect = 0.95
+fog_depth_curve = 0.5
+fog_depth_begin = 5.0
+fog_depth_end = 102.5
+adjustment_enabled = true
+adjustment_contrast = 1.02
+adjustment_saturation = 1.25
 
 [sub_resource type="Gradient" id="Gradient_r6lmy"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -64,6 +102,7 @@ _shader_parameters = {
 &"noise_texture": SubResource("NoiseTexture2D_4x1qd"),
 &"projection_threshold": null
 }
+world_background = 0
 texture_filtering = 1
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_lersf"]
@@ -109,37 +148,45 @@ uv_scale = 0.25
 mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_lersf"), SubResource("Terrain3DMeshAsset_pop26"), SubResource("Terrain3DMeshAsset_x0ujg")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_1xjsg"), SubResource("Terrain3DTextureAsset_ffnhu")])
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8mv33"]
-panorama = ExtResource("5_uiijs")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1k8sq"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_texture = ExtResource("21_wui2e")
+metadata/_gltf_primary_texture_coord = 0
 
-[sub_resource type="Sky" id="Sky_8mv33"]
-sky_material = SubResource("PanoramaSkyMaterial_8mv33")
+[sub_resource type="ArrayMesh" id="ArrayMesh_hb708"]
+_surfaces = [{
+"aabb": AABB(-0.12096001, -0.17263561, -0.0049171373, 0.24192002, 0.34527123, 0.008682275),
+"format": 34359742465,
+"index_count": 108,
+"index_data": PackedByteArray("CwACAAAAAgAEAAAAAAAEAAwAAAAMAAsAAgADAAQADAAEAAMADQADAAIACwANAAIADAADAAkADQAJAAMACwAMAAoACgAMAAkADgANAAsACwAKAA4ADgAPAA0ADwAJAA0ACgAJABAADwAQAAkAEQAKABAADgAKABEAEgAPAA4ADgARABIAEgAIAA8ACAAQAA8AEQAQABMACAATABAABwARABMAEgARAAcAAQATAAgABQAIABIABQABAAgAEgAHAAUAAQAGABMABwATAAYABQAGAAEABQAHAAYA"),
+"lods": [0.045634147, PackedByteArray("AAAIAAIAAgAEAAAAAgADAAQACAADAAIABAADAAkACAAJAAMACgAEAAkAAAAEAAoACAAGAAkACgAJAAYABQAIAAAAAAAKAAUABQABAAgAAQAGAAgABQAGAAEABQAHAAYABwAKAAYABQAKAAcA"), 0.06845122, PackedByteArray("AAABAAIAAQADAAIAAgAEAAAAAgADAAQABQABAAAAAAAEAAUAAQAGAAMABAADAAYABQAGAAEABwAEAAYABQAEAAcABQAHAAYA")],
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("4Ln3vWTHMD6IwHY74Ln3PWTHML6IwHa74Ln3PWTHMD6IwHY74Ln3PWTHMD4sQSs74Ln3vWTHMD4sQSs74Ln3vWTHML6IwHa74Ln3PWTHML7wH6G74Ln3vWTHML7wH6G74Ln3PaxIsb1GwHY74Ln3PaxIsT3RH6G74rn3vY/C9SK1/pa64Ln3vaxIsT1GwHa74Ln3vaxIsT3RH6G74Ln3PaxIsT1GwHa74rn3vQAAAAAAAACA4rn3PQAAAAAAAACA4rn3PY/C9SK1/pa64Ln3vaxIsb3qQCs74Ln3vaxIsb1GwHY74Ln3PaxIsb3qQCs7")
+}]
+blend_shape_mode = 0
 
-[sub_resource type="Environment" id="Environment_lersf"]
-background_mode = 2
-background_energy_multiplier = 1.4
-sky = SubResource("Sky_8mv33")
-sky_custom_fov = 90.0
-ambient_light_source = 2
-ambient_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
-ambient_light_energy = 0.6
-tonemap_mode = 2
-tonemap_exposure = 0.8
-glow_enabled = true
-glow_intensity = 0.4
-glow_bloom = 0.75
-fog_enabled = true
-fog_mode = 1
-fog_light_color = Color(0.27058825, 0.41960785, 0.4392157, 1)
-fog_light_energy = 0.3
-fog_density = 1.0
-fog_sky_affect = 0.95
-fog_depth_curve = 0.5
-fog_depth_begin = 5.0
-fog_depth_end = 102.5
-adjustment_enabled = true
-adjustment_contrast = 1.02
-adjustment_saturation = 1.25
+[sub_resource type="ArrayMesh" id="ArrayMesh_t11n1"]
+resource_name = "CbiLetter_Plane"
+_surfaces = [{
+"aabb": AABB(-0.12096001, -0.17263561, -0.0049171373, 0.24192002, 0.34527123, 0.008682275),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA/AACAPwAAgD8AAAAAAAAAAAAAgD91xpM9c5wsP5X3Nz9ynCw/fcaTPbhrfj+W9zc/t2t+PwAAgD8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAAAAAACAPwAAgD8AAIA/AACAPwAAAAAAAIA/AAAAAAAAgD8AAIA/AACAPwAAQD/klw4/t2t+P2Nwyj5znCw/AAAAAAAAAD8AAIA/AABAPwAAgD8AAIA+AAAAAAAAgD4AAIA/AACAPgAAgD8AAEA/AAAAAAAAQD8AAAAAAABAPwAAgD8AAAA/AAAAAAAAAD8AAIA/AACAPgAAAAAAAIA+45cOP3KcLD8CYm8+uGt+P/1hbz5znCw//WFvPnOcLD9lcMo+uGt+PwJibz64a34/5JcOP7drfj/jlw4/cpwsPwAAAAAAAEA/AAAAAAAAQD8AAAAAAAAAPwAAAAAAAIA+AAAAAAAAgD4AAIA/AABAPwAAgD8AAAA/AACAPwAAAD8AAIA/AACAPg=="),
+"format": 34359742487,
+"index_count": 108,
+"index_data": PackedByteArray("HgACAAAAHgAfAAIAAwAgACEAAwABACAAIgAjACQAIgAYACMAJAAjACUAJAAlACYAJwAHABkAJwAFAAcABAAoAAYABAApACgAKgArACwAKgAaACsAGgAtACsAGgAuAC0ACAAJAAoACAALAAkALwAOAAwALwAwAA4AMQAwAC8AMQAbADAAMgAbADEAMgAzABsADwAzADIADwANADMAFAA0ABwAFAAXADQAHAA0ADUAHAA1ADYANgA1AB0ANgAdADcANwAdABUANwAVABYAEAARABIAEAATABEA"),
+"lods": [0.045634147, PackedByteArray("AAAYAAIAAwAYAAAAAwABABgABQAHABkAGgAFABkAGgAZAAYABAAaAAYACAAJAAoACAALAAkADAAbAA4ADwAbAAwADwANABsAFAAXABwAHAAXAB0AHAAdABUAHAAVABYAEAARABIAEAATABEA"), 0.06845122, PackedByteArray("AAABAAIAAwABAAAABAAFAAYABQAHAAYACAAJAAoACAALAAkADAANAA4ADwANAAwAEAARABIAEAATABEAFAAVABYAFAAXABUA")],
+"material": SubResource("StandardMaterial3D_1k8sq"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 56,
+"vertex_data": PackedByteArray("4Ln3vWTHMD6IwHY74Ln3PWTHML6IwHa74Ln3PWTHMD6IwHY74Ln3vWTHML6IwHa74Ln3vWTHML7wH6G74Ln3vWTHMD4sQSs74Ln3PWTHML7wH6G74Ln3PWTHMD4sQSs74Ln3PWTHMD6IwHY74Ln3vWTHMD4sQSs74Ln3vWTHMD6IwHY74Ln3PWTHMD4sQSs74Ln3vWTHML6IwHa74Ln3vWTHMD4sQSs74Ln3vWTHML7wH6G74Ln3vWTHMD6IwHY74Ln3vWTHML6IwHa74Ln3PWTHML7wH6G74Ln3PWTHML6IwHa74Ln3vWTHML7wH6G74Ln3PWTHML6IwHa74Ln3PWTHMD4sQSs74Ln3PWTHMD6IwHY74Ln3PWTHML7wH6G74Ln3PaxIsb1GwHY74Ln3PaxIsT3RH6G74rn3vY/C9SK1/pa64rn3vY/C9SK1/pa64Ln3PaxIsb1GwHY74Ln3PaxIsT3RH6G74Ln3vaxIsT1GwHa74Ln3PaxIsT1GwHa74Ln3PaxIsb1GwHY74Ln3vaxIsb1GwHY74Ln3vaxIsb1GwHY74rn3PQAAAAAAAACA4rn3vQAAAAAAAACA4Ln3PaxIsT1GwHa74Ln3vaxIsT1GwHa74Ln3vaxIsT3RH6G74Ln3PaxIsb3qQCs74Ln3vaxIsb3qQCs74Ln3vaxIsb3qQCs74rn3PY/C9SK1/pa64Ln3PaxIsb3qQCs74Ln3PaxIsT3RH6G74Ln3vaxIsT3RH6G74Ln3vaxIsb1GwHY74Ln3vaxIsb3qQCs74rn3vQAAAAAAAACA4Ln3vaxIsT1GwHa74Ln3vaxIsT3RH6G74Ln3PaxIsb3qQCs74rn3PY/C9SK1/pa64rn3PQAAAAAAAACA4Ln3PaxIsT1GwHa7sfX//////z+x9f//////P7H1//////8/sfX//////z//f7J1/3/Y+v9/snX/f9j6/3+ydf9/2Pr/f7J1/3/Y+v9/AAD///+//38AAP///7//fwAA////v/9/AAD///+/////f////7////9/////v////3////+/////f////7//f///////v/9///////+//3///////7//f///////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/p/oAAP///z//f7J1/3/Y+v9/VoVWhf7/////f////78AAP9/////vwAA/3////+/sfX//////z+x9f//////P7H1//////8/sfX//////z+n+gAA////P6f6AAD///8/p/oAAP///z+n+gAA////P6f6AAD///8//3+ydf9/2Pr/f7J1/3/Y+v9/snX/f9j6/39Whah6////f1aFVoX+//9/VoVWhf7//39WhVaF/v//f1aFVoX+/////3////+/////f////7////9/////v////3////+/////f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_hb708")
 
 [node name="Town" type="Node" unique_id=560915442]
 script = ExtResource("1_n5615")
@@ -162,34 +209,9 @@ physics_object_picking = true
 size = Vector2i(426, 240)
 render_target_update_mode = 4
 
-[node name="ParkingLot" parent="RetroViewportContainer/RetroViewport" unique_id=631670658 instance=ExtResource("12_ffnhu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.75, 0.05, 9.3)
-
-[node name="PrigtonDetachmentOffice" parent="RetroViewportContainer/RetroViewport" unique_id=28631326 instance=ExtResource("13_r6lmy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.15, 0.05, -24.5)
-
-[node name="FlagPole" parent="RetroViewportContainer/RetroViewport" unique_id=914434646 instance=ExtResource("14_r6lmy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105114, 0, -17.790993)
-
-[node name="StreetLight" parent="RetroViewportContainer/RetroViewport" unique_id=1013938914 instance=ExtResource("15_nbo5m")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -55.90968, 0, 0.5478934)
-
-[node name="StreetLight2" parent="RetroViewportContainer/RetroViewport" unique_id=301313437 instance=ExtResource("15_nbo5m")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -55.90968, 0, 12.372324)
-
-[node name="Car" parent="RetroViewportContainer/RetroViewport" unique_id=414290366 instance=ExtResource("9_lersf")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50.5, 0, 3.6499996)
-
 [node name="Player" parent="RetroViewportContainer/RetroViewport" unique_id=1234029208 instance=ExtResource("2_ki453")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.4, 0, 6.2)
-
-[node name="Terrain3D" type="Terrain3D" parent="RetroViewportContainer/RetroViewport" unique_id=1207075274]
-data_directory = "res://scenes/town/terrain_data"
-material = SubResource("Terrain3DMaterial_8mv33")
-assets = SubResource("Terrain3DAssets_tyo6j")
-top_level = true
-metadata/_edit_lock_ = true
 
 [node name="UI" parent="." unique_id=1489775715 instance=ExtResource("4_25glc")]
 unique_name_in_owner = true
@@ -197,6 +219,60 @@ unique_name_in_owner = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1503268689]
 environment = SubResource("Environment_lersf")
 
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=1207075274]
+data_directory = "res://scenes/town/terrain_data"
+material = SubResource("Terrain3DMaterial_8mv33")
+assets = SubResource("Terrain3DAssets_tyo6j")
+top_level = true
+metadata/_edit_lock_ = true
+
 [node name="CarDoorClose" type="AudioStreamPlayer" parent="." unique_id=1544466986]
 stream = ExtResource("10_v3pdc")
 autoplay = true
+
+[node name="Farside" type="Node" parent="." unique_id=1239139369]
+
+[node name="FlagPole" parent="Farside" unique_id=914434646 instance=ExtResource("14_r6lmy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.105114, 0, -17.790993)
+
+[node name="ParkingLot" parent="Farside" unique_id=631670658 instance=ExtResource("12_ffnhu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.75, 0.05, 9.3)
+
+[node name="PrigtonDetachmentOffice" parent="Farside" unique_id=28631326 instance=ExtResource("13_r6lmy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.15, 0.05, -24.5)
+
+[node name="StreetLight" parent="Farside" unique_id=1013938914 instance=ExtResource("15_nbo5m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -55.90968, 0, 0.5478934)
+
+[node name="StreetLight2" parent="Farside" unique_id=301313437 instance=ExtResource("15_nbo5m")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -55.90968, 0, 12.372324)
+
+[node name="Car" parent="Farside" unique_id=414290366 instance=ExtResource("9_lersf")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50.5, 0, 3.6499996)
+
+[node name="Props" type="Node3D" parent="Farside/Car" unique_id=2103695717]
+
+[node name="PhoneMesh" parent="Farside/Car/Props" unique_id=497153059 instance=ExtResource("19_8dq74")]
+transform = Transform3D(0.57357645, -0.81915206, 0, -3.5806274e-08, -2.5071824e-08, 1, -0.81915206, -0.57357645, -4.371139e-08, -0.38999963, 1.37, -1.3400002)
+
+[node name="CbiLetter" parent="Farside/Car/Props" unique_id=2015157657 instance=ExtResource("20_v6jhq")]
+transform = Transform3D(0.25881886, 0.96592593, 3.0908623e-08, 2.1855694e-08, -3.785517e-08, 1, 0.96592593, -0.25881886, -3.0908613e-08, 0.575171, 0.99037063, 0.50151825)
+
+[node name="CBI_Letter" parent="Farside/Car/Props/CbiLetter" index="0" unique_id=1585177026]
+mesh = SubResource("ArrayMesh_t11n1")
+
+[node name="ClairLetter" parent="Farside/Car/Props" unique_id=541140467 instance=ExtResource("22_qet4j")]
+transform = Transform3D(0.99999994, -1.126633e-09, 1.0394978e-08, -9.924405e-09, -0.25881904, 0.9659258, 1.4901161e-08, -0.96592575, -0.2588191, 0.6352093, 1.1200342, -1.2458267)
+
+[node name="Newspaper" parent="Farside/Car/Props" unique_id=1248885466 instance=ExtResource("23_587hs")]
+transform = Transform3D(-0.2684299, 0.96248204, -0.039670516, 0.04261771, 0.053007238, 0.9976843, 0.962356, 0.26611775, -0.055247523, 0.4488001, 0.9780265, -0.5421715)
+
+[node name="AtmosphericParticles" parent="." unique_id=2121120998 node_paths=PackedStringArray("_fallback_target") instance=ExtResource("24_gdn34")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.357277, 2.1012785, 12.557803)
+_fallback_target = NodePath("../RetroViewportContainer/RetroViewport/Player")
+
+[editable path="Farside/Car"]
+[editable path="Farside/Car/CarMesh"]
+[editable path="Farside/Car/Props/CbiLetter"]
+[editable path="Farside/Car/Props/ClairLetter"]
+[editable path="Farside/Car/Props/Newspaper"]

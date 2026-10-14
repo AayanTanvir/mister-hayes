@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cejc433tkk0vo"]
 
 [ext_resource type="Script" uid="uid://dm04y5kc25hdq" path="res://scenes/testing/Testing.gd" id="1_adtqs"]
-[ext_resource type="Material" uid="uid://dmdsfo68pl0m1" path="res://assets/materials/M_Prototype_Black.tres" id="1_krbb3"]
 [ext_resource type="PackedScene" uid="uid://b31c7c53ol1yj" path="res://entities/player/Player.tscn" id="2_l7nsk"]
 [ext_resource type="Script" uid="uid://bxp3i4cnonh8y" path="res://addons/road-generator/nodes/road_manager.gd" id="3_4c7b0"]
 [ext_resource type="PackedScene" uid="uid://h5k77o6vpxvs" path="res://UI/UI.tscn" id="3_tl5de"]
@@ -9,9 +8,9 @@
 [ext_resource type="Script" uid="uid://difs1qg4mpcpw" path="res://addons/road-generator/nodes/road_point.gd" id="5_adtqs"]
 [ext_resource type="Material" uid="uid://dpashsuk5lr4x" path="res://addons/road-generator/resources/road_texture.material" id="5_kkxdc"]
 [ext_resource type="PackedScene" uid="uid://fihslhghckv4" path="res://entities/car/Car.tscn" id="6_muql7"]
-[ext_resource type="Material" uid="uid://br0h25a86umv5" path="res://assets/materials/M_Prototype_Orange.tres" id="9_t3bdi"]
 [ext_resource type="PackedScene" uid="uid://gjy71yvsgmv3" path="res://entities/props/newspaper/Newspaper.tscn" id="11_t3bdi"]
 [ext_resource type="PackedScene" uid="uid://cwr0ii5morvt5" path="res://entities/props/letter/cbi_letter/CbiLetter.tscn" id="13_c4wwq"]
+[ext_resource type="Shader" uid="uid://ct3sljhomtq8k" path="res://shaders/DitherShader.gdshader" id="13_kkxdc"]
 [ext_resource type="PackedScene" uid="uid://bmv1hr08cvrs0" path="res://entities/props/phone/Phone.tscn" id="15_vfnqh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t3bdi"]
@@ -25,10 +24,24 @@ sky_material = SubResource("ProceduralSkyMaterial_t3bdi")
 background_mode = 2
 sky = SubResource("Sky_bw11d")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixefs"]
+albedo_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m10by"]
+albedo_color = Color(0.14406255, 0.14406255, 0.14406255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1d2y0"]
+albedo_color = Color(0.12225223, 0.12225223, 0.12225223, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfnqh"]
+shader = ExtResource("13_kkxdc")
+shader_parameter/levels = 70.0
+shader_parameter/dither_strength = 1.0
+
 [node name="Testing" type="Node" unique_id=2046542278 node_paths=PackedStringArray("car")]
 script = ExtResource("1_adtqs")
 start_in_car = true
-car = NodePath("Car")
+car = NodePath("RetroViewportContainer/RetroViewport/Car")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1298366025]
 environment = SubResource("Environment_c4wwq")
@@ -36,10 +49,13 @@ environment = SubResource("Environment_c4wwq")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2096207630]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 
+[node name="UI" parent="." unique_id=1489775715 instance=ExtResource("3_tl5de")]
+unique_name_in_owner = true
+
 [node name="Platform" type="CSGBox3D" parent="." unique_id=53329381]
 use_collision = true
 size = Vector3(500, 0.001, 500)
-material = ExtResource("1_krbb3")
+material = SubResource("StandardMaterial3D_ixefs")
 
 [node name="RoadManager" type="Node3D" parent="." unique_id=901455732]
 script = ExtResource("3_4c7b0")
@@ -83,13 +99,6 @@ prior_mag = 43.02315
 next_mag = 43.02315
 next_pt_init = NodePath("../RP_002")
 
-[node name="Car" parent="." unique_id=414290366 instance=ExtResource("6_muql7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -4)
-
-[node name="Player" parent="." unique_id=1234029208 instance=ExtResource("2_l7nsk")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -3.5)
-
 [node name="Newspaper" parent="." unique_id=1046253428 instance=ExtResource("11_t3bdi")]
 transform = Transform3D(0.49999997, -0.86602545, -3.7855173e-08, 0, -4.371139e-08, 1, -0.86602545, -0.49999997, -2.1855692e-08, -15.7, 1.2250003, -1.5)
 
@@ -100,13 +109,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.4755007, -7.825)
 use_collision = true
 size = Vector3(2.5, 2.45, 0.35)
-material = ExtResource("9_t3bdi")
+material = SubResource("StandardMaterial3D_m10by")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Props" unique_id=1889254661]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 1.075, 0)
 use_collision = true
 size = Vector3(1.5, 0.15, 4.5)
-material = ExtResource("9_t3bdi")
+material = SubResource("StandardMaterial3D_1d2y0")
 
 [node name="CbiLetter" parent="." unique_id=497591060 instance=ExtResource("13_c4wwq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.5, 1.5, -2)
@@ -114,5 +123,27 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.
 [node name="Phone" parent="." unique_id=461075708 instance=ExtResource("15_vfnqh")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.25, 1.2232306, -1.15)
 
-[node name="UI" parent="." unique_id=1489775715 instance=ExtResource("3_tl5de")]
+[node name="RetroViewportContainer" type="SubViewportContainer" parent="." unique_id=459709992]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vfnqh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 3
+
+[node name="RetroViewport" type="SubViewport" parent="RetroViewportContainer" unique_id=1559052108]
+handle_input_locally = false
+audio_listener_enable_3d = true
+physics_object_picking = true
+size = Vector2i(426, 240)
+render_target_update_mode = 4
+
+[node name="Car" parent="RetroViewportContainer/RetroViewport" unique_id=414290366 instance=ExtResource("6_muql7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.5, -4)
+
+[node name="Player" parent="RetroViewportContainer/RetroViewport" unique_id=1234029208 instance=ExtResource("2_l7nsk")]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.022935, 0, -5.052972)

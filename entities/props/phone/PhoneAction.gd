@@ -4,10 +4,10 @@ extends InteractAction
 const MOVE_TIME := 0.4
 const FADE_TIME := 0.2
 
-@export var _screen_mesh: MeshInstance3D
+
 @export var _screen_viewport: SubViewport
-@export var _inbox: Control
-@export var _phone: Node3D
+@export var _phone_ui: Control
+@export var _phone_root: Node3D
 @export_range(1.0, 10.0, 0.5) var hold_duration := 1.5
 
 var _home: Node3D
@@ -26,10 +26,11 @@ var _line_idx := 0
 
 
 func _ready() -> void:
-	_home = _phone.get_parent_node_3d()
-	_rest_local = _phone.transform
-	_setup_screen()
-	_inbox.modulate.a = 0.0
+	_home = _phone_root.get_parent_node_3d()
+	_rest_local = _phone_root.transform
+	GameManager.ui.phone_overlay.texture = _screen_viewport.get_texture()
+	GameManager.ui.phone_overlay.visible = false
+	_phone_ui.modulate.a = 0.0
 
 
 func get_prompt() -> String:
@@ -48,12 +49,14 @@ func execute(_k: ActionKey) -> void:
 		ScriptManager.say({"text": line})
 	else:
 		_has_used = true
-
+		
 		await _slide_to(GameManager.player.hold_marker, Transform3D.IDENTITY, MOVE_TIME, Tween.EASE_OUT)
+		GameManager.ui.phone_overlay.visible = true
 		await _fade_inbox(1.0, FADE_TIME)
 		await get_tree().create_timer(hold_duration).timeout
 
-		_fade_inbox(0.0, FADE_TIME)  # not awaited on purpose. fades while it slides back
+		await _fade_inbox(0.0, FADE_TIME)
+		GameManager.ui.phone_overlay.visible = false
 		await _slide_to(_home, _rest_local, MOVE_TIME, Tween.EASE_IN_OUT)
 
 		ScriptManager.say({"text": "*sighs* ...Right"})
@@ -64,24 +67,17 @@ func execute(_k: ActionKey) -> void:
 
 
 func _slide_to(new_parent: Node3D, target: Transform3D, time: float, ease_type: Tween.EaseType) -> void:
-	_phone.reparent(new_parent)
+	_phone_root.reparent(new_parent)
 	var t := create_tween()
-	t.tween_property(_phone, "transform", target, time) \
+	t.tween_property(_phone_root, "transform", target, time) \
 		.set_trans(Tween.TRANS_CUBIC).set_ease(ease_type)
 	await t.finished
 
 
 func _fade_inbox(alpha: float, time: float) -> void:
 	var t := create_tween()
-	t.tween_property(_inbox, "modulate:a", alpha, time)
+	t.tween_property(_phone_ui, "modulate:a", alpha, time)
 	await t.finished
-
- 
-func _setup_screen() -> void:
-	var mat := StandardMaterial3D.new()
-	mat.albedo_texture = _screen_viewport.get_texture()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	_screen_mesh.set_surface_override_material(0, mat)
 
 
 func _next_post_use_line() -> String:
